@@ -95,6 +95,22 @@ h6.title
 		background-image: url("#{$path-design}heart.svg")
 		&.active
 			background-image: url("#{$path-design}heart-fill-v1.svg")
+		&.btni
+			position: relative
+			background: transparent
+			.like
+				display: block
+				background: url("#{$path-design}heart_animation_v5.png") no-repeat
+				position: absolute
+				width: 100px
+				height: 100px
+				background-position: 0
+			&.active
+				background: transparent
+				.like
+					transition: background 1s steps(25)
+					&.anim
+						background-position: -2500px 0
 	&.basket
 		background-image: url("#{$path-design}basket.svg")
 		&.active
@@ -146,6 +162,9 @@ h6.title
 			&:before,
 			&:after
 				background-color: $color-red
+
+
+
 .img
 	display: block
 	margin: auto
@@ -176,41 +195,35 @@ $btn-max-width: 210px
 .btn:active,
 .btn:focus,
 .btn:visited,
+	display: inline-block
 	text-align: center
-	max-width: $btn-max-width
-	width: 100%
+	padding: 0 50px
 	min-height: $btn-height
 	line-height: $btn-height
 	font-size: 16px
 	background-color: $color-primary
 	border-radius: 0
-	padding: 0
+	border: 0
 	margin: 0
 	color: $color-white !important
 	overflow: hidden
 	position: relative
-	border: $btn-weight-border solid $color-primary
 	&:hover,
 	&:active
 		background-color: $color-primary-light
 		line-height: $btn-height
-		border: $btn-weight-border solid $color-primary-light
 	&.v1
 		background-color: $color-white
 		color: $color-primary !important
+		position: relative
+		&:before
+			@extend .before
+			border: $btn-weight-border solid $color-primary-light
 		&:hover,
 		&:active
 			background-color: $color-primary
 			color: $color-white !important
 			line-height: $btn-height
-			border: $btn-weight-border solid $color-primary-light
-		&.waves-light .waves-ripple
-			$gradient: rgba($color-primary-rgb, 0.2) 0, rgba($color-primary-rgb, 0.3) 40%, rgba($color-primary-rgb, 0.4) 50%, rgba($color-primary-rgb, 0.5) 60%, rgba($color-primary-rgb, 0) 70%
-			background: rgba($color-primary-rgb, 0.4)
-			background: -webkit-radial-gradient($gradient)
-			background: -moz-radial-gradient($gradient)
-			background: -o-radial-gradient($gradient)
-			background: radial-gradient($gradient)
 	&.v2
 		background-color: $color-yellow
 		color: $color-black !important
@@ -219,10 +232,13 @@ $btn-max-width: 210px
 			background-color: $color-yellow-dark
 
 .it
+	display: inline-block
+	padding: 0 60px
 	background-color: $color-white
 	height: $btn-height
 	line-height: $btn-height
 	max-width: $btn-max-width
+	text-align: center
 
 
 

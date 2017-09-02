@@ -62,7 +62,6 @@ gulp
 	return gulp.src([
 			'src/libs/custom/js/markup.js',
 			'src/libs/material-design-lite/material.min.js',
-			'src/libs/custom/js/waves/waves.js',
 			'src/libs/aishek-jquery-animateNumber/jquery.animateNumber.min.js',
 		])
 		.pipe( concat( 'custom.min.js') )
@@ -74,6 +73,7 @@ gulp
 
 .task( 'libs-css',['custom-libs-sass'],()=>{
 	return gulp.src([
+			'node_modules/node-waves/dist/waves.min.css',
 			'node_modules/izimodal/css/iziModal.min.css',
 			'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css',
 			'src/libs/Snarl-master/dist/snarl.min.css',

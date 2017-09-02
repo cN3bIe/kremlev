@@ -9,7 +9,7 @@ var log = console.log;
 	console.log('Waves init');
 	Waves.init();
 	Waves.attach('.moveup', ['waves-circle', 'waves-float']);
-	Waves.attach('.btn', ['waves-button', 'waves-float','waves-light']);
+	Waves.attach('.btn', ['waves-button','waves-light']);
 	Waves.attach('.ribe', ['waves-block', 'waves-float']);
 
 
@@ -481,7 +481,7 @@ var log = console.log;
 				bookmarkBadget.parents('.bookmark').addClass('active');
 			}else bookmarkBadget.stop().fadeOut().parents('.bookmark').removeClass('active');
 			_.getCard().forEach(function(id){
-				$('[data-id*="'+id+'"]').find('.btni.bookmark').addClass('active');
+				$('[data-id*="'+id+'"]').find('.btni.bookmark').addClass('active').find('.like').addClass('anim');
 			});
 		});
 
@@ -518,11 +518,27 @@ var log = console.log;
 		//Additing product in bookmark
 		$('.btni.bookmark').click(function(e){
 			e.preventDefault();
-			var _ = $(this).toggleClass('active').parents('.item-card,.main-info');
-			Bookmark.addCard(_.data('id'));
-			bookmarkAJAX(_.data('id'));
-			document.dispatchEvent(BasketBookmark);
+			var _ = $(this);
+			_.find('.like').toggleClass('anim');
+			var _p = _.toggleClass('active').parents('.item-card,.main-info');
+			if( _p.data('id') ){
+				Bookmark.addCard( _p.data('id') );
+				bookmarkAJAX( _p.data('id') );
+				document.dispatchEvent(BasketBookmark);
+			}else{
+				log(_, _p);
+				throw('ID error');
+			}
 		});
+
+		$('.btni.bookmark').each(function(id,el){
+			var _ = $(el);
+			_.find('.like').css({
+				top: _.height()/2 - 50,
+				left: _.width()/2 - 50
+			});
+		});
+
 		//Additing product in basket
 		$('.btni.basket').click(function(e){
 			var _ = $(this).addClass('active').parents('.item-card');
@@ -731,7 +747,6 @@ var log = console.log;
 			document.dispatchEvent(BasketBookmark);
 
 		});
-
 
 
 

@@ -54,7 +54,7 @@ get_header();
 										?> <span class="price"><?php echo $price;?> руб.</span>
 									</div>
 								</div>
-								<div class="bl-action"><a href="#bookmark" class="btni ic bookmark"></a><a href="#basket" class="btni ic basket"></a></div>
+								<div class="bl-action"><a href="#bookmark" class="btni ic bookmark"><span class="like"></span></a><a href="#basket" class="btni ic basket"></a></div>
 							</div>
 						</div><?php
 					endforeach;

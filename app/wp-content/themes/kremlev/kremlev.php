@@ -49,9 +49,13 @@ $blog_recipes = get_posts( array(
 if( $baner ):
 	?><section class="section slider"><?php
 		if( $baner_link ):
-			?><a href="<?php echo $baner_link;?>" class="wr a-d"><img src="<?php echo $baner;?>" alt="" /></a><?php
+			?><a href="<?php echo $baner_link;?>" class="a-d bg-cover" style="background-image: url('<?php echo $baner;?>');">
+				<div class="wr"></div>
+			</a><?php
 		else:
-			?><div class="wr"><img src="<?php echo $baner;?>" alt="" /></div><?php
+			?><div class="wr-slider bg-cover" style="background-image: url('<?php echo $baner;?>');">
+				<div class="wr"></div>
+			</div><?php
 		endif;
 	?></section><?php
 endif;
@@ -72,9 +76,17 @@ if( count( $card_hit_sale ) ):
 endif;
 if( $baner2_img || $baner2_text):
 ?><section class="section sertificate">
-	<div class="wr bg-cover" <?php if( $baner2_img ) echo 'style="background-image:url('.$baner2_img.');"';?>><?php
-		if( $baner2_text ) echo '<h2 class="title-sertificate">'.$baner2_text.'</h2>';
-	?></div>
+	<div class="wr bg-cover row" <?php if( $baner2_img ) echo 'style="background-image:url('.$baner2_img.');"';?>>
+		<div class=" col s12 m6 offset-m6 bl-sertificate"><?php
+			if( $baner2_text ) echo '<h2 class="title-sertificate">'.$baner2_text.'</h2>';
+		?><div class="wr-form">
+			<form action="" class="form">
+				<span><input class="it v1 fi-d" type="text" placeholder="Введите ваш E-mail"></span>
+				<button class="btn v2">Получить</button>
+			</form>
+		</div>
+		</div>
+	</div>
 </section><?php
 endif;
 if( count( $card_sale ) ):

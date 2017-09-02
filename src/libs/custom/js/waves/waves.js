@@ -101,7 +101,7 @@
     var Effect = {
 
         // Effect duration
-        duration: 750,
+        duration: 2750,
 
         // Effect delay (check for scroll before showing effect)
         delay: 200,
