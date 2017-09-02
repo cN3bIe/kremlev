@@ -1,0 +1,153 @@
+.section.card
+	background-color: $color-white
+	.main-info
+
+		.bl-notice
+			min-height: 1px
+			position: relative
+			z-index: 1
+			.badget
+				display: block
+				height: $notice-badget-side
+				width: $notice-badget-side
+				top: 0
+				right: 30px
+				left: auto
+				bottom: auto
+				padding: ( $notice-badget-side - 34px ) /2 0
+				font-size: 14px
+				line-height: 17px
+				&.badget-hit
+					color: $color-white
+					background-color: $color-primary
+		.bl-gallery
+			width: 100%
+			margin: auto
+			.item-img-gallery
+		.bl-order
+			padding: 28px 21px 56px 49px
+			border: $border-line
+			.bl-bookmark
+				text-align: right
+				.ic.bookmark
+				.close.v1
+					display: none
+					&.active
+						display: block
+			.title-card
+				margin:
+					top: 28px
+					bottom: 49px
+				line-height: 29px
+				font:
+					size: 24px
+					weight: 400
+			.name
+				line-height: 22px
+				font:
+					size: 18px
+					weight: 400
+				margin-bottom: 12px
+			.price,
+			.oldprice
+				margin-bottom: 47px
+				line-height: 43px
+				font:
+					size: 36px
+					weight: 700
+			.oldprice
+				color: $color-text-gray
+				font-weight: 400
+				text-decoration: line-through
+				margin-bottom: 12px
+			.bl-count
+				max-width: $card-order-width
+				margin: 0 0 12px
+				.bl-brick
+					width: 60px
+					height: 60px
+					line-height: 60px
+					transition: .3s ease
+					&.reduce-count
+					&.count
+						width: 100%
+						float: none
+						padding: 0 20px
+						font-size: 16px
+						.fi-d
+							text-align: center
+					&.enlarge-count
+						float: right
+					&.reduce-count,
+					&.enlarge-count
+						&:hover
+							background-color: $color-primary
+							color: $color-white
+			.wr-btn
+				height: $btn-height * 2 + 12px + $brick-border-weight * 4 + 15px
+				overflow: hidden
+				margin-left: -15px
+				padding-left: 15px
+				.btn,
+				.wr-phone
+					margin: 0 0 12px
+					max-width: $card-order-width
+					width: 100%
+					font-size: 16px
+				.wr-phone
+					border: $brick-border
+					min-height: $btn-height
+					line-height: $btn-height
+					text-align: center
+					.fi-d
+						text-align: center
+				.wr-phone,
+				#make-order
+					display: none
+	.more-detailed
+		.wr-control-tab
+			border-bottom: $border-line
+			padding-bottom: 21px
+			display: inline-block
+			.item-control-tab
+				margin-right: 40px
+				line-height: 22px
+				color: #ACA9A9
+				font:
+					size: 18px
+					weight: 400
+				cursor: pointer
+				&:last-child
+					margin-right: 0
+				&.active
+					color: #41516B
+		.wr-tabs
+			margin-top: 20px
+			.item-tab
+				display: none
+				.ul-d
+					.li-d
+						line-height: 24px
+						font-size: 16px
+						.name
+							font-weight: 700
+						.text
+				&.active
+					display: block
+			.wr-sert
+				.item-sert
+					float: left
+					margin-right: 20px
+					.img
+				&.v1
+					.item-sert
+						.img
+							min-height: 309px
+							max-width: 223px
+							width: 223px
+				&.v2
+					.item-sert
+						.img
+							min-height: 224px
+							max-width: 308px
+							width: 308px

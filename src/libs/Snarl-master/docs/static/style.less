@@ -1,0 +1,165 @@
+body {
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+header.jumbotron {
+//    background:#1c9af5 url('shooting-star.jpg');
+    background-size:cover;
+    background-position:center;
+    background: transparent;
+    
+    color: #fff;
+    text-shadow:0.03rem 0.05rem 1px rgba(0,0,0,0.8);
+    text-align:center;
+    box-shadow: 0 -20px 10px -20px rgba(0,0,0,0.5) inset;
+    
+    width:100%;
+    padding:150px 5px;
+    
+    overflow: hidden;
+
+    .subtitle {
+        margin-bottom:0;
+        font-weight:300;
+    }
+
+    .version {
+        font-size:1.1em;
+        font-weight:300;
+    }
+    
+    #header-background {
+        background: url('shooting-star.jpg');
+        position: absolute;
+        z-index: -1;
+        top: -80%;
+        left: 0;
+        min-width: 100%;
+        min-height:200%;
+    }
+    #header-text {
+        position:relative;
+        height:100%;
+        margin:0 auto;
+    }
+}
+
+#wrapper {
+    width:800px;
+    border:1px solid #eee;
+    border-top:none;
+    border-bottom:none;
+    margin:20px auto;
+    padding:5px 30px 5px;
+
+    h1 {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 3px solid #eee;
+
+        &:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+    }
+
+    h2 {
+        padding-bottom:5px;
+        border-bottom: 1px solid #eee;
+    }
+
+    h2, h3 {
+        margin-top: 30px;
+    }
+
+    h1 + h2,
+    h2 + h3 {
+        margin-top:15px;
+    }
+}
+
+.waves-button {
+    color:#fff;
+    background:#3697dd;
+    font-weight: 400;
+
+    &:hover, &:focus {
+        color:#fff;
+        background:#6ba9de;
+    }
+
+    &.close-button {
+        background:#e36b6b;
+
+        &:hover {
+            background:#e25772;
+        }
+    }
+
+    &.big-button {
+        font-size: 1.2em;
+    }
+
+    &#snarl-github {
+        background:#f6f6f6;
+        color: #333;
+        font-size:1em;
+    }
+}
+
+
+footer {
+    width:100%;
+    margin:0;
+    background:#58aae6;
+    text-align:center;
+    padding:20px;
+    color:#fff;
+
+    a {
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #wrapper {
+        width:100%;
+        padding:30px 12px;
+    }
+}
+
+/*
+ * Code coloring
+ */
+
+.language-javascript {
+    .s1, .s2 { //strings
+        color: #12c312;
+    }
+
+    .k, .kd { //keywords
+        color: #1d8ae8;
+    }
+
+    .kc, .mi { //value keywords, numbers
+        color: #e08e0b;
+    }
+
+    .cm, .c1 { //comments
+        color: #aaa;
+    }
+
+    .o { //operators
+        color: #c313c3;
+    }
+}

@@ -1,0 +1,44 @@
+.kladr-error
+	color: #cb3e27
+
+#kladr_autocomplete
+	ul
+		position: absolute
+		display: block
+		padding: 0
+		border: $border-line
+		background-color: $color-white
+		z-index: 9999
+		overflow-x: hidden
+		overflow-y: auto
+		min-width: 200px
+		max-height: 420px
+		color: #313131
+		margin: 20px -21px
+		width: 310px !important
+		li
+			display: list-item
+			list-style-type: none
+			margin: 0
+			overflow: hidden
+			white-space: nowrap
+			text-overflow: ellipsis
+			padding: 10px 45px
+			border-bottom: $border-line
+			cursor: pointer
+			&.active,
+			&:hover
+				background-color: $color-bg-section
+		a
+			text-decoration: none
+		strong
+			color: $color-primary
+	.spinner
+		position: absolute
+		display: none !important
+		margin: 0
+		padding: 0
+		width: 16px
+		height: 16px
+		z-index: 9999
+

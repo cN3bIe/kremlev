@@ -1,0 +1,656 @@
+---
+title: Snarl - Growl notifications for your web app
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snarl Web Notifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="static/normalize.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/snarl.min.css">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/waves.min.css">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+    <!-- javascript (at top so demos can be places inline for clarity) -->
+    <script src="static/jquery-1.10.2.min.js"></script>
+    
+    <script type="text/javascript" src="http://janpaepke.github.io/ScrollMagic//js/lib/greensock/TweenMax.min.js"></script>
+    <script src="static/ScrollMagic.min.js"></script>
+    <script type="text/javascript" src="http://janpaepke.github.io/ScrollMagic/scrollmagic/uncompressed/plugins/animation.gsap.js"></script>
+    <script src="static/waves.min.js"></script>
+    <script src="static/snarl.js"></script>
+    
+    <script>
+        // Parallaxing
+        $(document).ready(function() {
+            var percentage = (function() {
+                var container = $('header.jumbotron').innerHeight();
+                return function(pct) {
+                    return (container * pct) + 'px';
+                }
+            })();
+            
+            var containerHeight = $('header.jumbotron').innerHeight();
+            
+            console.log(percentage(0.5));
+            
+            // init controller
+            var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: containerHeight + 'px'}});
+
+            new ScrollMagic.Scene().setTween("#header-background", {y: percentage(0.85), ease: Linear.easeNone}).addTo(controller);
+
+            new ScrollMagic.Scene().setTween("#header-text", {y: percentage(0.5), opacity: 0.1, ease: Linear.easeNone}).addTo(controller);
+        });
+    </script>
+</head>
+<body>
+    <header class="jumbotron waves-effect waves-light">
+        <div id="header-background"></div>
+        <div id="header-text">
+            <h1>Snarl</h1>
+            <p class="subtitle">Growl-style notifications for your web app.</p>
+            <p class="version">Currently v0.3.3</p>
+        </div>
+    </header>
+    <div id="wrapper">
+        <!-- TODO: nav bar -->
+
+        <h1>Snarl Notifications</h1>
+        <p>Snarl intends to make it quick and easy to include gorgeous and functional Mac/Growl-style notifications in your web app. It supports desktop, touch/tablet, and mobile devices; has raw JS and LESS/CSS source files; and supports custom timeouts and notification click callbacks. Ripple/wave click effect brought by <a href="http://fian.my.id/Waves/" target="_blank">Waves</a>!</p>
+        <p class="text-center">
+            <a id="snarl-download" class="big-button waves-effect waves-button waves-light" href="https://github.com/hoxxep/Snarl/raw/master/dist/snarl.zip"><i class="fa fa-download"></i> Download</a>
+            <a id="snarl-github" class="big-button waves-effect waves-button" href="https://github.com/hoxxep/Snarl/"><i class="fa fa-lg fa-github"></i> View on Github</a>
+        </p>
+
+        <h1 id="getting-started">Getting Started</h1>
+        <h3>Download the Files</h3>
+        <p>Hit the download link above and in the downloaded <code>snarl.zip</code> file will be source and minified versions of the JS, CSS and optionally the LESS files too.</p>
+
+        <h3>Clone the Repo</h3>
+        <p>Another method of getting the files is cloning the repo via <code>git clone https://github.com/hoxxep/Snarl</code>. You'll find the files which can be used in projects inside the <code>dist/</code> folder. If you have cloned the repo and are modifying the source files to suit your project's aesthetic, instead of editing files in the dist folder, edit them inside the <code>src/</code> folder. Then, in the Snarl repo root directory (provided you have <a href="http://nodejs.org/" target="_blank" title="Node.js">node</a> installed) you can run <code>npm install</code>, <code>npm install -g gulp</code>, <code>gulp</code> and this will watch the source files and rebuild the dist files if any changes occur - automatically compiling the LESS and minifying the source files.</p>
+
+        <h3>Adding the Files to Your Project</h3>
+        <p>Snarl gives you pre-minified versions of the CSS and JS for immediate embedding into projects. Otherwise, the raw files are still there in case you want to edit them. Included is also <code>snarl.less</code> which is the source for the compiled CSS, modifying this is the fastest way to change the aesthetic of the notification design or animations to suit your project.</p>
+        <p>Check out the demos below for usage examples.</p>
+
+        <!-- TODO: customising notifications -->
+
+        <h1>Snarl Notification Demos</h1>
+        <p><strong>Note:</strong> Snarl itself does not require jQuery as a dependency, but these examples use jQuery for the click events for clarity.</p>
+        <!-- TODO: proper links and contents (sticky side-nav?) -->
+        <!--<ul>
+            <li>Basic</li>
+            <li>With timer (null open+close, and with specified delay)</li>
+            <li>Update notification</li>
+            <li>Setting defaults</li>
+            <li>With click callbacks (string + function)</li>
+            <li>Messages App</li>
+        </ul>-->
+        <h2>Basic Demo</h2>
+        <p>Adding a notification is really simple with snarl. Specify a title and some text (as a description) and your notification will appear!</p>
+        <p><button id="basic-demo" class="waves-effect waves-button waves-light">Basic Demo</button></p>
+        <script>
+            $('#basic-demo').click(function() {
+                Snarl.addNotification({
+                    title: 'Ahoy there, skipper',
+                    text: 'Hello, world!'
+                });
+            });
+        </script>
+{% highlight javascript %}
+$('#basic-demo').click(function() {
+    Snarl.addNotification({
+        title: 'Ahoy there, Skipper',
+        text: 'Hello, world!'
+    });
+});
+{% endhighlight %}
+        
+        <h2>Icons</h2>
+        <p>Snarl supports optional custom icons in the form of images, SVGs, and glyphicon fonts (such as FontAwesome). For a circular icon you can add a class/style on the image/svg/glyphicon which applies <code>border-radius:50%;</code> to the icon.</p>
+        <p><button id="icon-demo" class="waves-effect waves-button waves-light">Custom Icon</button></p>
+        <script>
+            $('#icon-demo').click(function() {
+                Snarl.addNotification({
+                    title: 'Custom Icons',
+                    text: 'Cool, huh? Supports images, svgs, and glyphicon fonts.',
+                    icon: '<i class="fa fa-globe"></i>'
+                });
+            });
+        </script>
+{% highlight javascript %}
+$('#icon-demo').click(function() {
+    Snarl.addNotification({
+        title: 'Custom Icons',
+        text: 'Cool, huh? Supports images, svgs, and glyphicon fonts.',
+        icon: '<i class="fa fa-globe"></i>'
+    });
+});
+{% endhighlight %}
+
+        <h2>Timeouts</h2>
+        <p>Snarl supports custom timeouts specified in milliseconds or even having no timeouts at all.</p>
+        <h3>Custom Timeout</h3>
+        <p><button id="custom-timeout-demo" class="waves-effect waves-button waves-light">Custom Timeout</button></p>
+        <script>
+            $('#custom-timeout-demo').click(function() {
+                Snarl.addNotification({
+                    title: 'Custom Timeouts',
+                    text: 'This notification has an 8000ms timeout.',
+                    icon: '<i class="fa fa-clock-o"></i>',
+                    timeout: 8000
+                });
+            });
+        </script>
+{% highlight javascript %}
+$('#custom-timeout-demo').click(function() {
+    Snarl.addNotification({
+        title: 'Custom Timeouts',
+        text: 'This notification has an 8000ms timeout!',
+        icon: '<i class="fa fa-clock-o"></i>',
+        timeout: 8000
+    });
+});
+{% endhighlight %}
+
+        <h3>No Timeout</h3>
+        <p>Notifications with no timeouts must either be manually dismissed by the user, or can be removed by your code once an event is complete. Updating notifications is done using the ID string returned by <code>Snarl.addNotification()</code>.</p>
+        <p><button id="no-timeout-open" class="waves-effect waves-button waves-light">Open Notification</button>
+            <button id="no-timeout-close" class="waves-effect waves-button waves-light close-button">Close Notification</button></p>
+        <script>
+            var noTimeoutNotification = null;
+            $('#no-timeout-open').click(function() {
+                if (Snarl.isDismissed(noTimeoutNotification)) {
+                    noTimeoutNotification = Snarl.addNotification({
+                        title: 'No Timeout',
+                        text: 'Close the notification by pressing either the dismiss button on the page or in the notification.',
+                        icon: '<i class="fa fa-ban"></i>',
+                        timeout: null
+                    });
+                }
+            });
+            $('#no-timeout-close').click(function() {
+                Snarl.removeNotification(noTimeoutNotification);
+            });
+        </script>
+{% highlight javascript %}
+var noTimeoutNotification = null;
+$('#no-timeout-open').click(function() {
+    if (Snarl.isDismissed(noTimeoutNotification)) {
+        noTimeoutNotification = Snarl.addNotification({
+            title: 'No Timeout',
+            text: 'Close the notification by pressing either the dismiss button on the page or in the notification.',
+            icon: '<i class="fa fa-ban"></i>',
+            timeout: null
+        });
+    }
+});
+$('#no-timeout-close').click(function() {
+    Snarl.removeNotification(noTimeoutNotification);
+});
+{% endhighlight %}
+
+        <h2>Update Notifications</h2>
+        <p>Because notifications are track/modifiable with their IDs, notifications can be updated, reopened, and removed. All options on a notification can be updated later by resupplying the options you wish to change with the <code>Snarl.editNotification(id, options)</code> function.</p>
+        <p><input id="update-notification-title" class="form-control" placeholder="Notification Title"></p>
+        <p><input id="update-notification-text" class="form-control" placeholder="Notification Text"></p>
+        <p><input id="update-notification-icon" class="form-control" placeholder='Notification Icon (blank = null)'></p>
+        <p><input id="update-notification-timeout" class="form-control" placeholder="Notification Timeout (blank = null)"></p>
+        <p><label><input id="update-notification-dismissable" type="checkbox" checked> Dismissable</label></p>
+        <p>
+            <button id="update-notification-open" class="waves-effect waves-button waves-light">Open/Edit Notification</button>
+            <button id="update-notification-close" class="waves-effect waves-button waves-light close-button">Close Notification</button>
+        </p>
+        <script>
+            /**
+             * Take user input
+             */
+            function options() {
+                var title = $('#update-notification-title').val(),
+                    text = $('#update-notification-text').val(),
+                    icon = $('#update-notification-icon').val(),
+                    timeout = $('#update-notification-timeout').val(),
+                    dismissable = $('#update-notification-dismissable').prop('checked');
+
+                if (title === '') title = 'Notification Title';
+                if (text === '') text = 'Notification Text';
+                if (timeout === '') timeout = null;
+
+                return {
+                    title: title,
+                    text: text,
+                    icon: icon,
+                    timeout: timeout,
+                    dismissable: dismissable
+                };
+            }
+
+            /**
+             * Snarl-related code
+             */
+            var notification = null;
+            $('#update-notification-open').click(function() {
+                if (!Snarl.exists(notification)) {
+                    notification = Snarl.addNotification(options());
+                } else {
+                    Snarl.editNotification(notification, options());
+                }
+            });
+            $('#update-notification-close').click(function() {
+                Snarl.removeNotification(notification);
+            });
+        </script>
+{% highlight javascript %}
+/**
+ * Take user input
+ */
+function options() {
+    var title = $('#update-notification-title').val(),
+        text = $('#update-notification-text').val(),
+        icon = $('#update-notification-icon').val(),
+        timeout = $('#update-notification-timeout').val(),
+        dismissable = $('#update-notification-dismissable').prop('checked');
+
+    if (title === '') title = 'Notification Title';
+    if (text === '') text = 'Notification Text';
+    if (timeout === '') timeout = null;
+
+    return {
+        title: title,
+        text: text,
+        icon: icon,
+        timeout: timeout,
+        dismissable: dismissable
+    };
+}
+
+/**
+ * Snarl-related code
+ */
+var notification = null;
+$('#update-notification-open').click(function() {
+    if (!Snarl.exists(notification)) {
+        notification = Snarl.addNotification(options());
+    } else {
+        Snarl.editNotification(notification, options());
+    }
+});
+$('#update-notification-close').click(function() {
+    Snarl.removeNotification(notification);
+});
+{% endhighlight %}
+
+        <h2>Click Actions/Callbacks</h2>
+        <p>If the user clicks a notification, an action can be run. Either a callback function can be executed; a url can be visited; or nothing. These are specified via the <code>action</code> option. If a function is provided it will be used as a callback, if a string is provided then that url will be visited, or if <code>null</code> is used then no action will occur. The default value is <code>action: null</code>.</p>
+
+        <h3>Action: String/Url</h3>
+        <p>Visit a url when the user clicks the notification. Note: currently does this by setting <code>window.location</code>.</p>
+        <p><button id="snarl-callback-string" class="waves-effect waves-button waves-light">Open Notification</button></p>
+        <script>
+            $('#snarl-callback-string').click(function() {
+                Snarl.addNotification({
+                    title: 'String Callback',
+                    text: 'Click this notification to visit a url',
+                    icon: '<i class="fa fa-github fa-lg"></i>',
+                    action: 'http://github.com/hoxxep/Snarl'
+                });
+            });
+        </script>
+{% highlight javascript %}
+$('#snarl-callback-string').click(function() {
+    Snarl.addNotification({
+        title: 'String Callback',
+        text: 'Click this notification to visit a url',
+        icon: '<i class="fa fa-github fa-lg"></i>'
+        action: 'http://github.com/hoxxep/Snarl'
+    });
+});
+{% endhighlight %}
+
+        <h3>Action: Callback Function</h3>
+        <p>This example makes the notification update itself once clicked. The function is passed the notification id as an argument, and has the potential to work with JS MVC frameworks too. Note that if the dismiss button is pressed, then no callback is triggered (subject to change).</p>
+        <p><button id="snarl-callback-function" class="waves-effect waves-button waves-light">Open Notification</button></p>
+        <script>
+            $('#snarl-callback-function').click(function() {
+                var id = Snarl.addNotification({
+                    title: 'Snarl Notification #' + (Snarl.count + 1),
+                    text: 'Hello, world! Click this notification.',
+                    icon: '<i class="fa fa-dot-circle-o"></i>',
+                    timeout: null,
+                    action: function(id) {
+                        Snarl.editNotification(id, {
+                            text: 'You clicked the notification! Click once more, click the dismiss button, or wait 8000ms to close it.',
+                            icon: '<i class="fa fa-check-circle"></i>',
+                            timeout: 8000,
+                            action: function(id) {
+                                Snarl.removeNotification(id);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+{% highlight javascript %}
+$('#snarl-callback-function').click(function() {
+    var id = Snarl.addNotification({
+        title: 'Snarl Notification #' + (Snarl.count + 1),
+        text: 'Hello, world! Click this notification.',
+        icon: '<i class="fa fa-dot-circle-o"></i>',
+        timeout: null,
+        action: function(id) {
+            Snarl.editNotification(id, {
+                text: 'You clicked the notification! Click once more, click the dismiss button, or wait 8000ms to close it.',
+                icon: '<i class="fa fa-check-circle"></i>',
+                timeout: 8000,
+                action: function(id) {
+                    Snarl.removeNotification(id);
+                }
+            });
+        }
+    });
+});
+{% endhighlight %}
+
+        <h2>Messages Demo</h2>
+        <p>The messages demo is a simple example using jQuery to demo how Snarl notifications could look in a more realistic usage example.</p>
+        <p><input id="name" placeholder="Name" class="form-control"></p>
+        <p><textarea id="message" placeholder="Message" class="form-control"></textarea></p>
+        <p><button id="send-message" class="waves-effect waves-button waves-light">Send Message</button></p>
+        <script>
+            var typingNotification = null;
+            $('#name').focusout(function() {
+                typingNotification = null;
+                if ($('#name').val()) {
+                    Snarl.addNotification({
+                        title: $(this).val(),
+                        text: 'Signed in',
+                        icon: '<i class="fa fa-user-plus"></i>'
+                    });
+                }
+            });
+            $('#message').keypress(function() {
+                if ($('#name').val()) {
+                    if (typingNotification === null) {
+                        typingNotification = Snarl.addNotification({
+                            title: $('#name').val(),
+                            text: 'Is typing...',
+                            icon: '<i class="fa fa-pencil"></i>',
+                            timeout: 2000
+                        });
+                    } else {
+                        Snarl.reOpenNotification(typingNotification);
+                    }
+                }
+            });
+            $('#send-message').click(function() {
+                if ($('#name').val() && $('#message').val()) {
+                    Snarl.removeNotification(typingNotification);
+                    typingNotification = null;
+                    Snarl.addNotification({
+                        title: $('#name').val(),
+                        text: $('#message').val(),
+                        icon: '<i class="fa fa-comment"></i>',
+                        timeout: 5000
+                    });
+                    $('#message').val('');
+                } else {
+                    Snarl.addNotification({
+                        title: 'Error',
+                        text: 'No name or message entered!',
+                        icon: '<i class="fa fa-warning"></i>'
+                    });
+                }
+            });
+        </script>
+{% highlight javascript %}
+var typingNotification = null;
+$('#name').focusout(function() {
+    typingNotification = null;
+    if ($('#name').val()) {
+        Snarl.addNotification({
+            title: $(this).val(),
+            text: 'Signed in',
+            icon: '<i class="fa fa-user-plus"></i>'
+
+        });
+    }
+});
+$('#message').keypress(function() {
+    if ($('#name').val()) {
+        if (typingNotification === null) {
+            typingNotification = Snarl.addNotification({
+                title: $('#name').val(),
+                text: 'Is typing...',
+                icon: '<i class="fa fa-pencil"></i>',
+                timeout: 2000
+            });
+        } else {
+            Snarl.reOpenNotification(typingNotification);
+        }
+    }
+});
+$('#send-message').click(function() {
+    if ($('#name').val() && $('#message').val()) {
+        Snarl.removeNotification(typingNotification);
+        typingNotification = null;
+        Snarl.addNotification({
+            title: $('#name').val(),
+            text: $('#message').val(),
+            icon: '<i class="fa fa-comment"></i>',
+            timeout: 5000
+        });
+        $('#message').val('');
+    } else {
+        Snarl.addNotification({
+            title: 'Error',
+            text: 'No name or message entered!',
+            icon: '<i class="fa fa-warning"></i>'
+        });
+    }
+});
+{% endhighlight %}
+
+
+        <h1>Snarl Notification Reference</h1>
+        <!--<ul>
+            <li>ids</li>
+            <li>options
+                <ul>
+                    <li>title</li>
+                    <li>text</li>
+                    <li>timeout</li>
+                    <li>action</li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li>setDefaultOptions(options)</li>
+            <li>addNotification(options) : returns id</li>
+            <li>editNotification(id, options)</li>
+            <li>reOpenNotification(id)</li>
+            <li>removeNotification(id) : returns bool</li>
+            <li>isDismissed(id) : returns bool</li>
+            <li>exists(id) : returns bool</li>
+            <li>setTitle(id, title)</li>
+            <li>setText(id, text)</li>
+            <li>setTimeout(id, timeout)</li>
+        </ul>-->
+
+        <h2>Common Function Arguments</h2>
+        <!-- TODO: prettify this -->
+        <h3>Argument: id</h3>
+        The <code>id</code> is the string which maps to a Snarl notification. <code>id</code>s are generated and returned automatically when using <code>.addNotification(options)</code>.
+
+        <h3>Argument: options</h3>
+        <p><code>title</code>: String - title of the notification.</p>
+        <p><code>text</code>: String - description part of the notification.</p>
+        <p><code>icon</code>: String/HTML - HTML string for an image/svg/glyphicon element to use as a notification icon.</p>
+        <p><code>timeout</code>: Integer/null</p>
+        <ul>
+            <li>Integer: timeout of notification in milliseconds.</li>
+            <li>null: no timeout.</li>
+        </ul>
+        <p><code>action</code>: String/Function/null</p>
+        <ul>
+            <li>String: url of page to visit if notification is clicked.</li>
+            <li>Function: callback function to run on notification click. Is passed the notification id as a parameter.</li>
+            <li>null: no callback/action when clicked.</li>
+        </ul>
+        <p><code>dismissable</code>: true/false whether the notification is dismissable</p>
+
+        <h3>Default Options</h3>
+{% highlight javascript %}
+Snarl.defaultOptions => {
+    title: '',
+    text: '',
+    icon: '',
+    timeout: 3000,
+    action: null,
+    dismissable: true
+}
+{% endhighlight %}
+
+        <h3>Example Options</h3>
+        <p>Note: for user friendliness, most notifications should be dismissable (and they are by default), hence why <code>dismissable</code> is omitted in this example.</p>
+{% highlight javascript %}
+var options = {
+    title: 'Snarl Notification',
+    text: 'Hello, world! This is an example notification.',
+    icon: '<i class="fa fa-info-circle"></i>',
+    action: function(id) {
+        // do relevant action in web app
+        console.log('Snarl notification ' + id + ' was clicked!');
+    }
+};
+{% endhighlight %}
+
+        <h2>Snarl Methods</h2>
+
+        <h3>.setDefaultOptions(options)</h3>
+        <p>Set's the default options to be used when adding a new notification.</p>
+{% highlight javascript %}
+// Example: Set default timeout to null
+Snarl.setDefaultOptions({
+    timeout: null
+});
+{% endhighlight %}
+        
+        <h3>.setNotificationHTML(html_string)</h3>
+        <p>Customise the inner HTML generated for a notification. Notifications automatically have the class <code>.snarl-notification</code> and id <code>#snarl-notification-[id]</code> added. (<code>[id]</code> is the notification ID string returned by <code>.addNotification()</code>).</p>
+        <p><strong>Note:</strong> notifications must have the <code>snarl-title</code>, <code>snarl-text</code>, and <code>snarl-close</code> classes to hold the title and text, and to have a working close button.</p>
+{% highlight javascript %}
+// Example: Very basic custom notification HTML with Waves support and a FontAwesome close icon
+Snarl.setNotificationHTML(
+    '<div class="waves-effect">' +
+        '<h3 class="snarl-title"></h3>' +
+        '<p class="snarl-text"></p>' +
+        '<div class="snarl-close waves-effect">' +
+            '<i class="fa fa-close"></i>' +
+        '</div>'
+    '</div>'
+);
+{% endhighlight %}
+
+        <h3>.addNotification(options) : String id</h3>
+        <p>Open a new notification with the specified options. <strong>Returns</strong> a string that is the notification <code>id</code>.</p>
+{% highlight javascript %}
+// Example: Add new notification
+var notification = Snarl.addNotification({
+    title: 'Snarl Notification',
+    text: 'Example notification text',
+    action: 'http://hoxxep.github.io/Snarl'
+});
+{% endhighlight %}
+
+        <h3>.editNotification(id, options)</h3>
+        <p>Edit an open notification. Only supply the options that you want to update, the rest will stay the same. If the notification has been dismissed it will re-open the notification with the previous timeout setting.</p>
+{% highlight javascript %}
+// Example: Edit the description on our new notification
+Snarl.editNotification(notification, {
+    text: 'I\'ve edited the notification text!'
+});
+{% endhighlight %}
+
+        <h3>.reOpenNotification(id)</h3>
+        <p>Attempt to re-open a notification otherwise, if the notification is still open, reset the timeout.</p>
+{% highlight javascript %}
+// Example: Re-open the notification if it was dismissed
+Snarl.reOpenNotification(notification);
+{% endhighlight %}
+
+        <h3>.removeNotification(id) : Boolean successful</h3>
+        <p>Dismiss a notification. <strong>Returns</strong> <code>true</code> if the notification was open and <code>false</code> if it was already dismissed or did not exist. <strong>Note</strong> removed notifications can still be re-opened or edited, this merely dismisses a notification. Will probably be refactored to <code>.dismissNotification</code> in the near future.</p>
+{% highlight javascript %}
+// Example: Manually dismiss the notification
+Snarl.removeNotification(notification);
+{% endhighlight %}
+
+        <h3>.isDismissed(id) : Boolean dismissed</h3>
+        <p>Checks if a notification is open. <strong>Returns</strong> <code>true</code> if the notification has been dismissed <em>or does not exist</em>.</p>
+{% highlight javascript %}
+// Example: Because we dismissed/removed the notification .isDismissed is true
+Snarl.isDismissed(notification) // => true
+{% endhighlight %}
+
+        <h3>.exists(id) : Boolean exists</h3>
+        <p>Check if a notification id has been used. <strong>Returns</strong> <code>true</code> if notification has been opened with that <code>id</code> even if it's been dismissd.</p>
+{% highlight javascript %}
+// Example: Notification with our id still exists, even after being
+// dismissed/removed. This means the notification can still be re-opened.
+Snarl.exists(notification) // => true
+{% endhighlight %}
+
+        <h3>.setTitle(id, title)</h3>
+        <p>Set the title of a notification. Shorthand for <code>.editNotification(id, {title: title})</code>.</p>
+{% highlight javascript %}
+// Example: Change the title of our notification
+// Note: this will re-open/reset the timeout on our notification to it's current setting.
+Snarl.setTitle(notification, 'Changed the title!');
+{% endhighlight %}
+
+        <h3>.setText(id, text)</h3>
+        <p>Set the text of a notification. Shorthand for <code>.editNotification(id, {text: text})</code>.</p>
+{% highlight javascript %}
+// Example: Change the text of our notification
+// Note: this will re-open/reset the timeout on our notification to it's current setting.
+Snarl.setText(notification, 'Changed the text!');
+{% endhighlight %}
+
+        <h3>.setIcon(id, icon)</h3>
+        <p>Set the icon of a notification. Shorthand for <code>.editNotification(id, {icon: icon})</code>.</p>
+{% highlight javascript %}
+// Example: Change the icon of our notification
+// Note: this will re-open/reset the timeout on our notification to it's current setting.
+Snarl.setIcon(notification, '<i class="fa fa-info-circle"></i>');
+{% endhighlight %}
+
+        <h3>.setTimeout(id, timeout)</h3>
+        <p>Set the timeout of a notification. Shorthand for <code>.editNotification(id, {timeout: timeout})</code>.</p>
+{% highlight javascript %}
+// Example: Remove the timeout altogether
+// Note: this will re-open/reset the timeout on our notification.
+Snarl.setTimeout(notification, null);
+{% endhighlight %}
+{% highlight javascript %}
+// Example: Make timeout 8000ms
+// Note: this will re-open/reset the timeout on our notification.
+Snarl.setTimeout(notification, 8000);
+{% endhighlight %}
+
+
+
+        <!-- TODO: final paragraph/follow on github/get -->
+    </div>
+
+    <footer>Copyright &copy; <a href="https://github.com/hoxxep" target="_blank">Liam Gray</a></footer>
+
+    <script>
+        // Init Waves
+        Waves.displayEffect();
+    </script>
+</body>
+</html>

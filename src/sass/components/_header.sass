@@ -1,0 +1,424 @@
+$height-top-line-media: 2 * $header-top-line-height
+.bl-city
+	cursor: pointer
+	position: relative
+	float: left
+	height: 100%
+	padding: 25px 0
+	color: $color-primary
+	line-height: 19px
+	font:
+		size: 16px
+		weight: 400
+	.ic.marker
+		background-position: left center
+		margin: 0
+	#city,
+	#city_delivery
+		background: url('#{$path-design}arrow-dark-down.png') right center no-repeat
+		padding-right: 30px
+		display: inline-block
+	.bl-search-city
+		display: none
+		box-shadow: 0px 0px 6px rgba(0,0,0,0.08), 0px 0px 6px rgba(0,0,0,0.08)
+		top: 100%
+		width: 310px
+		position: absolute
+		z-index: 1
+		left: 0
+		border: $border-line
+		background-color: $color-white
+		.wr-fi
+			padding: 20px
+			border-bottom: $border-line
+			.fi-d
+				border: $border-line
+				padding: 16px
+				width: 100%
+				height: 52px
+				background-color: $color-bg-section
+		.list-city
+			.item-city
+				border-bottom: $border-line
+				padding: 10px 45px
+				cursor: pointer
+				&:hover
+					background-color: $color-bg-section
+.bg-search
+	position: absolute
+	bottom: 0
+	left: 0
+	right: 0
+	top: 0
+	background: rgba(0, 0, 0, 0.59)
+	z-index: 9
+.main-header
+	.bl-logo
+		width: 100%
+		float: left
+		max-width: $logo-width
+		min-height: $logo-height
+	.bl-menu
+		.wr-const-top-line
+			height: $header-top-line-height
+			&.fixed
+				.wr-top-line
+					position: fixed
+					left: 0
+					right: 0
+					top: - 100%
+					z-index: 10
+					background-color: $color-white
+					border-bottom: $border-line
+					transition: .3s ease
+				&.active,
+				&:hover
+					top: 0
+				.top-line
+					margin: auto
+			.wr-top-line
+				height: $header-top-line-height
+				.top-line
+					height: 100%
+					padding: 0
+					margin-left: 155px
+					position: relative
+					.bl-wr
+						float: right
+						height: 100%
+						padding: 21px 0
+						.search
+							display: inline-block
+							height: 27px
+							vertical-align: bottom
+							.string-search
+								z-index: 4
+								position: absolute
+								top: 0
+								left: 0
+								right: 308px
+								bottom: 0
+								background-color: $color-white
+								padding: 25px 0 25px 10px
+								.fi-d
+									width: 100%
+									line-height: 19px
+									font-size: 16px
+							.wr-fetch
+								position: absolute
+								top: 100%
+								background-color: $color-bg-section
+								left: 0
+								right: 0
+								z-index: 1
+								padding: 40px
+								.title-fetch
+									line-height: 19px
+									font-size: 16px
+									text-align: left
+									margin-bottom: 20px
+									&.none
+										margin-bottom: 0
+								.wr-card
+									.wr-item-card
+										width: 191px
+										.item-card
+											padding: 0 0 20px 0
+											.bl-notice
+												min-height: 30px
+											.img
+												min-height: 100px
+											.bl-info
+												padding: 0 20px
+												margin-top: 15px
+												.title-card
+													font-size: 14px
+													line-height: 17px
+												.price-card
+													font-size: 14px
+													margin-top: 10px
+													.old-price
+											.bl-action
+												margin-top: 10px
+												text-align: right
+												height: 25px
+												.bookmark
+												.basket
+							.tcon
+								&.tcon-search--xcross
+									transition: .3s ease
+									height: 100%
+									width: 100%
+									padding: 0
+									.tcon-search__item
+										transform: rotate(-135deg)
+										&::before
+											background-color: $color-gray
+											left: 0
+											right: 0
+											height: 1px
+										&::after
+											border-color: $color-gray
+											left: 0
+											right: -10px
+											width: 23px
+											height: 23px
+											border-width: 1px
+									&.tcon-transform
+										.tcon-search__item
+											width: 35px
+											height: 27px
+											&::after
+												right: 0
+												height: 1px
+												width: 100%
+											&::before
+												width: 100%
+						.bookmark
+						.basket
+						.phone
+							font-size: 17px
+							text-align: right
+							line-height: 27px
+							margin-left: 30px
+		.nav-line
+			margin-left: 155px
+			min-height: 75px
+			.wr-menu
+				height: 100%
+				.main-item-menu
+					height: $header-nav-line-height
+					line-height: $header-nav-line-height
+					.link-item-menu
+						height: $header-nav-line-height
+						line-height: $header-nav-line-height
+						font-size: 16px
+						text-align: center
+						font-size: 26px
+				.list-menu
+					margin: 0
+					.item-menu
+						display: block
+						float: left
+						height: $header-nav-line-height
+						line-height: $header-nav-line-height
+						.link-item-menu
+							height: $header-nav-line-height
+							line-height: $header-nav-line-height
+							font-size: 16px
+					.catalog
+						min-height: $header-nav-line-height
+						height: auto
+						width: $nav-catalog-width
+						position: relative
+						background-color: $color-primary
+						&,
+						.a-d
+							color: $color-white
+						.link-item-menu
+							text-align: center
+						.lvl-1 .a-d
+							font-size: 14px
+						.wr-catalog
+							box-sizing: content-box
+							background-color: $color-primary
+							display: none
+							position: absolute
+							top: 100%
+							left: 0
+							width: 300%
+							padding: 37px 0 33px 33px
+							.list-catalog.lvl-2
+								.title-category
+									padding-bottom: 20px
+									.a-d
+										font:
+											size: 16px
+											weight: 700
+										line-height: 19px
+										margin: 0
+									&:before
+										width: 60px
+										height: 1px
+										top: auto
+										border-bottom: 1px solid #fff
+								.a-d
+									margin-top: 20px
+				.wr-lvl-1
+					margin: 0 0 0 $nav-catalog-width
+					.wrp-item-menu
+						margin: 0
+						border-top: $border-line
+						.item-menu
+							width: 20%
+							text-align: right
+							height: $header-nav-line-height - $border-weight
+							line-height: $header-nav-line-height - $border-weight
+
+.tcon-menu__lines
+	&,
+	&:after,
+	&:before
+		height: 3px
+		background-color: $color-primary
+
+@media #{$medium-and-down}
+	.main-header
+		.bl-menu
+			.bl-logo
+			.wr-const-top-line
+				height: $height-top-line-media
+				&.fixed
+					.bl-city
+						display: none
+				.wr-top-line
+					height: auto
+					.top-line
+						padding: 0
+						.bl-city
+							float: right
+							#city
+							.bl-search-city
+								left: 0
+								right: 0
+								.wr-fi
+									.fi-d
+								.list-city
+									.item-city
+										&:hover
+						.bl-wr
+							width: 100%
+							text-align: right
+							.menu-btn
+								display: block
+								float: left
+								margin-top: -10px
+							.search
+								.string-search
+									border-top: $border-line
+									border-bottom: $border-line
+									right: 0
+									top: 50%
+									bottom: 0
+									.fi-d
+								.wr-fetch
+									.title-fetch
+									.wr-item-card
+										.item-card
+											.bl-notice
+											.img
+											.bl-info
+												.title-card
+												.price-card
+													.old-price
+											.bl-action
+												.bookmark
+												.basket
+							.bookmark
+							.basket
+							.phone
+			.nav-line
+				background-color: $color-white
+				margin-left: 0
+				height: 100%
+				position: fixed
+				overflow: auto
+				padding: 0
+				top: 0
+				bottom: 0
+				left: 100%
+				width: 100%
+				transition: .3s ease
+				z-index: 4
+				.ic.close.v1
+					display: block
+					float: right
+					width: 40px
+					height: 40px
+					margin: 5px
+				.wr-menu
+					padding-top: 50px
+					.main-item-menu
+						display: block
+					.list-menu
+						.item-menu
+							.link-item-menu
+						.catalog
+							width: 100%
+							float: none
+							&, .a-d
+							.link-item-menu
+								font-size: 26px
+							.lvl-1
+								.a-d
+									font-size: 19px
+							.wr-catalog
+								border-top: 1px solid $color-white
+								width: 100%
+								box-sizing: border-box
+								position: relative
+								top: auto
+								left: auto
+								right: auto
+								bottom: auto
+								padding: 0
+								.list-catalog
+									.title-category
+										font-size: 19px
+										&:before
+									&.lvl-2
+										padding: 20px
+										.a-d
+					.wr-lvl-1
+						margin: 0
+						.wrp-item-menu
+							.item-menu
+								border-bottom: $border-line
+								width: 100%
+								.link-item-menu
+									font-size: 26px
+									text-align: center
+@media #{$small-and-down}
+	.main-header
+		.bl-menu
+			.bl-logo
+				display: none
+			.wr-const-top-line
+				&.fixed
+					.bl-city
+				.wr-top-line
+					.top-line
+						margin-left: 0
+						.bl-city
+							width: 100%
+							#city
+							.bl-search-city
+								.wr-fi
+									.fi-d
+								.list-city
+									.item-city
+										&:hover
+						.bl-wr
+							.search
+							.bookmark
+							.basket
+							.phone
+								display: none
+				.nav-line
+					.wr-menu
+						.list-menu
+							.item-menu
+								.link-item-menu
+							.catalog
+								&, .a-d
+								.link-item-menu
+								.lvl-1 .a-d
+								&:hover .wr-catalog
+								.wr-catalog
+									.list-catalog
+										.title-category
+											&:before
+										&.lvl-2
+											.a-d
+						.wr-lvl-1
+							.item-menu

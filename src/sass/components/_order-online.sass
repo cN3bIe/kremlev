@@ -1,0 +1,128 @@
+$bl-del-width: 40px
+$bl-del-margin-right: 20px
+$card-info-margin-left: $bl-del-width + $bl-del-margin-right
+
+
+$order-btn-width: 272px
+$wr-total-height: 50px
+
+
+$add-in-bookmark-del-height: 100px
+$bl-cancel: 40px
+$bl-del-select-height: $add-in-bookmark-del-height + $bl-cancel
+$bl-del-select-top: ( $bl-del-select-height - $bl-del-width )/ 2
+
+.wr-order-online
+	position: relative
+	padding: 30px 27px 29px 50px
+	.close-izi
+		position: absolute
+		top: 10px
+		right: 10px
+	.order-online
+		.title-online
+			line-height: 29px
+			font-size: 24px
+			border-bottom: $border-line
+			padding-bottom: 20px
+			display: inline-block
+			&.dn
+				display: none
+		.bl-btn
+			padding-bottom: 30px
+			border-top: $border-line
+			.continue-shopping
+				width: $order-btn-width
+				margin-top: $wr-total-height
+			.total
+				background-color: $color-bg-section
+				width: $order-btn-width
+				float: right
+				.bl-total
+					height: $wr-total-height
+					line-height: $wr-total-height
+					font-size: 20px
+					.total-title
+						padding: 0 10px
+						float: left
+						width: 90px
+					.price
+						font-weight: 700
+						padding: 0 10px
+						text-align: right
+						margin-left: 90px
+			.a-d.btn
+
+@media #{$medium-and-down}
+	.wr-order-online
+		.close-izi
+		.order-online
+			.title-online
+			.bl-btn
+				.continue-shopping
+				.total
+					.bl-total
+						.total-title
+						.price
+					.a-d.btn
+			.bl-card
+				.item-card
+					height: auto
+					&:hover
+					&:active
+					&:before,
+					&:after
+				.bl-del-select
+					a:hover
+					.ic
+					.bl-bookmark
+						.del-in-bookmark
+						.add-in-bookmark
+					.del
+					.cancel
+				.card-info
+					.img
+					.title-card
+					.price-card
+						text-align: right
+						float: none
+					.oldprice-card
+						text-align: right
+						float: none
+@media #{$small-and-down}
+	.wr-order-online
+		padding: 10px
+		.close-izi
+		.order-online
+			.title-online
+			.bl-btn
+				.continue-shopping
+					width: 100%
+					margin-bottom: 10px
+				.total
+					width: 100%
+					margin-bottom: 10px
+					.bl-total
+						.total-title
+						.price
+					.a-d.btn
+		.bl-card
+			.item-card
+				border-bottom: $border-line
+				&:hover
+				&:active
+				&:before,
+				&:after
+			.bl-del-select
+				a:hover
+				.ic
+				.bl-bookmark
+					.del-in-bookmark
+					.add-in-bookmark
+				.del
+				.cancel
+			.card-info
+				.img
+				.title-card
+				.price-card
+				.oldprice-card

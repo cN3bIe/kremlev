@@ -1,0 +1,26 @@
+# Mac Stuff
+.DS_Store
+
+# JetBrains IDEs
+.idea/
+
+# Package folders
+node_modules/
+bower_components/
+situs/
+
+# Duplicate files
+docs/static/snarl*
+docs/static/img_bak
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Jekyll
+_site/

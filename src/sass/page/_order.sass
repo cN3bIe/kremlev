@@ -1,0 +1,192 @@
+$bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
+.section.order
+	padding: 0
+	.title
+		line-height: 46px
+		font-size: 38px
+	.wr-order
+		border-top: $border-line
+		.form-order
+			.wr-info
+				padding: 50px 0
+				&.wr-info-client
+					border-right: $border-line
+					.btn
+						margin-left: $bl-info-margin-left
+						height: 64px
+						width: 272px
+						line-height: 64px
+						font-size: 16px
+					.bl-info
+						padding-right: 20px
+						.number
+							margin: 0 30px
+						.info
+							margin-left: $bl-info-margin-left
+							.bl-city,
+							.title-info
+								line-height: 22px
+								font-size: 18px
+								margin-bottom: 25px
+							.bl-city
+								color: #000
+								#city_delivery
+									color: $color-primary
+							.wr-bank
+								padding-left: 40px
+							.mdl-radio
+								width: 100%
+								margin-bottom: 15px
+								padding-left: 40px
+								.mdl-radio__outer-circle
+									z-index: 1
+									border-color: transparent
+									background-color: $color-background
+								.mdl-radio__inner-circle
+									z-index: 2
+									background-color: $color-primary
+								.mdl-radio__ripple-container
+									.mdl-ripple
+										background-color: $color-primary
+								&.radio-delivery
+									min-height: 50px
+									height: auto
+									.time
+										font-size: 14px
+										display: block
+										margin-left: 20px
+							.bl-city
+								padding: 0 0 10px
+								.city
+							.form-input,
+							.form-textarea
+								padding: 15px
+								margin-bottom: 10px
+								max-width: 335px
+								width: 100%
+								height: 52px
+								line-height: 19px
+								font-size: 16px
+								background-color: $color-background
+								.fi-d
+							.form-textarea
+								border: 0
+								resize: none
+								min-height: 8em
+								height: auto
+								max-width: 422px
+								width: 100%
+								border-radius: 3px
+								overflow: hidden
+				&.wr-info-order
+					padding-top: 0
+					.total
+						padding: 40px 60px
+						line-height: 22px
+						font-size: 18px
+						.bl-info
+							margin-bottom: 5px
+							.name
+								float: left
+							.price
+								float: right
+						.bl-total
+							margin-top: 45px
+							line-height: 29px
+							font-size: 24px
+					.item-card
+						border-bottom: 1px solid $color-line
+						padding: $card-item-padding-vertical 20px
+						height: $card-item-height
+						.bl-del
+							&:hover
+								background-color: $color-background
+							&:active
+								box-shadow: 0 0 20px 1px rgba(0,0,0,.3)
+							&:before,
+							&:after
+								top: 48%
+								width: 46%
+								left: 29%
+						.img
+							float: left
+							min-height: $card-item-content-height
+							max-width: $card-item-content-height
+							margin-right: 20px
+						.card-info
+							.title-card
+								line-height: 22px
+								font-size: 18px
+							.price-card
+								font-size: 20px
+								line-height: 24px
+							.bl-count
+								min-width: $bl-brick-width
+								.bl-brick
+									margin-right: 10px
+									height: $brick-side
+									width: $brick-side
+									line-height: $brick-side
+								.count
+									width: $brick-side * 2
+									.fi-d
+										text-align: center
+								.reduce-count,
+								.enlarge-count
+									&:hover
+										background-color: $color-primary
+										color: $color-white
+
+@media #{$medium-and-down}
+	.section.order
+		.title
+		.wr-order
+			.form-order
+				.wr-info
+					&.wr-info-client
+						.btn
+						.bl-info
+							.number
+							.info
+								margin-left: 0
+								.bl-city,
+								.title-info
+								.wr-bank
+								.mdl-radio
+									.mdl-radio__outer-circle
+									.mdl-radio__inner-circle
+									.mdl-radio__ripple-container
+										.mdl-ripple
+									&.radio-delivery
+										.time
+								.city
+								.form-input,
+								.form-textarea
+									.fi-d
+								.form-textarea
+									max-width: 100%
+					&.wr-info-order
+						.total
+							.bl-info
+								.name
+								.price
+							.bl-total
+						.item-card
+							height: auto
+							padding: 10px
+							.bl-del
+								&:hover
+								&:active
+								&:before,
+								&:after
+							.img
+							.card-info
+								.title-card
+								.price-card
+								.bl-count
+									.bl-brick
+									.count
+										.fi-d
+									.reduce-count,
+									.enlarge-count
+										&:hover

@@ -1,0 +1,24 @@
+{
+  "name": "Snarl",
+  "version": "0.3.3",
+  "homepage": "https://hoxxep.github.io/snarl",
+  "authors": [
+    "Liam Gray <hoxxep@gmail.com>"
+  ],
+  "description": "Web Notifications based on Growl",
+  "main": "dist/snarl.min.js",
+  "keywords": [
+    "notifications",
+    "gulp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "_site"
+  ],
+  "dependencies": {
+    "scrollmagic": "~2.0.5"
+  }
+}

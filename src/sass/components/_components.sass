@@ -1,0 +1,384 @@
+
+/* form-------------*/
+.form
+	margin: 0
+.fi-d
+	display: inline-block
+	border: 0
+	background-color: transparent
+	max-width: 100%
+
+
+.main-header
+	height: $header-height
+	margin-bottom: -$header-height
+	width: 100%
+	background-color: $color-white
+	padding-top: $header-padding-top
+	position: relative
+	z-index: 10
+.main
+	min-height: 100%
+	padding: $header-height 0 $footer-height 0
+	width: 100%
+	background-color: $color-white
+	position: relative
+	z-index: 1
+.main-footer
+	height: $footer-height
+	margin-top: -$footer-height
+	width: 100%
+	background-color: $color-white
+	position: relative
+	z-index: 2
+
+@media #{$medium-and-down}
+	.main-header
+		margin: 0
+		height: auto
+	.main
+		padding: 0
+	.main-footer
+		margin: 0
+		height: auto
+
+.wr
+	max-width: $wr-width
+	margin: auto
+	padding: 0 $wr-lr-padding
+@media screen
+	@media (min-width: $wr-width + $wr-lr-padding * 2)
+		.wr
+			padding: 0
+.section
+	padding: 0 0 40px 0
+.title
+	font:
+		size: 48px
+		weight: 400
+	text-align: left
+	line-height: 53px
+	margin: 0
+	padding:
+		top: 46px
+		bottom: 39px
+h1.title
+	font-size: 48px
+h2.title
+	font-size: 42px
+h3.title
+	font-size: 36px
+h4.title
+	font-size: 28px
+h5.title
+	font-size: 24px
+h6.title
+	font-size: 18px
+
+
+
+.ic
+	display: inline-block
+	background: transparent center center no-repeat
+	background-size: contain
+	width: 27px
+	height: 27px
+	margin: 0 5px
+	vertical-align: bottom
+	position: relative
+	&.marker
+		background-image: url("#{$path-design}marker.svg")
+		height: 22px
+	&.search
+		/*background-image: url("#{$path-design}search.png")*/
+	&.bookmark
+		background-image: url("#{$path-design}heart.svg")
+		&.active
+			background-image: url("#{$path-design}heart-fill-v1.svg")
+	&.basket
+		background-image: url("#{$path-design}basket.svg")
+		&.active
+			background-image: url("#{$path-design}basket-v1.svg")
+	&.down-arrow
+		background-image: url("#{$path-design}arrow-down.png")
+		width: 16px
+		height: 16px
+		vertical-align: sub
+	&.down-arrow-fill
+		background-image: url("#{$path-design}arrow-dark-down.png")
+		width: 16px
+		height: 16px
+	&.mastercard
+		background-image: url("#{$path-design}mastercard.png")
+		width: 50px
+		height: 25px
+	&.visa
+		background-image: url("#{$path-design}visa.png")
+		width: 50px
+		height: 25px
+	&.mir
+		background-image: url("#{$path-design}mir.png")
+		width: 50px
+		height: 25px
+	&.close
+		background-image: url("#{$path-design}close.svg")
+		position: relative
+		&.v1,
+		&.v2
+			background: transparent
+			&:before,
+			&:after
+				content: ''
+				display: block
+				position: absolute
+				width: 100%
+				height: 2px
+				border-radius: 5px
+				background-color: $color-primary
+				top: 45%
+			&:before
+				transform: rotate(45deg)
+			&:after
+				transform: rotate(-45deg)
+		&.v2
+			width: 34px
+			height: 34px
+			&:before,
+			&:after
+				background-color: $color-red
+.img
+	display: block
+	margin: auto
+	width: 100%
+	background: transparent center center no-repeat
+	background-size: contain
+	min-height: $img-min-height
+	max-width: $img-min-width
+
+.badget
+	display: none
+	position: absolute
+	width: $badget-height
+	height: $badget-width
+	line-height: $badget-height
+	top: -$badget-height + 5px
+	right: -$badget-height + 5px
+	font-size: 12px
+	border-radius: 50%
+	background-color: $color-yellow
+	left: auto
+	bottom: auto
+	text-align: center
+
+$btn-max-width: 210px
+.btn,
+.btn:hover,
+.btn:active,
+.btn:focus,
+.btn:visited,
+	text-align: center
+	max-width: $btn-max-width
+	width: 100%
+	min-height: $btn-height
+	line-height: $btn-height
+	font-size: 16px
+	background-color: $color-primary
+	border-radius: 0
+	padding: 0
+	margin: 0
+	color: $color-white !important
+	overflow: hidden
+	position: relative
+	border: $btn-weight-border solid $color-primary
+	&:hover,
+	&:active
+		background-color: $color-primary-light
+		line-height: $btn-height
+		border: $btn-weight-border solid $color-primary-light
+	&.v1
+		background-color: $color-white
+		color: $color-primary !important
+		&:hover,
+		&:active
+			background-color: $color-primary
+			color: $color-white !important
+			line-height: $btn-height
+			border: $btn-weight-border solid $color-primary-light
+		&.waves-light .waves-ripple
+			$gradient: rgba($color-primary-rgb, 0.2) 0, rgba($color-primary-rgb, 0.3) 40%, rgba($color-primary-rgb, 0.4) 50%, rgba($color-primary-rgb, 0.5) 60%, rgba($color-primary-rgb, 0) 70%
+			background: rgba($color-primary-rgb, 0.4)
+			background: -webkit-radial-gradient($gradient)
+			background: -moz-radial-gradient($gradient)
+			background: -o-radial-gradient($gradient)
+			background: radial-gradient($gradient)
+	&.v2
+		background-color: $color-yellow
+		color: $color-black !important
+		border: 0
+		&:hover
+			background-color: $color-yellow-dark
+
+.it
+	background-color: $color-white
+	height: $btn-height
+	line-height: $btn-height
+	max-width: $btn-max-width
+
+
+
+
+.pow
+	font-size: .7em
+	position: relative
+	bottom: .5em
+
+.br
+	display: block
+	position: relative !important
+	height: 1px
+	width: 1px
+
+.bg-cover
+	background: transparent center center no-repeat
+	-webkit-background-size: cover
+	background-size: cover
+
+.bg-contain
+	background: transparent center center no-repeat
+	-webkit-background-size: contain
+	background-size: contain
+
+.row
+	.col
+		&.m0
+			margin: 0
+		&.p0
+			padding: 0
+
+.before
+	position: relative
+	&:before
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		content: ''
+		width: 100%
+		height: 100%
+		display: block
+		position: absolute
+.after
+	position: relative
+	&:after
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		content: ''
+		width: 100%
+		height: 100%
+		display: block
+		position: absolute
+
+
+.bl-dent
+	-webkit-transition:all .2s ease-out
+	-moz-transition:all .2s ease-out
+	-ms-transition:all .2s ease-out
+	-o-transition:all .2s ease-out
+	transition:all .2s ease-out
+	&:active
+		-webkit-transform: scale(0.95)
+		-moz-transform: scale(0.95)
+		-o-transform: scale(0.95)
+
+.bl-brick
+	float: left
+	width: $brick-side + $brick-border-weight
+	height: $brick-side + $brick-border-weight
+	border: $brick-border-weight solid $color-primary
+	text-align: center
+	line-height: $brick-side
+
+.section.bl-text
+	.title
+		text-align: center
+		line-height: 43px
+		font-size: 36px
+	.text
+		max-width: 90%
+		margin: auto
+		p
+			line-height: 19px
+			font-size: 16px
+			text-align: justify
+.text
+	&, p
+	line-height: 24px
+	font-size: 16px
+	text-align: left
+	font-weight: 400
+
+.b
+	font-weight: 700
+.dn
+	display: none
+.a-d
+	display: block
+	height: 100%
+	width: 100%
+	&:focus,
+	&:active,
+	&:hover
+		text-decoration: none
+ul.ul-d,
+li.li-d
+	margin: 0
+	padding: 0
+	list-style-type: none
+
+ul.ul-d li.li-d
+	list-style: none
+.fl
+	float: left
+.fr
+	float: right
+.pr
+	position: relative
+
+.pf,
+.pf-h,
+.pf-v
+	position: fixed
+.pf-h
+	left: 0
+	right: 0
+.pf-v
+	top: 0
+	bottom: 0
+
+/* Z-levels-------------*/
+.zd-0
+	box-shadow: none !important
+.zd-1
+	box-shadow: 1px 1px 8px rgba(127, 127, 127, 0.3), -1px 1px 8px rgba(127, 127, 127, 0.3)
+.zd-2
+	box-shadow: 2px 2px 8px rgba(127, 127, 127, 0.3), -2px 2px 8px rgba(127, 127, 127, 0.3)
+.zd-3
+	box-shadow: 3px 3px 8px rgba(127, 127, 127, 0.3), -3px 3px 8px rgba(127, 127, 127, 0.3)
+.zd-4
+	box-shadow: 4px 4px 8px rgba(127, 127, 127, 0.3), -4px 4px 8px rgba(127, 127, 127, 0.3)
+/* moveup -------------------------------------------------------------------------------*/
+#moveup
+	width: 55px
+	height: 55px
+	position: fixed
+	bottom: 5%
+	right: 5%
+	background: $color-white center center no-repeat
+	background-image: url('#{$path-design}arrow-dark-up.png')
+	z-index: 999999
+	.fa-angle-up
+		color: #59595B
+		font-size: 18px
+		line-height: 55px
