@@ -1,20 +1,39 @@
+
 .section
 	&.slider
 		max-height: 600px
+		margin: 0
+		padding: 0
 		.wr-slider
 			width: 100%
 			height: 100%
+			padding: 10px 0
 			.title
+				padding: 0
+				margin-bottom: 40px
 				line-height: 62px
 				font-size: 62px
 				font-weight: 700
+				margin-top: -4px
 			.text
 				line-height: 24px
 				font-size: 20px
 			.wr-form
+				margin-top: 70px
 				.text
 					line-height: 22px
+					margin-bottom: 15px
 					font-size: 20px
+				.wr-it
+					width: 100%
+					max-width: 320px
+					margin-right: 20px
+					.it
+						min-height: 64px
+				.btn
+					padding: 0 64px
+					min-height: 64px
+					line-height: 64px
 	&.hit-sale,
 	&.sale
 		background-color: $color-bg-section
@@ -22,10 +41,12 @@
 	&.recipe
 		background-color: $color-bg-section
 	&.sertificate
+		padding: 40px 0
 		.wr
 			height: 400px
-			padding: 160px 72px
-			background: url('#{$path-img}/bg-500.jpg')
+			padding:
+				top: 120px
+				bottom: 120px
 			.bl-sertificate
 				.title-sertificate
 					color: #fff
@@ -33,7 +54,17 @@
 					text-align: left
 					line-height: 40px
 					margin: 0
-				.form
+					margin-bottom: 30px
+				.wr-form
+					.wr-it
+						width: 100%
+						max-width: 320px
+						margin-right: 20px
+						.it
+							min-height: 64px
+					.btn
+						min-height: 64px
+						padding: 0 64px
 	&.about
 		padding-top: 40px
 		.wr-about
@@ -42,7 +73,7 @@
 			.title
 				font-size: 36px
 				line-height: 40px
-				margin: 0
+				padding-top: 0
 			.wr-achievement
 				margin-top: 55px
 				.list-achievement
@@ -67,3 +98,144 @@
 							margin-top: 10px
 							font-size: 16px
 							line-height: 21px
+@media #{$extra-large-and-up}
+	.section.about
+		padding-top: 40px
+		.wr-about
+			background-color: #FBD46E
+			padding: 50px 70px
+			.title
+				font-size: 36px
+				line-height: 40px
+				padding-top: 0
+			.wr-achievement
+				margin-top: 55px
+				.list-achievement
+					.item-achievement
+						padding: 0
+						.wr-heart
+						.wr-people
+							margin-left: 60px
+							max-width: 191px
+						.wr-marker
+							margin-left: 47px
+							max-width: 192px
+						.wr-gift
+							margin-left: 60px
+							max-width: 202px
+
+
+@media #{$medium-and-down}
+	.section
+		&.slider
+			.wr-slider
+				padding: 20px 0
+				background-position: left center
+				.title
+					margin-bottom: 20px
+				.text
+				.wr-form
+					.text
+					.wr-it
+						.it
+					.btn
+		&.hit-sale,
+		&.sale
+		&.last-news,
+		&.recipe
+		&.sertificate
+			.wr
+				background-position: right center
+				.bl-sertificate
+					.title-sertificate
+					.wr-form
+						.wr-it
+							.it
+						.btn
+		&.about
+			.wr-about
+				.title
+				.wr-achievement
+					.list-achievement
+						.item-achievement
+							.img
+								&.heart
+								&.people
+								&.marker
+								&.gift
+							.title-achievement
+							.text
+
+@media #{$small-and-down}
+	.section
+		&.slider
+			overflow: hidden
+			.wr-slider
+				.title
+					font-size: 26px
+					line-height: 26px
+				.text
+					font-size: 17px
+					line-height: 23px
+				.wr-form
+					margin-top: 10px
+					.text
+					.wr-it
+						margin-bottom: 10px
+						max-width: 100%
+						border-radius: 0
+						.it
+					.btn
+						width: 100%
+		&.hit-sale,
+		&.sale
+		&.last-news,
+		&.recipe
+		&.sertificate
+			overflow: hidden
+			.wr
+				background-position: right center
+				height: auto
+				padding: 40px 0
+				.bl-sertificate
+					.title-sertificate
+						text-align: center
+						font-size: 19px
+						line-height: 24px
+					.wr-form
+						.wr-it
+							max-width: 100%
+							margin-bottom: 10px
+							border-radius: 0
+							.it
+						.btn
+							width: 100%
+		&.about
+			.wr-about
+				padding: 10px 0
+				.title
+					font-size: 19px
+					line-height: 24px
+					padding-bottom: 10px
+				.wr-achievement
+					margin: 0
+					.list-achievement
+						.item-achievement
+							margin-bottom: 10px
+							font-size: 14px
+							line-height: 18px
+							text-align: center
+							.img
+								min-height: 44px
+								max-width: 48px
+								margin: auto
+								&.heart
+								&.people
+								&.marker
+								&.gift
+							.title-achievement
+								font-size: 14px
+								line-height: 18px
+								text-align: center
+							.text
+								text-align: center

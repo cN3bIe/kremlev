@@ -1,7 +1,6 @@
 .section.clients
 	.title
 	.wr-control-tab
-		// max-width: 300px
 		.item-control-tab
 			line-height: 22px
 			font-size: 18px
@@ -25,7 +24,6 @@
 			font-size: 28px
 			margin-bottom: 30px
 		.item-tab
-			display: none
 			.ul-d
 				.li-d
 					line-height: 24px
@@ -33,8 +31,6 @@
 					.name
 						font-weight: 700
 					.text
-			&.active
-				display: block
 		.wr-sert
 			.item-sert
 				float: left
@@ -104,56 +100,71 @@
 
 @media #{$small-and-down}
 	.section.clients
-		.title
-		.wr-control-tab
-			.item-control-tab
-				padding: 15px
-				font-size: 23px
-				&.active
-				&.active,
-				&:last-of-type
-		.wr-tabs
+		.wr
 			padding: 0
-			.title-tabs
-			.item-tab
-				.ul-d
-					.li-d
+			.title
+				padding:
+					left: 15px
+					right: 15px
+			.wr-control-tab
+				.item-control-tab
+					padding: 0 15px
+					font-size: 15px
+					height: 45px
+					line-height: 45px
+					&.active
+					&.active,
+					&:last-of-type
+			.wr-tabs
+				padding: 0
+				.title-tabs
+					padding:
+						left: 15px
+						right: 15px
+					font-size: 19px
+					line-height: 24px
+				.item-tab
+					.ul-d
+						.li-d
+							.name
+							.text
+
+					&.active
+				.wr-sert
+					.item-sert
+						.img
+					&.v1
+						.item-sert
+							.img
+					&.v2
+						.item-sert
+							.img
+			#delivery
+				.delivery
+					padding: 0 15px
+				.wr-dev
+					.item-dev
+						padding-top: 10px
+						.img
 						.name
 						.text
-
-				&.active
-			.wr-sert
-				.item-sert
-					.img
-				&.v1
-					.item-sert
-						.img
-				&.v2
-					.item-sert
-						.img
-		#delivery
-			.wr-dev
-				.item-dev
-					.img
-					.name
-						font-size: 24px
+				.bl-text
+					.title-text
 					.text
-						font-size: 18px
-			.bl-text
-				.title-text
-					font-size: 24px
-				.text
-					font-size: 18px
-		#faq
-			.wr-faq
-				.item-faq
-					.question
-						&:before
-					.answer
-					&.active
+			#faq
+				.wr-faq
+					.item-faq
+						padding: 15px
 						.question
 							&:before
-		#pay
-			.title-pay
-			.wr-pay
-				.item-pay
+						.answer
+							padding: 10px 0 0 0
+							line-height: 22px
+							font-size: 16px
+						&.active
+							.question
+								&:before
+			#pay
+				.title-pay
+				.wr-pay
+					.item-pay

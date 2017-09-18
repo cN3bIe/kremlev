@@ -1,4 +1,12 @@
-<div class="delivery">
+<?php
+$citys = get_posts( array(
+	'numberposts' =>-1,
+	'post_type' => 'kremlev_city',
+	'post_status'=>'publish',
+	'order' => 'ASC',
+	'orderby' => 'meta_value_num',
+) );
+?><div class="delivery">
 	<div class="wr-dev row">
 		<div class="col p0 s12 m3">
 			<div class="item-dev">
@@ -32,23 +40,22 @@
 	<div class="bl-text">
 		<div class="title-text before">Способы доставки</div>
 		<p class="text">Икра относится к скоропортящимся продуктам, поэтому условиям доставки мы уделяем особое внимание. С производства икра на рефрижераторах доставляется в Московский офис продаж, где хранится в специальных холодильниках. Курьер производит доставку продукции с использованием специального переносного холодильника. Поэтому икра поступает к вам свежей, а главное — сохранившей настоящий вкус Русской икры.</p>
-		<ul class="ul-d list-dev">
-			<li class="li-d item-dev">
-				<div class="line-1">Доставка по <span class="b">Москве</span> (в пределах МКАД) — <span class="b">300 руб.</span> в будние дни, <span class="b">500 руб.</span> в выходные и праздничные дни.</div>
-				<div class="line-2">— При заказе от 5000 руб. <span class="b">бесплатно</span></div>
-			</li>
-			<li class="li-d item-dev">
-				<div class="line-1">Доставка по <span class="b">Московской области</span> (до 20 км от МКАД) — <span class="b">500 руб.</span> в будние дни, <span class="b">1000 руб.</span> в выходные и праздничные дни.</div>
-				<div class="line-2">— При заказе от 20000 руб. бесплатно</div>
-			</li>
-			<li class="li-d item-dev">
-				<div class="line-1">Доставка по <span class="b">Санкт-Петербургу</span> — <span class="b">500 руб.</span> в будние дни, <span class="b">1000 руб.</span> в выходные и праздничные дни.</div>
-				<div class="line-2">— При заказе от 5000 руб. бесплатно</div>
-			</li>
-			<li class="li-d item-dev">
-				<div class="line-1">Доставка в <span class="b">регионы</span> (по всей России) — от <span class="b">950 руб.</span></div>
-				<div class="line-2">— При заказе от 20000 руб. <span class="b">бесплатно</span></div>
-			</li>
+		<ul class="ul-d list-dev"><?php
+			if( is_array( $citys ) && count( $citys ) ):
+				foreach( $citys as $city ):
+					$list_item_delivery = get_post_meta( $city->ID, 'delivery_list', !0 );
+					if( is_array( $list_item_delivery ) && count( $list_item_delivery ) ){
+						foreach( $list_item_delivery as $key=>$item ){
+							?><li class="li-d item-dev">
+								<div class="line-1">
+									<?php echo $item['title'];?> — <span class="b"><?php echo $item['price_delivery_list'];?> руб.</span> <?php echo $item['time_delivery_list'];?>.
+								</div>
+								<div class="line-2">— При заказе от <?php echo $item['free_delivery_list'];?> руб. <span class="b">бесплатно</span></div>
+							</li><?php
+						}
+					}
+				endforeach;
+			endif;?>
 		</ul>
 		<div class="title-text before">Условия доставки</div>
 		<ul class="ul-d list-time">
@@ -58,7 +65,11 @@
 		</ul>
 		<div class="title-text before">Самовывоз</div>
 		<p class="text">Вы можете забрать заказ прямо из нашего офиса, расположенного по адресу — Москва, Огородный проезд, дом 18.</p>
-		<a href="/maps/" class="a-d">Посмотреть на карте</a>
+		<a href="#maps" class="a-d clickSlide">Посмотреть на карте</a>
+		<div id="maps" class="dn">
+			<div class="text"><?php echo ot_get_option( 'main_address' );?></div><?php
+			echo ot_get_option( 'maps_textarea' );
+		?></div>
 		<div class="title-text before collaborate">
 			<?php if(ot_get_option( 'main_phone' )):?><a href="tel:<?php echo preg_replace('/\W/','',ot_get_option( 'main_phone' ));?>" class="a-d">По вопросам сотрудничества звоните:<br><?php echo ot_get_option( 'main_phone' );?></a><?php endif;?>
 		</div>

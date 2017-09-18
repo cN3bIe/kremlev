@@ -16,8 +16,9 @@ console.log('Include Basket.js');
 	var Card = function(obj){
 		Object.assign(this, obj);
 	};
-	Card.prototype.getTotal = function(){
-		return this.price * this.count;
+	Card.prototype.getTotal = function( timestamp = 0 ){
+		if( timestamp && timestamp < Date.now() ) return ( this.price = this.specprice || this.price ) * this.count;
+		else return this.price * this.count;
 	};
 	Card.prototype.getOldTotal = function(){
 		if( this.oldprice ) return this.oldprice * this.count;
@@ -27,33 +28,50 @@ console.log('Include Basket.js');
 		this.card = [];
 		this.total = 0;
 		this.count = 0;
+		this.timer = 0;
 	};
 	_.init = function(callback){
 		console.log('Basket init');
 		this.clean();
-		if(LS.get('Basket')){
+		if( LS.get('Basket') ){
 			Object.assign( Basket,LS.get('Basket') );
 			_.card.forEach(function(el,index,arr){arr[index] = new Card(el);});
 		}else this.change();
-		if(callback) callback.call(_,_);
+		if( LS.get('timer') ) this.timer = LS.get('timer');
+		if( callback ) callback.call(_,_);
 	};
-	_.nobj = function(obj,title,img,count,price,oldprice){
+	_.nobj = function(obj,title,url,img,count,price,oldprice,specprice){
 		if(obj instanceof Object) return {
 			id: obj.id.replace(/(\W|\s)+/g,'') || 0,
 			title: obj.title || 'Без имени',
+			url: obj.url || '',
 			img: obj.img.replace(/url\(\"?|\"?\)/gi,'') || '',
 			count: parseInt(obj.count) || 0,
 			price: parseInt(obj.price) || 0,
-			oldprice: parseInt(obj.oldprice) || 0
+			oldprice: parseInt(obj.oldprice) || 0,
+			specprice: parseInt(obj.specprice) || 0
 		};
 		else return {
 			id: (''+obj).replace(/(\W|\s)+/g,'') || 0,
 			title: title || 'Без имени',
+			url: url || '',
 			img: img.replace(/url\(\"?|\"?\)/gi,'') || '',
 			count: parseInt(count) || 0,
 			price: parseInt(price) || 0,
-			oldprice: parseInt(oldprice) || 0
+			oldprice: parseInt(oldprice) || 0,
+			specprice: parseInt(specprice) || 0
 		};
+	};
+	_.setTimer = function(value){ return LS.set('timer', this.timer = value );};
+	_.getTimer = function(){ return this.timer;};
+	_.getCountCard = function(){return this.card.length;};
+	_.getCount = function(){return this.count;};
+	_.getTotal = function(){return this.total;};
+	_.getOldTotal = function(){return this.oldtotal;};
+	_.getSaleTotal = function(){
+		return this.card.reduce( function( sale_sum, el ){
+			return sale_sum + el.getOldTotal()-el.getTotal();
+		},0);
 	};
 	_.getCard = function(id_card){
 		if(id_card) return this.card.filter(function(el){return el.id === (''+id_card).replace(/(\W|\s)+/g,'')}).shift();
@@ -63,10 +81,13 @@ console.log('Include Basket.js');
 		id_card = (''+id_card).replace(/(\W|\s)+/g,'');
 		return this.card.some(function(el){return el.id === id_card;});
 	};
-	_.getCountCard = function(){return this.card.length;};
-	_.getCount = function(){return this.count;};
-	_.getTotal = function(){return this.total;};
-	_.getOldTotal = function(){return this.oldtotal;};
+	_.checked = function(arr){
+		if( Array.isArray(arr) && arr.length && Array.isArray(_.card) && _.card.length){
+			_.card.forEach(function(el){
+				if( !arr.some(function(id_card){ return el.id === id_card;}) ) _.removeCard( el.id );
+			});
+		}else _.card = [];
+	};
 	_.change = function(){
 		LS.set('Basket',{
 			count: this.changeCount(),
@@ -89,7 +110,7 @@ console.log('Include Basket.js');
 			case 0: return this.total = 0;
 			case 1: return this.total = this.card[0].getTotal();
 			default: return (this.total = this.card.reduce( function( sum, el ){
-				return sum + el.getTotal();
+				return sum + el.getTotal( _.timer );
 			},0));
 		}
 	};
@@ -130,7 +151,7 @@ console.log('Include Basket.js');
 		this.change();
 	};
 	_.clear = function(){
-		LS.clear();
+		// LS.clear();
 		this.clean();
 		this.change();
 	};

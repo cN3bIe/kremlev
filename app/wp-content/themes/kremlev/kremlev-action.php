@@ -1,68 +1,101 @@
 <?php
 /*
-* Tamplate name: Страница акций
+* Template name: Страница Акций
 */
-die('Еще видётся разработка, зайдите позже или обратитесь к администратору');
-$terms = get_terms( array(
-	'taxonomy'=>'kremlev_category',
-) );
-$arr_terms_id = array();
-foreach($terms as $term) $arr_terms_id[]= $term->term_id;
-$products = get_posts( array(
+
+
+// if( !isset($_GET['d']) ) die('Еще видётся разработка, зайдите позже или обратитесь к администратору');
+$products = get_posts( [
 	'numberposts' =>-1,
 	'post_type' => 'catalog',
 	'post_status'=>'publish',
 	'order'=>'ASC',
 	'orderby'=>'meta_value_num',
-	'tax_query'         => array(
-		array(
-			'taxonomy' => 'kremlev_category',
-			'terms'    => $arr_terms_id,
-		),
-	),
-) );
-$filter_terms = get_terms('kremlev_filter',array('parent'=>0));
-$filters = array();
-if( is_array( $filter_terms ) && count( $filter_terms ) ):
-	foreach( $filter_terms as $key=>$term ):
-		$posts = get_posts( array(
-			'numberposts' =>-1,
-			'post_type' => 'catalog',
-			'post_status'=>'publish',
-			'order' => 'ASC',
-			'orderby' => 'meta_value_num',
-			'tax_query' => array(
-				'relation'=>'AND',
-				array(
-					'taxonomy' => 'kremlev_category',
-					'terms'    => $arr_terms_id,
-				),
-				array(
-					'taxonomy' => 'kremlev_filter',
-					'terms'    => $term,
-				),
-			)
-		) );
-		if( count( $posts ) ) array_push( $filters, array( 'parent' => $term, 'children'=>null ) );
+	'meta_query' => [
+		'relation'=>'OR',
+		[
+			'key' => 'catalog_sale',
+			'value' => '',
+			'compare' => '!=',
+		],
+	],
+] );
+$prod_id = [];
+
+if( is_array( $products ) && count( $products ) ) foreach( $products as $item ) $prod_id[] = $item->ID;
+
+$category = get_terms( 'kremlev_category', ['object_ids' => $prod_id,] );
+
+$arr_terms = [];
+$arr_terms_id = [];
+if( is_array( $category ) && count( $category ) ):
+	foreach( $category as $term ):
+		if( $term->parent ):
+			$arr_terms[] = $term;
+			$arr_terms_id[] = $term->term_id;
+		endif;
 	endforeach;
 endif;
-if( is_array( $filters ) && count( $filters ) ):
-	foreach( $filters as $key=>$parent_term ):
-		$filters[$key]['children'] = get_terms('kremlev_filter',array('parent'=>$parent_term['parent']->term_id));
+
+$filter_terms = get_terms( 'kremlev_filter' );
+$filters = [];
+if( is_array( $filter_terms ) && count( $filter_terms ) ):
+	foreach( $filter_terms as $term ):
+		if( !$term->parent ):
+			$filters[$term->term_id]['parent'] = $term;
+		else:
+			$posts = get_posts( [
+				'numberposts' =>-1,
+				'post_type' => 'catalog',
+				'post_status'=>'publish',
+				'order' => 'ASC',
+				'orderby' => 'meta_value_num',
+				'meta_query' => [
+					'relation'=>'OR',
+					[
+						'key' => 'catalog_sale',
+						'value' => '',
+						'compare' => '!=',
+					],
+				],
+				'tax_query' => [
+					'relation'=>'AND',
+					[
+						'taxonomy' => 'kremlev_category',
+						'terms'    => $arr_terms_id,
+					],
+					[
+						'taxonomy' => 'kremlev_filter',
+						'terms'    => $term->term_id,
+					],
+				]
+			] );
+			if( count( $posts ) ) $filters[$term->parent]['children'][$term->term_id] = $term;
+		endif;
 	endforeach;
 endif;
 get_header();
+if( ot_get_option( 'action_baner_link' )):
+	?><section class="section"><div class="wr"><a href="<?php echo ot_get_option( 'action_baner_link' );?>" class="action-item-baner a-d">
+		<img src="<?php echo ot_get_option( 'action_baner_upload' );?>" alt="">
+	</a></div></section><?php
+else:
+	?><section class="section"><div class="wr"><div class="action-item-baner">
+		<img src="<?php echo ot_get_option( 'action_baner_upload' );?>" alt="">
+	</div></div></section><?php
+endif;
 ?><section class="section catalog catalog-page">
 	<div class="wr">
-		<h1 class="title"><?php echo $cur_term->name;?></h1>
+		<h1 class="title"><?php the_title();?></h1>
 		<div class="wr-catalog row">
 			<div class="wr-filter col s12 m4 l3 p0">
+				<div class="dn btn-filter">Фильтр</div>
 				<div class="form-filter">
 					<div class="bl-filter" data-filter-group="filter-0" data-filter-lvl="0">
-						<div class="title-filter"><?php echo ($name_filter?$name_filter:'Категории');?></div><?php
-						foreach($terms as $key=>$term){
+						<div class="title-filter">Марка товара</div><?php
+						foreach($arr_terms as $key=>$term){
 							?><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="<?php echo $term->term_id;?>" data-filter=".filter-<?php echo $term->slug;?>">
-								<input type="checkbox" id="<?php echo $term->term_id;?>" class="mdl-checkbox__input" name="kremlev_category[]" <?php if( $cur_term->term_id === $term->term_id ) echo 'checked';?>>
+								<input type="checkbox" id="<?php echo $term->term_id;?>" class="mdl-checkbox__input" name="kremlev_category[]">
 								<span class="mdl-checkbox__label"><?php echo $term->name;?></span>
 							</label><?php
 						}
@@ -81,14 +114,8 @@ get_header();
 							?></div><?php
 						endforeach;
 					endif;
-					/*?><button type="submit" class="btn">Показать</button>
-					<a href="#reset" class="a-d reset"><span class="ic close v1"></span>Сбросить фильтры</a>
-					<div class="filter-popup zd-4">
-						<div class="bl-empty">Нечего не найдено</div>
-						<div class="bl-count">Найдено: 4</div>
-						<button type="submit" class="btn">Показать</button>
-					</div><?php */
-				?></div>
+					?><a href="#reset" class="a-d reset ribe-dark"><span class="ic close v1"></span>Сбросить фильтры</a>
+				</div>
 			</div>
 			<div class="col s12 m8 l9 p0">
 				<div class="wr-card">
@@ -104,12 +131,4 @@ get_header();
 		</div>
 	</div>
 </section><?php
-if( $SEO_text ):
-	?><section class="section bl-text">
-		<div class="wr">
-			<h1 class="title"><?php echo $cur_term->name;?></h1>
-			<div class="text"><?php echo $SEO_text;?></div>
-		</div>
-	</section><?php
-endif;
 get_footer();

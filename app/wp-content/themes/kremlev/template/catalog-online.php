@@ -22,25 +22,26 @@
 			<div class="bl-card another-card"></div>
 			<div id="template" class="dn">
 				<div class="item-card row">
+					<div class="timer" data-timer="0"></div>
 					<a href="#del" class="a-d ribe bl-del ic close v1"></a>
 					<div class="bl-del-select row dn">
 						<div class="bl-bookmark col s6 ">
-							<a href="#" class="del-in-bookmark dn"><div class="ic bookmark v1 active"></div>Находится<br>в списке желаний</a>
-							<a href="#" class="add-in-bookmark dn"><div class="ic bookmark v1"></div>Переместить<br>в список желаний</a>
+							<a href="#" class="del-in-bookmark dn"><div class="ic bookmark v1 btni-online active"><span class="like"></span></div>Находится<br>в списке желаний</a>
+							<a href="#" class="add-in-bookmark dn"><div class="ic bookmark v1 btni-online"><span class="like"></span></div>Переместить<br>в список желаний</a>
 						</div>
-						<a href="#" class="col s6 del close v1"><div class="ic close v2"></div>Удалить<br>без сохранения</a>
-						<a href="#" class="col s12 cancel">Отмена</a>
+						<a href="#" class="col s6 del close v1 link-catalog"><div class="ic close v2"></div>Удалить<br>без сохранения</a>
+						<a href="#" class="col s12 cancel link-catalog">Отмена</a>
 					</div>
 					<div class="card-info row">
 						<div class="col s12 m3 p0"><a href="" class="a-d img bg-contain"></a></div>
 						<div class="col s12 m7 p0"><div class="title-card"></div></div>
 						<div class="col s12 m7 p0">
 							<div class="col s12 m6 l3 p0"><div class="price-card"></div></div>
-							<div class="col s12 m6 l3 p0"><div class="oldprice-card"></div></div>
+							<div class="col s12 m6 l3 p0"><div class="oldprice-card"></div><div class="specprice-card"></div></div>
 							<div class="col s12 l6 bl-count p0">
-								<a href="#reduce" class="a-d reduce-count bl-brick">-</a>
+								<button class="reduce-count bl-brick ribe-light">-</button>
 								<div class="count bl-brick"><input type="text" class="fi-d" value="1"></div>
-								<a href="#enlerge" class="a-d enlarge-count bl-brick">+</a>
+								<button class="enlarge-count bl-brick ribe-light">+</button>
 							</div>
 						</div>
 						<div class="col s12 m2 p0 bl-total"><div class="total-title">Сумма:</div><div class="price-total"> руб.</div></div>

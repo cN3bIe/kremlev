@@ -5,7 +5,6 @@ $height-top-line-media: 2 * $header-top-line-height
 	float: left
 	height: 100%
 	padding: 25px 0
-	color: $color-primary
 	line-height: 19px
 	font:
 		size: 16px
@@ -14,7 +13,9 @@ $height-top-line-media: 2 * $header-top-line-height
 		background-position: left center
 		margin: 0
 	#city,
+	#city_fixed,
 	#city_delivery
+		color: $color-primary
 		background: url('#{$path-design}arrow-dark-down.png') right center no-repeat
 		padding-right: 30px
 		display: inline-block
@@ -24,7 +25,7 @@ $height-top-line-media: 2 * $header-top-line-height
 		top: 100%
 		width: 310px
 		position: absolute
-		z-index: 1
+		z-index: 2
 		left: 0
 		border: $border-line
 		background-color: $color-white
@@ -52,15 +53,149 @@ $height-top-line-media: 2 * $header-top-line-height
 	top: 0
 	background: rgba(0, 0, 0, 0.59)
 	z-index: 9
+.tcon
+	&.tcon-search--xcross
+		transition: .3s ease
+		height: 100%
+		width: 100%
+		padding: 0
+		.tcon-search__item
+			transform: rotate(-135deg)
+			&::before
+				background-color: $color-gray
+				left: 0
+				right: 0
+				height: 1px
+			&::after
+				border-color: $color-gray
+				left: 0
+				right: -10px
+				width: 23px
+				height: 23px
+				border-width: 1px
+		&.tcon-transform
+			.tcon-search__item
+				width: 35px
+				height: 27px
+				&::after
+					right: 0
+					height: 1px
+					width: 100%
+				&::before
+					width: 100%
+.top-line
+	height: 100%
+	padding: 0
+	position: relative
+	.bl-wr
+		float: right
+		height: 100%
+		padding: 21px 0
+		.search
+			display: inline-block
+			height: 27px
+			vertical-align: bottom
+			.string-search
+				z-index: 4
+				position: absolute
+				top: 0
+				left: 0
+				right: 308px
+				bottom: 0
+				background-color: $color-white
+				padding: 25px 0 25px
+				.fi-d
+					width: 100%
+					line-height: 19px
+					font-size: 16px
+			.wr-fetch
+				position: absolute
+				top: 100%
+				background-color: $color-bg-section
+				left: 0
+				right: 0
+				z-index: 1
+				padding: 40px
+				.title-fetch
+					line-height: 19px
+					font-size: 16px
+					text-align: left
+					margin-bottom: 20px
+					&.none
+						margin-bottom: 0
+				.wr-card
+					.wr-item-card
+						width: 20%
+						.item-card
+							padding: 0 0 20px 0
+							.bl-notice
+								min-height: 30px
+							.img
+								min-height: 100px
+							.bl-info
+								padding: 0 20px
+								margin-top: 15px
+								.title-card
+									font-size: 14px
+									line-height: 17px
+								.price-card
+									height: 2.2em
+									font-size: 14px
+									margin-top: 10px
+									.old-price
+										display: block
+										margin: 0
+									.price
+										display: block
+							.bl-action
+								margin-top: 10px
+								text-align: right
+								height: 25px
+								.bookmark
+								.basket
+		.bookmark
+		.basket
+		.phone-d
+			color: $color-black
+			text-decoration: none
+			font-size: 17px
+			text-align: right
+			line-height: 27px
+			margin-left: 30px
+.wr-top-fixed
+	position: fixed
+	z-index: 11
+	top: -100%
+	// top: 0
+	left: 0
+	right: 0
+	background-color: $color-white
+	height: $header-top-line-height
+	transition: 1s ease
+	&:hover
+		top: 0 !important
+	.wr-top-line
+		height: 100%
+	.bl-wr
+		.search
+			.wr-fetch
+				position: fixed
+				top: $header-top-line-height
+				bottom: 0
+				right: 0
+				left: 0
+				overflow: auto
 .main-header
 	.bl-logo
 		width: 100%
 		float: left
 		max-width: $logo-width
-		min-height: $logo-height
+		max-height: $logo-height
+		margin-left: 15px
 	.bl-menu
 		.wr-const-top-line
 			height: $header-top-line-height
+			margin-left: $header-left-margin
 			&.fixed
 				.wr-top-line
 					position: fixed
@@ -78,117 +213,14 @@ $height-top-line-media: 2 * $header-top-line-height
 					margin: auto
 			.wr-top-line
 				height: $header-top-line-height
-				.top-line
-					height: 100%
-					padding: 0
-					margin-left: 155px
-					position: relative
-					.bl-wr
-						float: right
-						height: 100%
-						padding: 21px 0
-						.search
-							display: inline-block
-							height: 27px
-							vertical-align: bottom
-							.string-search
-								z-index: 4
-								position: absolute
-								top: 0
-								left: 0
-								right: 308px
-								bottom: 0
-								background-color: $color-white
-								padding: 25px 0 25px 10px
-								.fi-d
-									width: 100%
-									line-height: 19px
-									font-size: 16px
-							.wr-fetch
-								position: absolute
-								top: 100%
-								background-color: $color-bg-section
-								left: 0
-								right: 0
-								z-index: 1
-								padding: 40px
-								.title-fetch
-									line-height: 19px
-									font-size: 16px
-									text-align: left
-									margin-bottom: 20px
-									&.none
-										margin-bottom: 0
-								.wr-card
-									.wr-item-card
-										width: 191px
-										.item-card
-											padding: 0 0 20px 0
-											.bl-notice
-												min-height: 30px
-											.img
-												min-height: 100px
-											.bl-info
-												padding: 0 20px
-												margin-top: 15px
-												.title-card
-													font-size: 14px
-													line-height: 17px
-												.price-card
-													font-size: 14px
-													margin-top: 10px
-													.old-price
-											.bl-action
-												margin-top: 10px
-												text-align: right
-												height: 25px
-												.bookmark
-												.basket
-							.tcon
-								&.tcon-search--xcross
-									transition: .3s ease
-									height: 100%
-									width: 100%
-									padding: 0
-									.tcon-search__item
-										transform: rotate(-135deg)
-										&::before
-											background-color: $color-gray
-											left: 0
-											right: 0
-											height: 1px
-										&::after
-											border-color: $color-gray
-											left: 0
-											right: -10px
-											width: 23px
-											height: 23px
-											border-width: 1px
-									&.tcon-transform
-										.tcon-search__item
-											width: 35px
-											height: 27px
-											&::after
-												right: 0
-												height: 1px
-												width: 100%
-											&::before
-												width: 100%
-						.bookmark
-						.basket
-						.phone
-							font-size: 17px
-							text-align: right
-							line-height: 27px
-							margin-left: 30px
 		.nav-line
-			margin-left: 155px
-			min-height: 75px
+			margin-left: $header-left-margin
+			min-height: $header-nav-line-height
 			.wr-menu
 				height: 100%
 				.main-item-menu
-					height: $header-nav-line-height
-					line-height: $header-nav-line-height
+					// height: $header-nav-line-height
+					// line-height: $header-nav-line-height
 					.link-item-menu
 						height: $header-nav-line-height
 						line-height: $header-nav-line-height
@@ -227,10 +259,12 @@ $height-top-line-media: 2 * $header-top-line-height
 							top: 100%
 							left: 0
 							width: 300%
-							padding: 37px 0 33px 33px
+							padding: 16px
 							.list-catalog.lvl-2
+								.a-d
+									padding: 10px 16px
+									border-radius: 5px
 								.title-category
-									padding-bottom: 20px
 									.a-d
 										font:
 											size: 16px
@@ -241,9 +275,8 @@ $height-top-line-media: 2 * $header-top-line-height
 										width: 60px
 										height: 1px
 										top: auto
+										left: 16px
 										border-bottom: 1px solid #fff
-								.a-d
-									margin-top: 20px
 				.wr-lvl-1
 					margin: 0 0 0 $nav-catalog-width
 					.wrp-item-menu
@@ -264,10 +297,17 @@ $height-top-line-media: 2 * $header-top-line-height
 
 @media #{$medium-and-down}
 	.main-header
+		background-color: transparent
+		padding: 0
+		background-color: $color-white
+		.wr
 		.bl-menu
 			.bl-logo
+				display: none
 			.wr-const-top-line
-				height: $height-top-line-media
+				height: auto
+				// height: $height-top-line-media
+				margin-left: 0
 				&.fixed
 					.bl-city
 						display: none
@@ -276,7 +316,9 @@ $height-top-line-media: 2 * $header-top-line-height
 					.top-line
 						padding: 0
 						.bl-city
-							float: right
+							position: absolute
+							left: 40px
+							padding: 23px 0
 							#city
 							.bl-search-city
 								left: 0
@@ -292,8 +334,13 @@ $height-top-line-media: 2 * $header-top-line-height
 							.menu-btn
 								display: block
 								float: left
-								margin-top: -10px
+								margin-top: -7px
+								padding: 0
+								&.tcon-menu--xcross.tcon-transform .tcon-menu__lines:after,
+								&.tcon-menu--xcross.tcon-transform .tcon-menu__lines:before
+									width: 30px
 							.search
+								display: none
 								.string-search
 									border-top: $border-line
 									border-bottom: $border-line
@@ -303,52 +350,64 @@ $height-top-line-media: 2 * $header-top-line-height
 									.fi-d
 								.wr-fetch
 									.title-fetch
-									.wr-item-card
-										.item-card
-											.bl-notice
-											.img
-											.bl-info
-												.title-card
-												.price-card
-													.old-price
-											.bl-action
-												.bookmark
-												.basket
+									.wr-card
+										.wr-item-card
+											width: 33.3333333%
+											.item-card
+												.bl-notice
+												.img
+												.bl-info
+													.title-card
+													.price-card
+														.old-price
+														.price
+												.bl-action
+													.bookmark
+													.basket
 							.bookmark
 							.basket
-							.phone
+							.phone-d
 			.nav-line
+				border-top: $border-line
 				background-color: $color-white
 				margin-left: 0
 				height: 100%
 				position: fixed
 				overflow: auto
 				padding: 0
-				top: 0
+				top: 69px
 				bottom: 0
-				left: 100%
+				right: 100%
 				width: 100%
 				transition: .3s ease
 				z-index: 4
-				.ic.close.v1
-					display: block
-					float: right
-					width: 40px
-					height: 40px
-					margin: 5px
+				&.active
+					right: 0
 				.wr-menu
-					padding-top: 50px
 					.main-item-menu
 						display: block
+						font-size: 15px
+						line-height: 55px
+						.phone-d
+							height: 55px
+							text-align: center
+							border-bottom: $border-line
+						.link-item-menu
+							height: 55px
+							font-size: 15px
+							line-height: 55px
 					.list-menu
 						.item-menu
 							.link-item-menu
 						.catalog
 							width: 100%
 							float: none
+							min-height: 55px
 							&, .a-d
 							.link-item-menu
-								font-size: 26px
+								font-size: 15px
+								line-height: 55px
+								height: 55px
 							.lvl-1
 								.a-d
 									font-size: 19px
@@ -369,56 +428,102 @@ $height-top-line-media: 2 * $header-top-line-height
 									&.lvl-2
 										padding: 20px
 										.a-d
+											font-size: 15px
 					.wr-lvl-1
 						margin: 0
 						.wrp-item-menu
 							.item-menu
 								border-bottom: $border-line
 								width: 100%
+								height: 55px
 								.link-item-menu
-									font-size: 26px
 									text-align: center
+									height: 55px
+									font-size: 15px
+									line-height: 55px
 @media #{$small-and-down}
 	.main-header
+		height: auto
 		.bl-menu
 			.bl-logo
-				display: none
+				display: block
+				float: none
+				position: absolute
+				max-height: 100%
+				height: 100%
+				padding: 5px 0
+				margin: auto
+				left: 0
+				right: 0
+				z-index: 99
 			.wr-const-top-line
-				&.fixed
-					.bl-city
 				.wr-top-line
 					.top-line
-						margin-left: 0
 						.bl-city
+							display: none
+							text-align: right
 							width: 100%
 							#city
 							.bl-search-city
+								left: auto
+								text-align: left
 								.wr-fi
 									.fi-d
 								.list-city
 									.item-city
 										&:hover
 						.bl-wr
+							.menu-btn
 							.search
+								.string-search
+									.fi-d
+								.wr-fetch
+									padding: 15px 5px
+									.title-fetch
+									.wr-card
+										.wr-item-card
+											width: 50%
+											.item-card
+												.bl-notice
+												.img
+												.bl-info
+													.title-card
+													.price-card
+														.old-price
+														.price
+														.bl-action
 							.bookmark
 							.basket
-							.phone
+							.phone-d
 								display: none
-				.nav-line
-					.wr-menu
-						.list-menu
+			.nav-line
+				.wr-menu
+					height: auto
+					padding: 0
+					.main-item-menu
+						.phone-d
+						.link-item-menu
+					.list-menu
+						.item-menu
+							.link-item-menu
+						.catalog
+							&, .a-d
+							.link-item-menu
+							.lvl-1 .a-d
+							&:hover .wr-catalog
+							.wr-catalog
+								.list-catalog
+									.title-category
+										&:before
+									&.lvl-2
+										.a-d
+					.wr-lvl-1
+						.wrp-item-menu
 							.item-menu
 								.link-item-menu
-							.catalog
-								&, .a-d
-								.link-item-menu
-								.lvl-1 .a-d
-								&:hover .wr-catalog
-								.wr-catalog
-									.list-catalog
-										.title-category
-											&:before
-										&.lvl-2
-											.a-d
-						.wr-lvl-1
-							.item-menu
+
+.tooltip_html
+	position: absolute
+	left: 50%
+.control-link
+	position: relative

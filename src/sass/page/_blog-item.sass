@@ -28,8 +28,39 @@
 			border-left: 8px solid $color-primary
 			padding-left: 20px
 	.blog-item-baner
-		// background-color: $color-bg-section
-		// min-height: 828px
 		max-width: 300px
+		margin-top: 300px
 .section.others-news
 	background-color: $color-white
+
+@media #{$medium-and-down}
+@media #{$small-and-down}
+	.section.blog-item
+		.wr
+			padding: 0
+			.wr-news
+				padding: 0
+				.bl-title
+					min-height: 210px
+					&:before
+					.title
+						left: 0
+						right: 0
+						text-align: center
+						bottom: 0
+						height: 100%
+						font-size: 21px
+						line-height: 26px
+						padding:
+							left: 15px
+							right: 15px
+				.bl-content
+					padding: 10px 15px
+					.text
+						&, p
+				.bl-additional
+		.blog-item-baner
+			max-width: 100%
+			text-align: center
+			margin-top: 0
+	.section.others-news

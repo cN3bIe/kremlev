@@ -33,6 +33,8 @@ function custom_theme_options() {
 			array('id' => 'footer', 'title' => 'Подвал'),
 			array('id' => 'delivery', 'title' => 'Доставка для регионов'),
 			array('id' => 'news', 'title' => 'Новости'),
+			array('id' => 'action', 'title' => 'Акции'),
+			array('id' => 'push_code', 'title' => 'Вставка кода'),
 			// array('id' => 'option_types', 'title' => __( 'Option Types', 'theme-text-domain' ))
 			),
 		'settings'        => array(
@@ -88,7 +90,7 @@ function custom_theme_options() {
 				'class'       => '',
 				'condition'   => '',
 				'operator'    => 'and'
-				),
+			),
 			/*Служебные страницы*/
 			array(
 				'id'          => 'kremlev_page_tab',
@@ -96,6 +98,21 @@ function custom_theme_options() {
 				'type'        => 'tab',
 				'section'     => 'common'
 				),
+			array(
+				'id'          => 'kremlev_politconf_page_select',
+				'label'       => 'Страница политики конфедециальности',
+				'desc'        => 'Выберите страницу политики конфедециальности',
+				'std'         => '',
+				'type'        => 'page-select',
+				'section'     => 'common',
+				'rows'        => '',
+				'post_type'   => '',
+				'taxonomy'    => '',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and'
+			),
 			array(
 				'id'          => 'kremlev_bookmark_page_select',
 				'label'       => 'Страница закладок',
@@ -110,7 +127,7 @@ function custom_theme_options() {
 				'class'       => '',
 				'condition'   => '',
 				'operator'    => 'and'
-				),
+			),
 			array(
 				'id'          => 'kremlev_order_page_select',
 				'label'       => 'Страница заказа',
@@ -125,7 +142,22 @@ function custom_theme_options() {
 				'class'       => '',
 				'condition'   => '',
 				'operator'    => 'and'
-				),
+			),
+			array(
+				'id'          => 'kremlev_thanks_page_select',
+				'label'       => 'Страница благодарности за заказ',
+				'desc'        => 'Выберите страницу благодарности за заказ',
+				'std'         => '',
+				'type'        => 'page-select',
+				'section'     => 'common',
+				'rows'        => '',
+				'post_type'   => '',
+				'taxonomy'    => '',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and'
+			),
 			// Шапка
 			array(
 				'id'          => 'main_tab',
@@ -184,7 +216,7 @@ function custom_theme_options() {
 						'desc'        => 'Минимальная цена заказа от которой будет доставка бесплатной'
 						),
 					),
-				),
+			),
 			array(
 				'label'       => 'Ссылка банера',
 				'id'          => 'baner_link',
@@ -199,6 +231,50 @@ function custom_theme_options() {
 				'type'        => 'upload',
 				'section'     => 'news'
 			),
+			array(
+				'label'       => 'Ссылка банера',
+				'id'          => 'action_baner_link',
+				'type'        => 'text',
+				'desc'        => '',
+				'section'     => 'action'
+			),
+			array(
+				'id'          => 'action_baner_upload',
+				'label'       => 'Банер',
+				'desc'        => 'Загрузите картинку для банера акций',
+				'type'        => 'upload',
+				'section'     => 'action'
+			),
+			array(
+				'id'          => 'header_code_textarea',
+				'label'       => 'Код в шапку сайта',
+				'desc'        => 'Вставляется перед закрывающим "head"',
+				'std'         => '',
+				'type'        => 'textarea',
+				'section'     => 'push_code',
+				'rows'        => '15',
+				'post_type'   => '',
+				'taxonomy'    => '',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and'
+			),
+			array(
+				'id'          => 'footer_code_textarea',
+				'label'       => 'Код в подвал сайта',
+				'desc'        => 'Вставляется перед закрывающим "body"',
+				'std'         => '',
+				'type'        => 'textarea',
+				'section'     => 'push_code',
+				'rows'        => '15',
+				'post_type'   => '',
+				'taxonomy'    => '',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and'
+			),
 			/*
 			array(
 				'id'          => 'op_pickup_on_off',
@@ -207,7 +283,7 @@ function custom_theme_options() {
 				'std'         => 'off',
 				'type'        => 'on-off',
 				'section'     => 'delivery',
-				),
+			),
 			array(
 				'label'       => 'Адрес',
 				'id'          => 'op_pickup_address',
@@ -215,7 +291,7 @@ function custom_theme_options() {
 				'desc'        => '',
 				'condition'   => 'op_pickup_on_off:is(on)',
 				'section'     => 'delivery',
-				),
+			),
 			array(
 				'label'       => 'Время работы',
 				'id'          => 'op_pickup_time',
@@ -223,7 +299,7 @@ function custom_theme_options() {
 				'desc'        => '',
 				'condition'   => 'op_pickup_on_off:is(on)',
 				'section'     => 'delivery',
-				),
+			),
 			*/
 			//Примеры настроек
 			/*array(

@@ -7,7 +7,17 @@
 	border: 0
 	background-color: transparent
 	max-width: 100%
+div.wpcf7-validation-errors,
+div.wpcf7-mail-sent-ok
+	display: none !important
+.overflow
+	overflow: hidden
+.top0
+	top: 0 !important
 
+.dib
+	display: inline-block
+	vertical-align: bottom
 
 .main-header
 	height: $header-height
@@ -35,9 +45,14 @@
 @media #{$medium-and-down}
 	.main-header
 		margin: 0
+		position: fixed
+		top: 0
+		left: 0
+		right: 0
 		height: auto
 	.main
 		padding: 0
+		padding-top: 69px
 	.main-footer
 		margin: 0
 		height: auto
@@ -75,6 +90,19 @@ h5.title
 h6.title
 	font-size: 18px
 
+@media #{$medium-and-down}
+@media #{$small-and-down}
+	.title
+		padding-top: 35px
+		padding-bottom: 37px
+		font-size: 21px
+		line-height: 26px
+	h1.title
+		font-size: 24px
+		line-height: 27px
+	h2.title
+		font-size: 19px
+		line-height: 24px
 
 
 .ic
@@ -86,6 +114,8 @@ h6.title
 	margin: 0 5px
 	vertical-align: bottom
 	position: relative
+	text-decoration: none
+	color: $color-black
 	&.marker
 		background-image: url("#{$path-design}marker.svg")
 		height: 22px
@@ -95,16 +125,20 @@ h6.title
 		background-image: url("#{$path-design}heart.svg")
 		&.active
 			background-image: url("#{$path-design}heart-fill-v1.svg")
-		&.btni
+		&.btni,
+		&.btni-online
 			position: relative
 			background: transparent
 			.like
 				display: block
-				background: url("#{$path-design}heart_animation_v5.png") no-repeat
+				background: url("#{$path-design}heart_animation_v6.png") no-repeat
 				position: absolute
 				width: 100px
 				height: 100px
 				background-position: 0
+				top: -36.5px
+				left: -36.5px
+				background-size: auto 100%
 			&.active
 				background: transparent
 				.like
@@ -179,7 +213,8 @@ h6.title
 	position: absolute
 	width: $badget-height
 	height: $badget-width
-	line-height: $badget-height
+	line-height: $badget-height+2px
+	vertical-align: bottom
 	top: -$badget-height + 5px
 	right: -$badget-height + 5px
 	font-size: 12px
@@ -188,6 +223,7 @@ h6.title
 	left: auto
 	bottom: auto
 	text-align: center
+	text-align: -webkit-center
 
 $btn-max-width: 210px
 .btn,
@@ -233,13 +269,28 @@ $btn-max-width: 210px
 
 .it
 	display: inline-block
-	padding: 0 60px
+	width: 100%
+	padding: 0 10px
 	background-color: $color-white
 	height: $btn-height
 	line-height: $btn-height
-	max-width: $btn-max-width
 	text-align: center
-
+	color: $color-text
+	line-height: 19px
+	font-size: 16px
+	transition: .3s ease
+	&.wpcf7-not-valid
+		color: $color-red
+		border: 1px solid $color-red
+		box-shadow: inset 0 0 9px $color-red
+@media #{$medium-and-down}
+@media #{$small-and-down}
+	.btn,
+	.btn:hover,
+	.btn:active,
+	.btn:focus,
+	.btn:visited
+		padding: 0 10px
 
 
 
@@ -309,7 +360,9 @@ $btn-max-width: 210px
 		-o-transform: scale(0.95)
 
 .bl-brick
-	float: left
+	display: inline-block
+	background-color: $color-white
+	vertical-align: bottom
 	width: $brick-side + $brick-border-weight
 	height: $brick-side + $brick-border-weight
 	border: $brick-border-weight solid $color-primary
@@ -335,6 +388,12 @@ $btn-max-width: 210px
 	text-align: left
 	font-weight: 400
 
+@media #{$medium-and-down}
+@media #{$small-and-down}
+	.text
+		font-size: 12px
+		line-height: 14px
+
 .b
 	font-weight: 700
 .dn
@@ -343,6 +402,8 @@ $btn-max-width: 210px
 	display: block
 	height: 100%
 	width: 100%
+	color: $color-black
+	text-decoration: none
 	&:focus,
 	&:active,
 	&:hover
@@ -398,3 +459,41 @@ ul.ul-d li.li-d
 		color: #59595B
 		font-size: 18px
 		line-height: 55px
+
+
+
+
+@media #{$small-and-down}
+@media #{$medium-and-down}
+	.tcon
+		height: 30px
+		.tcon-menu__lines
+			width: 30px
+		.tcon-menu__lines,
+		.tcon-menu__lines:after,
+		.tcon-menu__lines:before
+			height: 2px
+		.tcon-menu__lines:before
+			top: 8px
+		.tcon-menu__lines:after
+			top: -8px
+
+.snarl-notification
+	box-shadow: none
+	border-radius: 0
+
+.tooltipster-sidetip
+	pointer-events: visible
+	.tooltipster-box
+		border: 1px solid $color-primary !important
+		background-color: $color-primary-light !important
+	&.tooltipster-top
+		.tooltipster-arrow-border
+			border-top-color: $color-primary !important
+		.tooltipster-arrow-background
+			border-top-color: $color-primary-light !important
+	&.tooltipster-bottom,
+		.tooltipster-arrow-border
+			border-bottom-color: $color-primary !important
+		.tooltipster-arrow-background
+			border-bottom-color: $color-primary-light !important

@@ -61,7 +61,6 @@ gulp
 .task( 'custom-libs-js',()=>{
 	return gulp.src([
 			'src/libs/custom/js/markup.js',
-			'src/libs/material-design-lite/material.min.js',
 			'src/libs/aishek-jquery-animateNumber/jquery.animateNumber.min.js',
 		])
 		.pipe( concat( 'custom.min.js') )
@@ -76,11 +75,12 @@ gulp
 			'node_modules/node-waves/dist/waves.min.css',
 			'node_modules/izimodal/css/iziModal.min.css',
 			'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css',
+			'src/libs/material-design-lite/material.min.css',
+			'src/libs/tooltipster-master/dist/css/tooltipster.bundle.min.css',
 			'src/libs/Snarl-master/dist/snarl.min.css',
 			'src/libs/fotorama-4.6.4/fotorama.css',
 			'src/libs/social-share-kit-1.0.14/dist/css/social-share-kit.css',
 			'src/libs/custom/dist/custom.min.css',
-			'src/libs/material-design-lite/material.min.css',
 		])
 		.pipe( sourcemaps.init() )
 		.pipe( concat( 'libs.min.css' ) )
@@ -95,10 +95,14 @@ gulp
 	return gulp.src( [
 			'node_modules/jquery/dist/jquery.min.js',
 			'node_modules/node-waves/dist/waves.min.js',
-			'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+			'node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js',
 			'node_modules/izimodal/js/iziModal.min.js',
 			'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js',
 			'node_modules/isotope-layout/dist/isotope.pkgd.min.js',
+			'src/libs/material-design-lite/material.min.js',
+			'src/libs/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js',
+			'src/libs/jquery.countdown.package-2.1.0/js/jquery.countdown.min.js',
+			'src/libs/tooltipster-master/dist/js/tooltipster.bundle.min.js',
 			'src/libs/Snarl-master/dist/snarl.min.js',
 			'src/libs/fotorama-4.6.4/fotorama.js',
 			'src/libs/social-share-kit-1.0.14/dist/js/social-share-kit.min.js',

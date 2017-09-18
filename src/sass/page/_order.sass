@@ -1,4 +1,4 @@
-$bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
+$bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 28px
 .section.order
 	padding: 0
 	.title
@@ -20,12 +20,13 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 					.bl-info
 						padding-right: 20px
 						.number
+							float: left
 							margin: 0 30px
 						.info
 							margin-left: $bl-info-margin-left
 							.bl-city,
 							.title-info
-								line-height: 22px
+								line-height: 32px
 								font-size: 18px
 								margin-bottom: 25px
 							.bl-city
@@ -35,13 +36,15 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 							.wr-bank
 								padding-left: 40px
 							.mdl-radio
+								height: auto
 								width: 100%
 								margin-bottom: 15px
 								padding-left: 40px
 								.mdl-radio__outer-circle
 									z-index: 1
 									border-color: transparent
-									background-color: $color-background
+									// background-color: $color-background
+									background-color: #e9eaec
 								.mdl-radio__inner-circle
 									z-index: 2
 									background-color: $color-primary
@@ -58,9 +61,8 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 							.bl-city
 								padding: 0 0 10px
 								.city
-							.form-input,
+							.wr-it,
 							.form-textarea
-								padding: 15px
 								margin-bottom: 10px
 								max-width: 335px
 								width: 100%
@@ -69,7 +71,11 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 								font-size: 16px
 								background-color: $color-background
 								.fi-d
+									padding: 0 15px
+									text-align: left
+									background-color: transparent
 							.form-textarea
+								padding: 15px
 								border: 0
 								resize: none
 								min-height: 8em
@@ -80,6 +86,9 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 								overflow: hidden
 				&.wr-info-order
 					padding-top: 0
+					border-left: $border-line
+					margin-left: -1px
+					float: right
 					.total
 						padding: 40px 60px
 						line-height: 22px
@@ -98,6 +107,13 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 						border-bottom: 1px solid $color-line
 						padding: $card-item-padding-vertical 20px
 						height: $card-item-height
+						position: relative
+						.timer
+							position: absolute
+							top: 10px
+							left: 30px
+							font-size: 24px
+							line-height: 28px
 						.bl-del
 							&:hover
 								background-color: $color-background
@@ -120,8 +136,12 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 							.price-card
 								font-size: 20px
 								line-height: 24px
+							.specprice-card,
+							.oldprice-card
+								float: left
 							.bl-count
 								min-width: $bl-brick-width
+								text-align: left
 								.bl-brick
 									margin-right: 10px
 									height: $brick-side
@@ -133,6 +153,7 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 										text-align: center
 								.reduce-count,
 								.enlarge-count
+									line-height: $brick-side - 4px
 									&:hover
 										background-color: $color-primary
 										color: $color-white
@@ -160,11 +181,11 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 									&.radio-delivery
 										.time
 								.city
-								.form-input,
-								.form-textarea
-									.fi-d
+								.wr-it,
 								.form-textarea
 									max-width: 100%
+									.fi-d
+								.form-textarea
 					&.wr-info-order
 						.total
 							.bl-info
@@ -189,4 +210,76 @@ $bl-brick-width: $brick-side * 4 + $brick-border-weight * 6 + 18px
 										.fi-d
 									.reduce-count,
 									.enlarge-count
+										&:hover
+
+@media #{$small-and-down}
+	.section.order
+		.title
+			font-size: 19px
+			line-height: 24px
+		.wr-order
+			.form-order
+				.wr-info
+					&.wr-info-client
+						border: 0
+						.btn
+							margin-left: 0
+							width: 100%
+						.bl-info
+							.number
+								margin: 0 5px 0 0
+							.info
+								.bl-city,
+								.title-info
+								.bl-city
+									#city_delivery
+								.wr-bank
+								.mdl-radio
+									.mdl-radio__outer-circle
+									.mdl-radio__inner-circle
+									.mdl-radio__ripple-container
+										.mdl-ripple
+									&.radio-delivery
+										.time
+								.bl-city
+									.city
+								.wr-it,
+								.form-textarea
+									.fi-d
+								.form-textarea
+					&.wr-info-order
+						border: 0
+						float: left
+						.total
+							padding: 20px 0
+							.bl-info
+								.name
+								.price
+							.bl-total
+						.item-card
+							.bl-del
+								&:hover
+								&:active
+								&:before,
+								&:after
+							.img
+								float: right
+								margin: 0
+							.card-info
+								.title-card
+									text-align: right
+								.price-card,
+								.oldprice-card
+									float: right
+								.oldprice-card
+									margin-bottom: 0
+									margin-top: 10px
+								.bl-count
+									text-align: right
+									.bl-brick
+									.count
+										.fi-d
+									.reduce-count,
+									.enlarge-count
+										margin: 0
 										&:hover

@@ -17,6 +17,6 @@ get_header();
 		get_template_part( 'template/content', 'page' );
 		// if ( comments_open() || get_comments_number() ) :
 			// comments_template();
-		endif;
+		// endif;
 	endwhile;
 get_footer();

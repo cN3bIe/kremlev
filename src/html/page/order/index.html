@@ -4,6 +4,27 @@
 		<h1 class="title">Оформление заказа</h1>
 		<div class="wr-order">
 			<form action="" class="form form-order row">
+				<div class="wr-info wr-info-order col s12 m6 bl-card">
+					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="1 " count="1 " img="/img/product-0.png"]
+					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="2 " count="1 " img="/img/product-0.png"]
+					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="3 " count="1 " img="/img/product-0.png"]
+					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="4 " count="1 " img="/img/product-0.png"]
+					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="5 " count="1 " img="/img/product-0.png"]
+					<div class="total">
+						<div class="bl-info sale row">
+							<div class="name">Скидка</div>
+							<div class="price">500 руб.</div>
+						</div>
+						<div class="bl-info delivery row">
+							<div class="name">Стоимость доставки:</div>
+							<div class="price">250 руб.</div>
+						</div>
+						<div class="bl-info bl-total row">
+							<div class="name">Итого:</div>
+							<div class="price">3100 руб.</div>
+						</div>
+					</div>
+				</div>
 				<div class="wr-info wr-info-client col s12 m6">
 					<div class="bl-info row">
 						<div class="number bl-brick">1</div>
@@ -18,9 +39,13 @@
 						<div class="number bl-brick">2</div>
 						<div class="info">
 							<div class="title-info">Контактная информация:</div>
-							<div class="form-input"><input class="fi-d name" type="text" name="name" placeholder="Ваше имя"></div>
-							<div class="form-input"><input class="fi-d phone" type="text" name="phone" placeholder="Ваш телефон"></div>
-							<div class="form-input"><input class="fi-d email" type="text" name="email" placeholder="Ваш E-mail"></div>
+							<span class="dib wr-it"><input class="it fi-d name" type="text" name="name" placeholder="Ваше имя"></span>
+							<span class="dib wr-it"><input class="it fi-d phone" type="text" name="phone" placeholder="Ваш телефон"></span>
+							<span class="dib wr-it"><input class="it fi-d email" type="text" name="email" placeholder="Ваш E-mail"></span>
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect bl-politic-conf" for="politic-conf-2">
+								<input type="checkbox" id="politic-conf-2" class="mdl-checkbox__input" name="politic-conf" checked="checked">
+								<span class="mdl-checkbox__label">Согласен(на) на обработку персональных данных (<a href="/politic-conf/">соглашение</a>)</span>
+							</label>
 						</div>
 					</div>
 					<div class="bl-info row">
@@ -51,27 +76,6 @@
 						</div>
 					</div>
 					<button type="submit" class="btn">Оформить заказ</button>
-				</div>
-				<div class="wr-info wr-info-order col s12 m6 bl-card">
-					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="1 " count="1 " img="/img/product-0.png"]
-					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="2 " count="1 " img="/img/product-0.png"]
-					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="3 " count="1 " img="/img/product-0.png"]
-					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="4 " count="1 " img="/img/product-0.png"]
-					[snp tpl="card-order-item.html" title="Икра стерляди Горкунов, 50 г" price="20 руб." id="5 " count="1 " img="/img/product-0.png"]
-					<div class="total">
-						<div class="bl-info sale row">
-							<div class="name">Скидка</div>
-							<div class="price">500 руб.</div>
-						</div>
-						<div class="bl-info delivery row">
-							<div class="name">Стоимость доставки:</div>
-							<div class="price">250 руб.</div>
-						</div>
-						<div class="bl-info bl-total row">
-							<div class="name">Итого:</div>
-							<div class="price">3100 руб.</div>
-						</div>
-					</div>
 				</div>
 			</form>
 		</div>

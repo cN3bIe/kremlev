@@ -21,6 +21,13 @@ console.log('Include Bookmark.js');
 		}else this.change();
 		if(callback) callback.call(_,_);
 	};
+	_.checked = function(arr){
+		if( Array.isArray(arr) && arr.length && Array.isArray(_.card) && _.card.length ){
+			_.card.forEach(function(id){
+				if( !arr.some(function(id_card){ return id === id_card;}) ) _.removeCard( id );
+			});
+		}else _.card = [];
+	};
 	_.getCard = function(id_card){
 		if(id_card) return this.card.filter(function(id){return id === (''+id_card).replace(/(\W|\s)+/g,'') }).shift();
 		else return this.card;

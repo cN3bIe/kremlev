@@ -13,42 +13,39 @@ $products = get_posts( array(
 	'post_type' => 'catalog',
 	'post_status'=>'publish',
 	'order'=>'ASC',
-	'orderby'=>'meta_value_num',
-	'tax_query'         => array(
-		array(
-			'taxonomy' => 'kremlev_category',
-			'terms'    => $arr_terms_id,
-		),
-	),
+	'tax_query'=> [[
+		'taxonomy' => 'kremlev_category',
+		'terms'    => $arr_terms_id,
+	]]
 ) );
-$filter_terms = get_terms('kremlev_filter',array('parent'=>0));
+$filter_terms = get_terms('kremlev_filter',['parent'=>0]);
 $filters = array();
 if( is_array( $filter_terms ) && count( $filter_terms ) ):
-	foreach( $filter_terms as $key=>$term ):
-		$posts = get_posts( array(
+	foreach( $filter_terms as $term ):
+		$posts = get_posts( [
 			'numberposts' =>-1,
 			'post_type' => 'catalog',
 			'post_status'=>'publish',
 			'order' => 'ASC',
 			'orderby' => 'meta_value_num',
-			'tax_query' => array(
+			'tax_query' => [
 				'relation'=>'AND',
-				array(
+				[
 					'taxonomy' => 'kremlev_category',
 					'terms'    => $arr_terms_id,
-				),
-				array(
+				],
+				[
 					'taxonomy' => 'kremlev_filter',
 					'terms'    => $term,
-				),
-			)
-		) );
-		if( count( $posts ) ) array_push( $filters, array( 'parent' => $term, 'children'=>null ) );
+				],
+			]
+		] );
+		if( count( $posts ) ) array_push( $filters, [ 'parent' => $term, 'children'=>null ] );
 	endforeach;
 endif;
 if( is_array( $filters ) && count( $filters ) ):
 	foreach( $filters as $key=>$parent_term ):
-		$filters[$key]['children'] = get_terms('kremlev_filter',array('parent'=>$parent_term['parent']->term_id));
+		$filters[$key]['children'] = get_terms('kremlev_filter',['parent'=>$parent_term['parent']->term_id]);
 	endforeach;
 endif;
 get_header();
@@ -57,6 +54,7 @@ get_header();
 		<h1 class="title"><?php echo $cur_term->name;?></h1>
 		<div class="wr-catalog row">
 			<div class="wr-filter col s12 m4 l3 p0">
+				<div class="dn btn-filter">Фильтр</div>
 				<div class="form-filter">
 					<div class="bl-filter" data-filter-group="filter-0" data-filter-lvl="0">
 						<div class="title-filter"><?php echo ($name_filter?$name_filter:'Категории');?></div><?php
@@ -82,7 +80,7 @@ get_header();
 						endforeach;
 					endif;
 					/*?><button type="submit" class="btn">Показать</button><?php*/
-					?><a href="/catalog/" class="a-d reset"><span class="ic close v1"></span>Сбросить фильтры</a><?php /*
+					?><a href="/catalog/" class="a-d reset link-catalog"><span class="ic close v1"></span>Сбросить фильтры</a><?php /*
 					<div class="filter-popup zd-4">
 						<div class="bl-empty">Нечего не найдено</div>
 						<div class="bl-count">Найдено: 4</div>

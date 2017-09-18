@@ -1,8 +1,18 @@
 
 
 $notice-badget-side: 78px
+$notice-badget-side-four: 70px
 /*catalog*/
-
+.catalog
+	.wr-card
+		.wr-item-card.col
+			.item-card
+				.bl-notice
+					.badget
+						height: $notice-badget-side-four
+						width: $notice-badget-side-four
+						font-size: 12px
+						line-height: 13px
 .wr-card
 	margin: 0
 	position: relative
@@ -40,6 +50,14 @@ $notice-badget-side: 78px
 			.bl-notice
 				min-height: 40px
 				position: relative
+				.timer
+					font-size: 24px
+					text-align: left
+					// color: $color-white
+					// background-color: $color-primary
+					// display: inline-block
+					// padding: 5px
+					// border-radius: 5px
 				.badget
 					display: block
 					height: $notice-badget-side
@@ -81,7 +99,8 @@ $notice-badget-side: 78px
 					letter-spacing: 0px
 					text-align: center
 					line-height: 24px
-					.old-price
+					.oldprice,
+					.specprice
 						color: $color-text-gray
 						font-weight: 400
 						text-decoration: line-through
@@ -90,7 +109,7 @@ $notice-badget-side: 78px
 			.bl-action
 				margin-top: 10px
 				text-align: right
-				height: 25px
+				height: 30px
 				.bookmark
 				.basket
 		&:hover
@@ -99,6 +118,64 @@ $notice-badget-side: 78px
 			.item-card
 				-webkit-box-shadow: 0 20px 60px 0 rgba(159,164,189,.5)
 				box-shadow: 0 20px 60px 0 rgba(159,164,189,.5)
+
+@media #{$medium-and-down}
+	.wr-card
+		&:before,
+		&:after
+		&:before
+		&:after
+		.wr-item-card.col
+			.item-card
+				.bl-notice
+					.badget
+						&.badget-hit
+				.img
+				.bl-info
+					.wr-title-card
+						.title-card
+					.price-card
+						.oldprice
+				.bl-action
+					.bookmark
+					.basket
+			&:hover
+				.item-card
+
+@media #{$small-and-down}
+	.wr-card
+		&:before,
+		&:after
+		&:before
+		&:after
+		.wr-item-card.col
+			.item-card
+				padding: 10px 10px 20px 10px
+				.bl-notice
+					.badget
+						&.badget-hit
+				.img
+					min-height: 178px !important
+				.bl-info
+					margin: 0
+					.wr-title-card
+						height: 20px
+						.title-card
+							font-size: 14px
+							line-height: 17px
+					.price-card
+						margin-top: 7px
+						.oldprice
+							font-size: 14px
+							line-height: 17px
+						.price
+							font-size: 14px
+							line-height: 17px
+				.bl-action
+					.bookmark
+					.basket
+			&:hover
+				.item-card
 
 
 .card-four-in-row
@@ -109,6 +186,13 @@ $notice-badget-side: 78px
 			.item-card
 				.bl-notice
 					min-height: 50px
+					line-height: 13px
+					font-size: 12px
+					.badget
+						height: $notice-badget-side-four
+						width: $notice-badget-side-four
+						font-size: 12px
+						line-height: 13px
 				.img
 					min-height: 210px
 				.bl-info
@@ -117,7 +201,7 @@ $notice-badget-side: 78px
 						font-size: 16px
 					.price-card
 						font-size: 18px
-						.old-price
+						.oldprice
 				.bl-action
 					.bookmark
 					.basket
@@ -149,9 +233,35 @@ $blog-padding-left: 30px
 						font-size: 16px
 						line-height: 18px
 						transition: .3s ease
-				// &:hover
-				// 	box-shadow: 0px 5px 17px rgba(0, 0, 0, 0.42)
+						line-height: 24px
 
+@media #{$medium-and-down}
+	.section.blog
+		.wr-blog
+			.wr-item
+				.item-blog
+					.img
+					.bl-info
+						.title-blog
+						.desc
+@media #{$small-and-down}
+	.section.blog
+		.wr
+			padding: 0
+			.wr-blog
+				margin: 0
+				.wr-item
+					padding: 0
+					.item-blog
+						.img
+						.bl-info
+							padding: 0 15px
+							.title-blog
+								font-size: 14px
+								line-height: 17px
+							.desc
+								font-size: 12px
+								line-height: 14px
 
 
 /*collaborate*/
@@ -173,6 +283,13 @@ $blog-padding-left: 30px
 		height: 248px
 		margin: 0
 		position: relative
+		.timer
+			position: absolute
+			top: 0
+			left: 0
+			font-size: 24px
+			height: 28px
+			line-height: 28px
 		.bl-del
 			position: absolute
 			top: 0
@@ -199,22 +316,23 @@ $blog-padding-left: 30px
 			position: absolute
 			width: 354px
 			text-align: center
-			background-color: $color-white
 			line-height: 15px
 			font-size: 14px
 			box-shadow: 0px 0px 20px rgba(127,127,127,0.3), 0px 0px 20px rgba(127,127,127,0.3)
 			top: 17%
-			height: $bl-del-select-height
-			a:hover
-				text-decoration: underline
+			height: $bl-del-select-height - 1px
 			.ic
 				display: block
 				margin: 0 auto 5px
 				width: 34px
 				height: 34px
+			a
+				color: $color-black
+				text-decoration: none
 			.bl-bookmark
 				height: $add-in-bookmark-del-height
 				margin-right: -1px
+				background-color: $color-white
 				.del-in-bookmark
 					padding-top: 20px
 					height: $add-in-bookmark-del-height
@@ -225,11 +343,13 @@ $blog-padding-left: 30px
 				border-left: $border-line
 				height: $add-in-bookmark-del-height
 				padding-top: 20px
+				background-color: $color-white
 			.cancel
 				margin-top: -1px
 				border-top: $border-line
 				height: $bl-cancel
 				line-height: $bl-cancel
+				background-color: $color-white
 		.card-info
 			margin-left: $card-info-margin-left
 			.img
@@ -249,9 +369,9 @@ $blog-padding-left: 30px
 				line-height: 24px
 				background-color: $color-bg-section
 				padding: 5px
+			.specprice-card,
 			.oldprice-card
 				margin-bottom: 10px
-				float: left
 				min-width: 100px
 				font-size: 20px
 				line-height: 24px
@@ -260,6 +380,7 @@ $blog-padding-left: 30px
 				text-decoration: line-through
 				color: $color-text-gray
 			.bl-count
+				text-align: right
 				.bl-brick
 					margin-right: 10px
 					height: 42px
@@ -284,6 +405,41 @@ $blog-padding-left: 30px
 					margin-bottom: 30px
 				.price-total
 					font-size: 24px
+
+@media #{$medium-and-down}
+@media #{$small-and-down}
+	.bl-card
+		.item-card
+			.bl-del
+				&:hover
+				&:active
+				&:before,
+				&:after
+			.bl-del-select
+				width: 100%
+				.ic
+				.bl-bookmark
+					.del-in-bookmark
+					.add-in-bookmark
+				.del
+				.cancel
+			.card-info
+				.img
+				.title-card
+				.price-card
+				.specprice-card,
+				.oldprice-card
+				.bl-count
+					.bl-brick
+					.count
+						.fi-d
+					.reduce-count,
+					.enlarge-count
+						&:hover
+				.bl-total
+					.total-title
+					.price-total
+
 
 /*delivery*/
 #delivery
@@ -337,6 +493,30 @@ $blog-padding-left: 30px
 		.list-time
 			padding-left: $card-padding-left
 			.item-time
+@media #{$small-and-down}
+	#delivery
+		.wr-dev
+			.item-dev
+				padding-top: 10px
+				.img
+					margin-bottom: 10px
+				.name
+				.text
+		.bl-text
+			.title-text
+				&.collaborate
+					.a-d
+				&:before
+			.text
+			.list-dev
+				padding: 0
+				.item-dev
+					.line-1
+					.line-2
+						margin-left: 10px
+			.list-time
+				padding: 0
+				.item-time
 .ssk-group
 	margin: 10px
 	text-align: center
@@ -371,3 +551,81 @@ $blog-padding-left: 30px
 	.transfer.col.m4:nth-of-type(3n+1),
 	.transfer.col.m3:nth-of-type(4n+1)
 			clear: both
+
+
+.section
+	.mdl-checkbox__input,
+	.mdl-radio__button
+		display: none
+	.mdl-checkbox
+		cursor: pointer
+		padding-left: $side-checkbox + 8px
+		height: $side-checkbox
+		margin-top: 10px
+		.mdl-checkbox__label
+			line-height: $side-checkbox + 1px
+			font-size: 16px
+		.mdl-checkbox__box-outline,
+		.mdl-checkbox__focus-helper
+			top: 0
+			width: $side-checkbox
+			height: $side-checkbox
+			border-color: $color-primary
+		.mdl-checkbox__ripple-container
+			width: $side-checkbox+18px
+			height: $side-checkbox+18px
+			left: -9px
+			top: -9px
+			.mdl-ripple
+				background-color: $color-primary
+		&.is-checked
+			.mdl-checkbox__tick-outline
+				background-color: $color-primary
+	.mdl-checkbox.v-white
+		.mdl-checkbox__label
+			color: $color-white
+		.mdl-checkbox__box-outline,
+		.mdl-checkbox__focus-helper
+			border-color: $color-white
+		.mdl-checkbox__ripple-container
+			.mdl-ripple
+				background-color: $color-white
+		&.is-checked
+			.mdl-checkbox__tick-outline
+				background-color: $color-white
+	.mdl-checkbox.error-polit
+		.mdl-checkbox__label
+			color: $color-red
+		.mdl-checkbox__box-outline,
+		.mdl-checkbox__focus-helper
+			border-color: $color-red
+		.mdl-checkbox__ripple-container
+			.mdl-ripple
+				background-color: $color-red-light
+		&.is-checked
+			.mdl-checkbox__tick-outline
+				background-color: $color-red
+	.bl-politic-conf
+		margin-top: 10px
+		padding-left: 24px
+		height: auto
+		width: auto
+		a
+			color: $color-blue
+			text-decoration: none
+		.mdl-checkbox__label
+			line-height: $side-checkbox + 1px
+			font-size: 16px
+		.mdl-checkbox__box-outline,
+		.mdl-checkbox__focus-helper
+			width: $side-checkbox - 6px
+			height: $side-checkbox - 6px
+			top: 3px
+		.mdl-checkbox__ripple-container
+			width: 34px
+			height: 34px
+			left: -9px
+			top: -6px
+			.mdl-ripple
+		&.is-checked
+			.mdl-checkbox__tick-outline

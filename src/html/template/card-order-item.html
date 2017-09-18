@@ -2,23 +2,23 @@
 <div class="item-card row" id="{id}">
 	<a href="#del" class="a-d ribe bl-del ic close v1"></a>
 	<div class="bl-del-select row dn">
-		<div class="bl-bookmark col s12 m6 p0">
+		<div class="bl-bookmark col s6 p0">
 			<a href="#" class="del-in-bookmark dn"><div class="ic bookmark v1 active"></div>Находится<br>в списке желаний</a>
 			<a href="#" class="add-in-bookmark dn"><div class="ic bookmark v1"></div>Переместить<br>в список желаний</a>
 		</div>
-		<a href="#" class="col s12 m6 del close v1 p0"><div class="ic close v2"></div>Удалить<br>без сохранения</a>
+		<a href="#" class="col s6 del close v1 p0"><div class="ic close v2"></div>Удалить<br>без сохранения</a>
 		<a href="#" class="col s12 cancel p0">Отмена</a>
 	</div>
 	<div class="card-info row">
 		<div class="col s12 m6 l3 p0"><a href="/catalog/card/" class="a-d img bg-contain" style="background-image:url('{img}')"></a></div>
-		<div class="col s12 m6 l9 p0"><div class="title-card">{title}</div></div>
+		<div class="col s12 m6 l9 p0 title-card">{title}</div>
 		<div class="col s12 l9 p0">
 			<div class="col s12 m6 p0"><div class="price-card">{price}</div></div>
 			<!-- <div class="col s12 m6"><div class="oldprice-card">{oldprice}</div></div> -->
 			<div class="col s12 m6 bl-count p0">
-				<a href="#reduce" class="a-d reduce-count bl-brick">-</a>
+				<button class="reduce-count bl-brick">-</button>
 				<div class="count bl-brick"><input type="text" class="fi-d" value="1"></div>
-				<a href="#enlerge" class="a-d enlarge-count bl-brick">+</a>
+				<button class="enlarge-count bl-brick">+</button>
 			</div>
 		</div>
 	</div>

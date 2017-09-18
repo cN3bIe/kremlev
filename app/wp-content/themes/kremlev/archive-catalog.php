@@ -15,7 +15,7 @@ if( is_array( $terms ) && count( $terms ) ):
 				<div class="row"><?php
 					foreach( $terms as $key=>$term):
 						?><div class="transfer wr-item-card col s12 m4 l3 p0">
-							<div class="item-card">
+							<div class="item-card ribe-light">
 								<a href="/catalog/<?php echo $term->slug;?>/" class=" a-d img bg-contain" style="background-image:url('<?php echo types_render_termmeta( 'category_preview', array( 'url'=>true,'term_id'=>$term->term_id ) ); ?>');"></a>
 								<div class="bl-info">
 									<div class="wr-title-card">

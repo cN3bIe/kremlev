@@ -75,35 +75,28 @@ function custom_meta_boxes() {
 				'label'       => 'Основное',
 				'id'          => 'tab_catalog_main',
 				'type'        => 'tab'
-				),
+			),
 			array(
 				'id'          => 'hit_on_off',
 				'label'       => 'Хит-продаж',
 				'desc'        => 'У товара появляется значёк "Хит-продаж"',
 				'std'         => 'off',
 				'type'        => 'on-off',
-				),
+			),
 			array(
 				'id'          => 'recoment_on_off',
 				'label'       => 'Рекомендуем',
 				'desc'        => 'Товар появляется в блоке "Рекомендуем"',
 				'std'         => 'off',
 				'type'        => 'on-off',
-				),
+			),
 			array(
 				'id'          => 'sale_on_off',
 				'label'       => 'По спец скидке',
 				'desc'        => 'Товар добавится в список со специальной скидкой',
 				'std'         => 'off',
 				'type'        => 'on-off',
-				),
-			array(
-				'label'       => 'Специальная скидка',
-				'id'          => 'catalog_spec_sale',
-				'type'        => 'text',
-				'desc'        => '',
-				'condition'   => 'sale_on_off:is(on)',
-				),
+			),
 			array(
 				'label'       => 'Цена',
 				'id'          => 'catalog_price',
@@ -115,7 +108,7 @@ function custom_meta_boxes() {
 				'id'          => 'catalog_sale',
 				'type'        => 'text',
 				'desc'        => ''
-				),
+			),
 			array(
 				'id'          => 'catalog_gallery',
 				'label'       => 'Галерея',

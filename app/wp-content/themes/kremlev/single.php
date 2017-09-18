@@ -28,7 +28,7 @@ get_header();
 			</div>
 			<div class="col s12 m3 p0"><?php
 			if( ot_get_option( 'baner_link' )):
-				?><a href="<?php echo ot_get_option( 'baner_link' );?>" class="blog-item-baner">
+				?><a href="<?php echo ot_get_option( 'baner_link' );?>" class="blog-item-baner a-d">
 					<img src="<?php echo ot_get_option( 'baner_upload' );?>" alt="">
 				</a><?php
 			else:
@@ -44,7 +44,7 @@ get_header();
 				?><div class="title-share">Понравилась новость? Расскажи друзьям</div><?php
 				break;
 			case 'kremlev_recipes':
-				?><div class="title-share">Понравилась рецепт? Расскажи друзьям</div><?php
+				?><div class="title-share">Понравился рецепт? Расскажи друзьям</div><?php
 				break;
 			default:
 				?><div class="title-share">Понравилась статья? Расскажи друзьям</div><?php

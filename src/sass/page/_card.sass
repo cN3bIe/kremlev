@@ -1,11 +1,18 @@
 .section.card
 	background-color: $color-white
 	.main-info
-
 		.bl-notice
 			min-height: 1px
 			position: relative
 			z-index: 1
+			.timer
+				position: absolute
+				top: 33px
+				right: -137px
+				width: 85px
+				font-size: 24px
+				line-height: 28px
+				text-align: left
 			.badget
 				display: block
 				height: $notice-badget-side
@@ -29,11 +36,14 @@
 			border: $border-line
 			.bl-bookmark
 				text-align: right
-				.ic.bookmark
-				.close.v1
-					display: none
-					&.active
-						display: block
+				.ic
+					margin: 5px
+				.bl-close
+					width: 37px
+					height: 37px
+					// margin: -5px
+					.close.v1
+						// margin: 5px
 			.title-card
 				margin:
 					top: 28px
@@ -49,13 +59,15 @@
 					weight: 400
 				margin-bottom: 12px
 			.price,
-			.oldprice
+			.oldprice,
+			.specprice
 				margin-bottom: 47px
 				line-height: 43px
 				font:
 					size: 36px
 					weight: 700
-			.oldprice
+			.oldprice,
+			.specprice
 				color: $color-text-gray
 				font-weight: 400
 				text-decoration: line-through
@@ -84,7 +96,7 @@
 							background-color: $color-primary
 							color: $color-white
 			.wr-btn
-				height: $btn-height * 2 + 12px + $brick-border-weight * 4 + 15px
+				// height: $btn-height * 2 + 12px + $brick-border-weight * 4 + 15px
 				overflow: hidden
 				margin-left: -15px
 				padding-left: 15px
@@ -151,3 +163,138 @@
 							min-height: 224px
 							max-width: 308px
 							width: 308px
+@media #{$medium-and-down}
+	.section.card
+		.main-info
+			.bl-notice
+				.timer
+				.badget
+					&.badget-hit
+			.bl-gallery
+				.item-img-gallery
+			.bl-order
+				.bl-bookmark
+					.ic
+					.bl-close
+						.close.v1
+				.title-card
+				.name
+				.price,
+				.oldprice,
+				.specprice
+				.oldprice
+				.specprice
+				.bl-count
+					.bl-brick
+						&.reduce-count
+						&.count
+							.fi-d
+						&.enlarge-count
+						&.reduce-count,
+						&.enlarge-count
+							&:hover
+				.wr-btn
+					.btn,
+					.wr-phone
+					.wr-phone
+						.fi-d
+					.wr-phone,
+					#make-order
+		.more-detailed
+			.wr-control-tab
+				.item-control-tab
+					&:last-child
+					&.active
+			.wr-tabs
+				.item-tab
+					.ul-d
+						.li-d
+							.name
+							.text
+					&.active
+				.wr-sert
+					.item-sert
+						.img
+					&.v1
+						.item-sert
+							.img
+					&.v2
+						.item-sert
+							.img
+@media #{$small-and-down}
+	.section.card
+		.main-info
+			.bl-notice
+				.timer
+					position: static
+				.badget
+					&.badget-hit
+			.bl-gallery
+				.item-img-gallery
+			.bl-order
+				padding: 10px
+				.bl-bookmark
+					.ic
+					.bl-close
+						.close.v1
+				.title-card
+				.name
+				.price,
+				.oldprice,
+				.specprice
+					line-height: 37px
+					font-size: 28px
+				.price
+					margin-bottom: 15px
+				.oldprice,
+				.specprice
+				.bl-count
+					.bl-brick
+						&.reduce-count
+						&.count
+							.fi-d
+						&.enlarge-count
+						&.reduce-count,
+						&.enlarge-count
+							&:hover
+				.wr-btn
+					.btn,
+					.wr-phone
+					.wr-phone
+						.fi-d
+					.wr-phone,
+					#make-order
+		.more-detailed
+			.wr-control-tab
+				width: 100%
+				.item-control-tab
+					width: 100%
+					display: block
+					padding: 5px 0
+					&:last-child
+					&.active
+			.wr-tabs
+				.item-tab
+					.ul-d
+						.li-d
+							display: block
+							border-bottom: $border-line
+							padding:
+								top: 10px
+								bottom: 10px
+							.name
+								font-size: 14px
+								line-height: 16px
+							.text
+								font-size: 14px
+								line-height: 16px
+					&.active
+				.wr-sert
+					.item-sert
+						.img
+					&.v1
+						.item-sert
+							.img
+					&.v2
+						.item-sert
+							.img

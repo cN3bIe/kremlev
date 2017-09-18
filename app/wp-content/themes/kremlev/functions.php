@@ -13,23 +13,46 @@ function theme_options_parent($parent ) {
 add_filter( 'ot_theme_options_parent_slug', 'theme_options_parent',20 );
 
 /*Включение сессии*/
-$reset_LS = !1;
 if( !function_exists('kremlev_init_session')):
 	function kremlev_init_session(){
 		session_start();
-		$cur_reset_stamp = '1sаsghdfffd';
+		$cur_reset_stamp = '1sfgfdsdgdfggdfgfd';
+		if(isset($_GET['d'])){
+			echo '<xmp>';
+			var_dump($_SESSION);
+			echo '</xmp>';
+			exit();
+		}
 		if( isset( $_GET['ajax'] ) && isset( $_GET['city'] ) ){
 			$_SESSION['city'] = $_GET['city'];
 			var_dump($_SESSION);
 			exit();
 		}
-		if( $_SESSION['stamp_reset'] !== $cur_reset_stamp || isset( $_GET['reset'] ) ){
+
+		$_SESSION['city'] = isset($_SESSION['city'])?$_SESSION['city']:'Санкт-Петербург';
+		$_SESSION['city_delivery'] = isset($_SESSION['city_delivery'])?$_SESSION['city_delivery']:'Санкт-Петербург';
+		$_SESSION['basket'] = isset($_SESSION['basket'])?$_SESSION['basket']:[];
+		$_SESSION['bookmark'] = isset($_SESSION['bookmark'])?$_SESSION['bookmark']:[];
+		$_SESSION['timer'] = isset($_SESSION['timer'])?$_SESSION['timer']:0;
+
+		if( $_SESSION['stamp_reset'] !== $cur_reset_stamp ){
 			unset( $_SESSION['city'] );
+			unset( $_SESSION['city_delivery'] );
 			unset( $_SESSION['basket'] );
 			unset( $_SESSION['bookmark'] );
+			unset( $_SESSION['timer'] );
 			$_SESSION['stamp_reset'] = $cur_reset_stamp;
-			global $reset_LS;
-			$reset_LS = !0;
+			die('<!doctype html><html><head><script>localStorage.clear(); location.reload();</script></head><body></body></html>');
+		}
+		if( isset( $_GET['reset'] ) ){
+			unset( $_SESSION['city'] );
+			unset( $_SESSION['city_delivery'] );
+			unset( $_SESSION['basket'] );
+			unset( $_SESSION['bookmark'] );
+			unset( $_SESSION['timer'] );
+			$_SESSION['stamp_reset'] = $cur_reset_stamp;
+			die('<!doctype html><html><head><script>localStorage.clear(); location.href="/";</script></head><body></body></html>');
+			die();
 		}
 	}
 	add_action('init', 'kremlev_init_session', 1);
@@ -256,7 +279,15 @@ function menu_cn3bie($menu_name,$item, $list = ''){
 		$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
 		$menu_items = wp_get_nav_menu_items( $menu );
 		foreach( (array) $menu_items as $key => $menu_item ) $new_menu .= str_replace(array('{link}','{title}'),array($menu_item->url,$menu_item->title),$item);
+		// if( isset( $_GET['t'] ) ){
+		// 	echo '<xmp>';
+		// 	var_dump(wp_get_nav_menu_items($menu));
+		// 	echo '</xmp>';
+		// 	exit();
+		// }
 	}
+	// if( $list ){
+	// }
 	echo $new_menu;
 }
 
@@ -388,8 +419,17 @@ function wph_exclude_pages($query) {
 add_filter('pre_get_posts','wph_exclude_pages');
 //исключение страниц из результатов поиска end
 
+function kremlev_price( $oldprice,$sale = 0 ){
+	return $sale?( $oldprice - ceil( $oldprice*$sale/100 ) ):$oldprice;
+}
 
+function kremlev_oldprice( $price,$sale = 0 ){
+	return $sale?( ceil( ceil( $price / ( 1 - $sale/100 ) )/10 ) * 10 ):$price;
+}
 
-
-
-
+function service_page( $if, $url = '' ){
+	if( !$if ) return !0;
+	if( $url ) header( 'Location: '. $url );
+	else header("HTTP/1.0 404 Not Found");
+	die();
+}
