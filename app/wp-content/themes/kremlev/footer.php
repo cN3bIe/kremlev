@@ -88,6 +88,6 @@ global $catalog;
 				});
 				$('.badget.basket-badget').fadeOut();
 			};
-		</script><?php
-	?></body>
+		</script>
+	</body>
 </html>

@@ -20,8 +20,8 @@ gulp
 		.pipe( sass({ outputStyle: 'compressed' }) ).on( 'error', sass.logError )
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest('src/css') )
-		.pipe( gulp.dest('app/wp-content/themes/kremlev/css') )
-		.pipe( browserSync.reload({ stream:!0 }) );
+		.pipe( gulp.dest('app/wp-content/themes/kremlev/css') )/*
+		.pipe( browserSync.reload({ stream:!0 }) )*/;
 })
 
 
@@ -79,7 +79,7 @@ gulp
 			'src/libs/tooltipster-master/dist/css/tooltipster.bundle.min.css',
 			'src/libs/Snarl-master/dist/snarl.min.css',
 			'src/libs/fotorama-4.6.4/fotorama.css',
-			'src/libs/social-share-kit-1.0.14/dist/css/social-share-kit.css',
+			'src/libs/social-share-kit-1.0.15/dist/css/social-share-kit.css',
 			'src/libs/custom/dist/custom.min.css',
 		])
 		.pipe( sourcemaps.init() )
@@ -105,7 +105,7 @@ gulp
 			'src/libs/tooltipster-master/dist/js/tooltipster.bundle.min.js',
 			'src/libs/Snarl-master/dist/snarl.min.js',
 			'src/libs/fotorama-4.6.4/fotorama.js',
-			'src/libs/social-share-kit-1.0.14/dist/js/social-share-kit.min.js',
+			'src/libs/social-share-kit-1.0.15/dist/js/social-share-kit.min.js',
 			'src/libs/kladrapi-jsclient-master/jquery.kladr.min.js',
 			'src/libs/custom/dist/custom.min.js',
 		] )
@@ -120,7 +120,7 @@ gulp
 
 .task( 'libs-fonts',()=>{
 	return gulp.src([
-			'src/libs/social-share-kit-1.0.14/dist/fonts/**/*'
+			'src/libs/social-share-kit-1.0.15/dist/fonts/**/*'
 		])
 		.pipe( gulp.dest( 'src/fonts' ) )
 		.pipe( gulp.dest( 'app/wp-content/themes/kremlev/fonts' ) );
@@ -146,15 +146,15 @@ gulp
 
 
 .task( 'html-watch',['html'], (done)=>{ browserSync.reload(); done(); } )
-.task( 'js-watch',['js'], (done)=>{ browserSync.reload(); done(); } )
+.task( 'js-watch',['js'], (done)=>{ /*browserSync.reload();*/ done(); } )
 
 
 .task( 'watch', ()=>{
 	gulp.watch( 'src/sass/**/*.+(sass|scss)', ['sass'] );
 	gulp.watch( 'src/js/**/*.js',['js-watch'] );
-	gulp.watch( 'src/html/**/*.html', ['html-watch'] );
+	// gulp.watch( 'src/html/**/*.html', ['html-watch'] );
 });
 
 
 
-gulp.task( 'default',['html','sass','js','libs','browser-sync','watch']);
+gulp.task( 'default',['html','sass','js','libs'/*,'browser-sync'*/,'watch']);

@@ -208,14 +208,49 @@ function custom_theme_options() {
 						'id'          => 'price_delivery_list',
 						'type'        => 'text',
 						'desc'        => ''
-						),
+					),
 					array(
 						'label'       => 'Минимальная цена заказа',
 						'id'          => 'free_delivery_list',
 						'type'        => 'text',
 						'desc'        => 'Минимальная цена заказа от которой будет доставка бесплатной'
-						),
 					),
+				),
+			),
+			array(
+				'label'       => 'Завод',
+				'id'          => 'kremlev_delivery_factory',
+				'type'        => 'text',
+				'desc'        => '',
+				'section'     => 'delivery'
+			),
+			array(
+				'label'       => 'Транспортировка',
+				'id'          => 'kremlev_delivery_transportation',
+				'type'        => 'text',
+				'desc'        => '',
+				'section'     => 'delivery'
+			),
+			array(
+				'label'       => 'Офис продаж',
+				'id'          => 'kremlev_delivery_sales_office',
+				'type'        => 'text',
+				'desc'        => '',
+				'section'     => 'delivery'
+			),
+			array(
+				'label'       => 'Покупатель',
+				'id'          => 'kremlev_delivery_buyer',
+				'type'        => 'text',
+				'desc'        => '',
+				'section'     => 'delivery'
+			),
+			array(
+				'label'       => 'Способы доставки',
+				'id'          => 'kremlev_delivery_ways_of_delivery',
+				'type'        => 'textarea-simple',
+				'desc'        => '',
+				'section'     => 'delivery'
 			),
 			array(
 				'label'       => 'Ссылка банера',

@@ -89,10 +89,16 @@ if( is_array( $_SESSION['bookmark'] ) && count( $_SESSION['bookmark'] ) ){
 					</button>
 				</div><?php
 				if(ot_get_option( 'kremlev_bookmark_page_select' )):
-					?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_bookmark_page_select' ) );?>" class="ic bookmark"><span class="badget bookmark-badget"></span></a><?php
+					?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_bookmark_page_select' ) );?>" class="ic bookmark control-link" data-linktype="bookmark">
+						<span class="badget bookmark-badget"></span>
+						<span class="tooltip_html" data-tooltip="#tooltip_bookmark_fixed"></span>
+					</a><div class="dn" id="tooltip_bookmark_fixed">Начните покупать и получайте подарки <a href="/catalog/">перейти в каталог</a></div><?php
 				endif;
 				if(ot_get_option( 'kremlev_order_page_select' )):
-					?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_order_page_select' ) );?>" class="ic basket"><span class="badget basket-badget"></span></a><?php
+					?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_order_page_select' ) );?>" class="ic basket control-link" data-linktype="basket">
+						<span class="badget basket-badget"></span>
+						<span class="tooltip_html" data-tooltip="#tooltip_basket_fixed"></span>
+					</a><div class="dn" id="tooltip_basket_fixed">Начните покупать и получайте подарки <a href="/catalog/">перейти в каталог</a></div><?php
 				endif;
 				if(ot_get_option( 'main_phone' )):
 					?><a href="tel:<?php echo preg_replace('/\W/','',ot_get_option( 'main_phone' ));?>" class="phone-d"><?php echo ot_get_option( 'main_phone' );?></a><?php
@@ -152,18 +158,16 @@ if( is_array( $_SESSION['bookmark'] ) && count( $_SESSION['bookmark'] ) ){
 									</button>
 								</div><?php
 								if(ot_get_option( 'kremlev_bookmark_page_select' )):
-									?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_bookmark_page_select' ) );?>" class="ic bookmark control-link" id="link_bookmark">
+									?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_bookmark_page_select' ) );?>" class="ic bookmark control-link" data-linktype="bookmark">
 										<span class="badget bookmark-badget"></span>
 										<span class="tooltip_html" data-tooltip="#tooltip_bookmark"></span>
-									</a>
-									<div class="dn" id="tooltip_bookmark">Начните покупать и получайте подарки <a href="/catalog/">перейти в каталог</a></div><?php
+									</a><div class="dn" id="tooltip_bookmark">Начните покупать и получайте подарки <a href="/catalog/">перейти в каталог</a></div><?php
 								endif;
 								if(ot_get_option( 'kremlev_order_page_select' )):
-									?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_order_page_select' ) );?>" class="ic basket control-link" id="link_basket">
+									?><a href="<?php echo get_page_link( ot_get_option( 'kremlev_order_page_select' ) );?>" class="ic basket control-link" data-linktype="basket">
 										<span class="badget basket-badget"></span>
 										<span class="tooltip_html" data-tooltip="#tooltip_basket"></span>
-									</a>
-									<div class="dn" id="tooltip_basket">Начните покупать и получайте подарки<a href="/catalog/">перейти в каталог</a></div><?php
+									</a><div class="dn" id="tooltip_basket">Начните покупать и получайте подарки<a href="/catalog/">перейти в каталог</a></div><?php
 								endif;
 								if(ot_get_option( 'main_phone' )):
 									?><a href="tel:<?php echo preg_replace('/\W/','',ot_get_option( 'main_phone' ));?>" class="phone-d"><?php echo ot_get_option( 'main_phone' );?></a><?php

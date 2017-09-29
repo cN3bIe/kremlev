@@ -63,12 +63,14 @@ var log = console.log;
 	};
 
 
+	log('SocialShareKit init');
+	SocialShareKit.init();
+
+
 
 	$(document).ready(function(){
 		console.log('Document ready');
 
-		log('SocialShareKit init');
-		SocialShareKit.init();
 
 		log('%cMaterial Design Lite %cinit',"color:red;","color:white;");
 		componentHandler.upgradeDom();
@@ -78,7 +80,12 @@ var log = console.log;
 			e.preventDefault();
 			$( $(this).attr('href') ).slideToggle();
 		});
-
+		$('.btni-download').click(function(e){
+			var e = e || window.event;
+			e.preventDefault();
+			var _ = $(this);
+			$( _.attr('href') ).click();
+		});
 
 		var min_price_for_free_delivery = parseInt( $('.radio-delivery input:checked').parents('label').data('free') ) || 0;
 
@@ -934,18 +941,23 @@ var log = console.log;
 				scroll: true,
 			}
 		});
-		$('#link_bookmark').click(function(e){
-			if( !Bookmark.getCountCard() ){
-				e = e || window.event;
-				e.preventDefault();
-				$(this).find('.tooltip_html').tooltipster('open');
-			}
-		});
-		$('#link_basket').click(function(e){
-			if( !Basket.getCount() ){
-				e = e || window.event;
-				e.preventDefault();
-				$(this).find('.tooltip_html').tooltipster('open');
+		$('.control-link').click(function(e){
+			var _ = $(this);
+			var e = e || window.event;
+			switch( _.data( 'linktype' )){
+				case 'bookmark':
+					if( !Bookmark.getCountCard() ){
+						e.preventDefault();
+						_.find('.tooltip_html').tooltipster('open');
+					}
+					break;
+				case 'basket':
+					if( !Basket.getCount() ){
+						e.preventDefault();
+						_.find('.tooltip_html').tooltipster('open');
+					}
+					break;
+				default:;
 			}
 		});
 
@@ -983,6 +995,7 @@ var log = console.log;
 				_fh.find('button').click();
 			}else{
 				_checkbox.addClass('error-polit');
+				$('html,body').animate({'scrollTop':_checkbox.offset().top-60},"slow");
 				log('Fail polit order!');
 			}
 		});

@@ -122,19 +122,19 @@ function custom_meta_boxes() {
 				'desc'        => '',
 				'std'         => '',
 				'type'        => 'gallery',
-				),
+			),
 			array(
 				'id'          => 'catalog_gallery_certificate_2',
 				'label'       => 'Горизонтальные сертификаты',
 				'desc'        => '',
 				'std'         => '',
 				'type'        => 'gallery',
-				),
+			),
 			array(
 				'label'       => 'Характеристики',
 				'id'          => 'tab_catalog_characteristics',
 				'type'        => 'tab'
-				),
+			),
 			array(
 				'id'          => 'characteristics_list',
 				'label'       => 'Характеристики',
@@ -150,9 +150,70 @@ function custom_meta_boxes() {
 						'type'        => 'textarea-simple',
 						)
 					)
-				),
-			)
-		);
+			),
+		)
+	);
+	$reviews_page_meta_box = array(
+		'id'          => 'reviews_page_meta_box',
+		'title'       => 'Настройки главной страницы',
+		'desc'        => '',
+		'pages'       => array( 'kremlev_reviews' ),
+		'context'     => 'normal',
+		'priority'    => 'high',
+		'fields'      => array(
+			array(
+				'id'          => 'reviews_taxonomy_select',
+				'label'       => 'Выбор подкатегории',
+				'desc'        => '',
+				'std'         => '',
+				'type'        => 'taxonomy-select',
+				'rows'        => '',
+				'post_type'   => '',
+				'taxonomy'    => 'kremlev_category',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and'
+			),
+			array(
+				'id'          => 'reviews_list',
+				'label'       => 'Отзывы',
+				'desc'        => '',
+				'std'         => '',
+				'type'        => 'list-item',
+				'settings'    => array(
+					array(
+						'id'          => 'textarea_minus_reviews_list',
+						'label'       => 'Минус',
+						'desc'        => '',
+						'std'         => '',
+						'type'        => 'textarea-simple',
+					),
+					array(
+						'id'          => 'textarea_plus_reviews_list',
+						'label'       => 'Плюс',
+						'desc'        => '',
+						'std'         => '',
+						'type'        => 'textarea-simple',
+					),
+					array(
+						'id'          => 'textarea_reviews_list',
+						'label'       => 'Отзыв',
+						'desc'        => '',
+						'std'         => '',
+						'type'        => 'textarea-simple',
+					),
+					array(
+						'id'          => 'reviews_gallery',
+						'label'       => 'Фотографии',
+						'desc'        => '',
+						'std'         => '',
+						'type'        => 'gallery',
+					),
+				)
+			),
+		)
+	);
 	$main_page_meta_box = array(
 		'id'          => 'main_page_meta_box',
 		'title'       => 'Настройки главной страницы',
@@ -261,9 +322,11 @@ function custom_meta_boxes() {
 			)
 		);
 	if ( function_exists( 'ot_register_meta_box' ) ){
+		// ot_register_meta_box( $reviews_meta_box );
 		ot_register_meta_box( $news_meta_box );
 		ot_register_meta_box( $catalog_meta_box );
 		ot_register_meta_box( $city_meta_box );
+		ot_register_meta_box( $reviews_page_meta_box );
 		$post_id = isset( $_GET['post'] ) ? $_GET['post'] : ( isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : 0 );
 		$template_file = get_post_meta($post_id, '_wp_page_template', TRUE);
 		if ( $template_file == 'kremlev.php' ){

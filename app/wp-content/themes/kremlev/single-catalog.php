@@ -11,7 +11,6 @@ array_unshift( $meta->catalog_gallery,get_the_post_thumbnail_url( get_the_ID(),'
 
 $meta->catalog_gallery_certificate_1 = isset( $meta->catalog_gallery_certificate_1 )?explode(',',$meta->catalog_gallery_certificate_1 ):!1;
 $meta->catalog_gallery_certificate_2 = isset( $meta->catalog_gallery_certificate_2 )?explode(',',$meta->catalog_gallery_certificate_2 ):!1;
-
 $hit_on_off = get_post_meta( get_the_ID(), 'hit_on_off', !0 );
 $catalog_sale = get_post_meta( get_the_ID(), 'catalog_sale', !0 );
 
@@ -28,7 +27,7 @@ $fields = array();
 if( is_array( $terms ) && count( $terms ) ):
 	foreach( $terms as $key=>$term ):
 		if( $term->parent !== 0 ){
-			if( !isset( $fields[$term->parent]['children'] ) ) $fields[$term->parent]['children'] = array();
+			if( !isset( $fields[$term->parent]['children'] ) ) $fields[$term->parent]['children'] = [];
 			array_push($fields[$term->parent]['children'], $term);
 		}else $fields[$term->term_id]['parent'] = $term;
 	endforeach;
@@ -38,7 +37,27 @@ endif;
 $price = $meta->catalog_price;
 $sale = isset( $meta->catalog_sale )?$meta->catalog_sale:0;
 
-
+$args = [
+	'numberposts' =>-1,
+	'post_type' => 'kremlev_reviews',
+	'post_status'=>'publish',
+	'order' => 'ASC',
+	'meta_query' => [
+		'relation'=>'OR',
+	]
+];
+$category = get_terms( 'kremlev_category', [
+	'object_ids'=>get_the_ID(),
+] );
+if( is_array( $category ) && count( $category ) ):
+	foreach( $category as $cat ):
+		$args['meta_query'][] = [
+			'key' => 'reviews_taxonomy_select',
+			'value' => $cat->term_id,
+		];
+	endforeach;
+endif;
+$post_reviews_list = get_posts( $args );
 get_header();
 ?><section <?php post_class( 'section card item-card'); ?> id="post-<?php the_ID(); ?>">
 	<div class="wr">
@@ -91,10 +110,10 @@ get_header();
 				<div class="bl-share">
 					<div class="title-share">Делитесь с друзьями:</div>
 					<div class="ssk-group">
-						<a href="" class="ssk ssk-icon ssk-facebook" data-ssk-ready="true"></a>
-						<a href="" class="ssk ssk-icon ssk-twitter" data-ssk-ready="true"></a>
-						<a href="" class="ssk ssk-icon ssk-google-plus" data-ssk-ready="true"></a>
-						<a href="" class="ssk ssk-icon ssk-vk" data-ssk-ready="true"></a>
+						<a href="" class="ssk ssk-icon ssk-facebook" ssk-ready="true"></a>
+						<a href="" class="ssk ssk-icon ssk-twitter" ssk-ready="true"></a>
+						<a href="" class="ssk ssk-icon ssk-google-plus" ssk-ready="true"></a>
+						<a href="" class="ssk ssk-icon ssk-vk" ssk-ready="true"></a>
 					</div>
 				</div>
 			</div>
@@ -163,6 +182,45 @@ get_header();
 			</div>
 		</div>
 	</div>
-</section><!-- #post-<?php the_ID(); ?> --><?php
+</section><!-- #post-<?php the_ID(); ?> -->
+<section class="section reviews">
+	<div class="wr"><?php
+		if( is_array( $post_reviews_list ) && count( $post_reviews_list ) ):
+			?><div class="title-reviews before">Отзывы о товаре</div>
+			<ul class="ul-d list-reviews"><?php
+				foreach( $post_reviews_list as $key=>$post): setup_postdata($post);
+					$reviews_list = get_post_meta( get_the_ID(), 'reviews_list', !0 );
+					if( is_array( $reviews_list ) && count( $reviews_list ) ):
+						foreach( $reviews_list as $key=>$item ):
+							$item['reviews_gallery'] = isset( $item['reviews_gallery'] )?explode(',',$item['reviews_gallery'] ):!1;
+							?><li class="li-d item-reviews before">
+								<div class="name"><?php echo $item['title'];?></div><?php
+								if( $item['textarea_minus_reviews_list'] ){
+									?><p class="text"><span class="name">Минусы: </span><?php echo $item['textarea_minus_reviews_list'];?></p><?php
+								}
+								if( $item['textarea_plus_reviews_list'] ){
+									?><p class="text"><span class="name">Плюсы: </span><?php echo $item['textarea_plus_reviews_list'];?></p><?php
+								}
+								?><p class="text"><span class="name">Отзыв: </span><?php echo $item['textarea_reviews_list'];?></p><?php
+								if( is_array( $item['reviews_gallery'] ) && count( $item['reviews_gallery'] ) ):
+									?><div class="gallery-list row"><?php
+										foreach( $item['reviews_gallery'] as $key=>$img ):
+											?><a href="<?php echo wp_get_attachment_image_url( $img, 'full' );?>" class="a-d img" style="background-image:url('<?php echo wp_get_attachment_image_url( $img, 'medium' );?>');" data-fancybox="reviews_gallery_<?php echo $key;?>"></a><?php
+										endforeach;
+									?></div><?php
+								endif;
+							?></li><?php
+						endforeach;
+					endif;
+				endforeach;
+				wp_reset_postdata();
+			?></ul><?php
+		endif;
+		?><div class="form">
+			<div class="title-form">Оставить отзыв о товаре</div><?php
+			echo do_shortcode('[contact-form-7 id="574" title="Отзыв"]');
+		?></div>
+	</div>
+</section><?php
 get_template_part( 'template/catalog', 'recomend' );
 get_footer();

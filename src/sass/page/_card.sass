@@ -163,6 +163,85 @@
 							min-height: 224px
 							max-width: 308px
 							width: 308px
+.section.reviews
+	.title-reviews
+		color: $color-primary
+		font-size: 18px
+		line-height: 22px
+		font-weight: 400
+		padding-top: 30px
+		&:before
+			max-width: 373px
+			border-top: $border-line
+	.list-reviews
+		margin:
+			top: 21px
+			bottom: 21px
+		.item-reviews
+			padding-bottom: 1px
+			&:before
+				max-width: 373px
+				border-bottom: $border-line
+			&:last-of-type
+				&:before
+					border: 0
+			.name
+				font-size: 18px
+				text-align: left
+				line-height: 24px
+				font-weight: 700
+			.text
+				margin:
+					top: 3px
+					bottom: 5px
+				.name
+					font-size: 16px
+			.gallery-list
+				margin-top: 17px
+				.img
+					float: left
+					min-height: 210px
+					max-width: 210px
+	.form
+		.title-form
+			color: $color-text-gray
+			font-size: 18px
+			line-height: 22px
+			margin-bottom: 10px
+		.wr-it
+			width: 100%
+			max-width: 336px
+			margin-right: 10px
+			margin-top: 10px
+			.it
+				background-color: $color-bg-section
+				text-align: left
+				padding: 15px
+		.wr-textarea
+			display: block
+			.textarea
+				height: 8em
+				display: block
+				margin:
+					top: 10px
+					bottom: 10px
+				max-width: 681px
+				background-color: $color-bg-section
+		.multifile-574
+			display: block
+			input
+				display: none
+		.minus-574,
+		.plus-574
+			margin:
+			max-width: 681px
+		.btni-download
+		.btn
+			margin-top: 20px
+			padding: 0
+			max-width: 272px
+			display: block
+			width: 100%
 @media #{$medium-and-down}
 	.section.card
 		.main-info
@@ -221,6 +300,27 @@
 					&.v2
 						.item-sert
 							.img
+	.section.reviews
+		.title-reviews
+		.list-reviews
+			.item-reviews
+				.name
+				.text
+				.gallery-list
+					.img
+		.form
+			.title-form
+			.wr-it
+				.it
+			.wr-textarea
+				.textarea
+			.multifile-574
+				input
+			.minus-574,
+			.plus-574
+			.btni-download
+			.btn
+
 @media #{$small-and-down}
 	.section.card
 		.main-info
@@ -298,3 +398,24 @@
 					&.v2
 						.item-sert
 							.img
+	.section.reviews
+		.title-reviews
+		.list-reviews
+			.item-reviews
+				.name
+				.text
+				.gallery-list
+					.img
+		.form
+			.title-form
+			.wr-it
+				margin-right: 0
+				.it
+			.wr-textarea
+				.textarea
+			.multifile-574
+				input
+			.minus-574,
+			.plus-574
+			.btni-download
+			.btn

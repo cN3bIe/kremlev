@@ -11,17 +11,25 @@ $card_sale = get_posts( [
 	]]
 ] );
 get_header();
-?><section class="section thanks">
-	<div class="wr">
-		<h1 class="title">Спасибо за вашу заявку!</h1><?php
-		if( !isset( $_GET['promocode'] ) ):
-			?><div class="text">Наш менеджер свяжется с вами в течение 30 минут,<span class="br"></span>чтобы подтвердить ваш заказ</div><?php
-		else:
-			?><div class="text">Промо-код отправлен на ваш e-mail</div><?php
-		endif;
-	?></div>
-</section><?php
-if( !isset( $_GET['promocode'] ) ):
+if( !isset( $_GET['reviews'] ) ):
+	?><section class="section thanks">
+		<div class="wr">
+			<h1 class="title">Спасибо за вашу заявку!</h1><?php
+			if( !isset( $_GET['promocode'] ) ){
+				?><div class="text">Наш менеджер свяжется с вами в течение 30 минут,<span class="br"></span>чтобы подтвердить ваш заказ</div><?php
+			}else{
+				?><div class="text">Промо-код отправлен на ваш e-mail</div><?php
+			}
+		?></div>
+	</section><?php
+else:
+	?><section class="section thanks">
+		<div class="wr">
+			<h1 class="title">Спасибо за ваш отзыв!</h1>
+		</div>
+	</section><?php
+endif;
+if( !isset( $_GET['promocode'] ) && !isset( $_GET['reviews'] ) ):
 	?><section class="section specsale catalog">
 		<div class="wr">
 			<h2 class="title">Специально для вас товар с дополнительной скидкой 20%</h2>

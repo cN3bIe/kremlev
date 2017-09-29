@@ -35,15 +35,15 @@ if( !function_exists('kremlev_init_session')):
 		$_SESSION['bookmark'] = isset($_SESSION['bookmark'])?$_SESSION['bookmark']:[];
 		$_SESSION['timer'] = isset($_SESSION['timer'])?$_SESSION['timer']:0;
 
-		if( $_SESSION['stamp_reset'] !== $cur_reset_stamp ){
-			unset( $_SESSION['city'] );
-			unset( $_SESSION['city_delivery'] );
-			unset( $_SESSION['basket'] );
-			unset( $_SESSION['bookmark'] );
-			unset( $_SESSION['timer'] );
-			$_SESSION['stamp_reset'] = $cur_reset_stamp;
-			die('<!doctype html><html><head><script>localStorage.clear(); location.reload();</script></head><body></body></html>');
-		}
+		// if( $_SESSION['stamp_reset'] !== $cur_reset_stamp ){
+		// 	unset( $_SESSION['city'] );
+		// 	unset( $_SESSION['city_delivery'] );
+		// 	unset( $_SESSION['basket'] );
+		// 	unset( $_SESSION['bookmark'] );
+		// 	unset( $_SESSION['timer'] );
+		// 	$_SESSION['stamp_reset'] = $cur_reset_stamp;
+		// 	die('<!doctype html><html><head><script>localStorage.clear(); location.reload();</script></head><body></body></html>');
+		// }
 		if( isset( $_GET['reset'] ) ){
 			unset( $_SESSION['city'] );
 			unset( $_SESSION['city_delivery'] );
@@ -93,6 +93,7 @@ if ( ! function_exists( 'kremlev_setup' ) ) :
 		require get_template_directory() . '/functions/cpt_kremlev_faq.php';
 		require get_template_directory() . '/functions/cpt_kremlev_recipes.php';
 		require get_template_directory() . '/functions/cpt_kremlev_city.php';
+		require get_template_directory() . '/functions/cpt_kremlev_reviews.php';
 	}
 	endif;
 	add_action( 'after_setup_theme', 'kremlev_setup' );
