@@ -51,10 +51,10 @@ get_header();
 				break;
 		}
 		?><div class="ssk-group">
-				<a href="" class="ssk ssk-icon ssk-facebook" data-ssk-ready="true"></a>
-				<a href="" class="ssk ssk-icon ssk-twitter" data-ssk-ready="true"></a>
-				<a href="" class="ssk ssk-icon ssk-google-plus" data-ssk-ready="true"></a>
-				<a href="" class="ssk ssk-icon ssk-vk" data-ssk-ready="true"></a>
+				<a href="" class="ssk ssk-icon ssk-facebook" ssk-ready="true"></a>
+				<a href="" class="ssk ssk-icon ssk-twitter" ssk-ready="true"></a>
+				<a href="" class="ssk ssk-icon ssk-google-plus" ssk-ready="true"></a>
+				<a href="" class="ssk ssk-icon ssk-vk" ssk-ready="true"></a>
 			</div>
 		</div>
 	</div>

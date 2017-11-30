@@ -66,6 +66,19 @@ if( is_array( $_SESSION['bookmark'] ) && count( $_SESSION['bookmark'] ) ){
 		var Basket_arr = <?php echo '["'.implode( '","', array_keys( $_SESSION['basket'] ) ).'"]';?>;
 		var Bookmark_arr = <?php echo '["'.implode( '","', array_keys( $_SESSION['bookmark'] ) ).'"]';?>;
 	</script>
+
+<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter46141824 = new Ya.Metrika({ id:46141824, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <!-- /Yandex.Metrika counter -->
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107410661-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107410661-1');
+</script>
+
 </head>
 <body <?php body_class(); ?> id="main-body">
 
@@ -225,7 +238,7 @@ if( is_array( $_SESSION['bookmark'] ) && count( $_SESSION['bookmark'] ) ){
 									endif;
 									?></div>
 									<div class="wr-lvl-1 row">
-										<div class="wrp-item-menu"><?php menu_cn3bie('main_menu','<div class="item-menu"><a href="{link}" class="a-d link-item-menu">{title}</a></div>');?></div>
+										<div class="wrp-item-menu"><?php menu_cn3bie('main_menu','<div class="item-menu"><a href="{link}" class="a-d link-item-menu{class}">{title}</a></div>');?></div>
 									</div>
 								</div>
 							</div>

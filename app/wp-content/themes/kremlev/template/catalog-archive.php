@@ -51,7 +51,12 @@ endif;
 get_header();
 ?><section class="section catalog catalog-page">
 	<div class="wr">
-		<h1 class="title"><?php echo $cur_term->name;?></h1>
+		<h1 class="title with-baner">
+			<?php echo $cur_term->name;?>
+			<a href="<?php echo types_render_termmeta( 'link-of-baner', array( 'term_id'=>$cur_term->term_id ) ); ?>" class="a-d baner-in-category">
+				<img src="<?php echo types_render_termmeta( 'baner-in-category', array( 'url'=>!0,'term_id'=>$cur_term->term_id ) ); ?>" alt="">
+			</a>
+		</h1>
 		<div class="wr-catalog row">
 			<div class="wr-filter col s12 m4 l3 p0">
 				<div class="dn btn-filter">Фильтр</div>

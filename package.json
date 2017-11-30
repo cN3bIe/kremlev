@@ -9,20 +9,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gulp-pagebuilder": "^0.1.4",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
-    "gulp-htmlmin": "^3.0.0",
     "gulp-jade": "^1.1.0",
-    "gulp-pagebuilder": "^0.1.4",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
-    "gulp-uglifyjs": "^0.6.2",
-    "gulp-uncss": "^1.0.6",
-    "node-waves": "^0.7.5"
+    "gulp-uglify": "^3.0.0"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.1.20",
@@ -30,8 +30,6 @@
     "isotope-layout": "^3.0.4",
     "izimodal": "^1.5.0",
     "jquery-lazy": "^1.7.5",
-    "jquery-mask-plugin": "^1.14.11",
-    "material-components-web": "^0.16.0",
     "node-waves": "^0.7.5"
   }
 }

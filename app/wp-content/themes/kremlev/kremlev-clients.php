@@ -10,7 +10,7 @@ get_header();
 	<div class="row">
 		<div class="col p0 s12 m3 wr-control-tab">
 			<div class="item-control-tab active link-catalog" data-tab="#delivery">Доставка</div><?php
-			if( count( $posts ) ):?><div class="item-control-tab link-catalog" data-tab="#faq">FAQ</div><?php endif;
+			if( count( $posts ) ):?><div class="item-control-tab link-catalog" data-tab="#faq">Вопросы</div><?php endif;
 			?><div class="item-control-tab link-catalog" data-tab="#pay">Оплата</div>
 		</div>
 		<div class="col p0 s12 m9 wr-tabs">
@@ -20,7 +20,7 @@ get_header();
 				?></div><?php
 				if( count( $posts ) ):
 				?><div class="item-tab dn" id="faq">
-					<div class="title-tabs">FAQ</div>
+					<div class="title-tabs">Вопросы</div>
 					<div class="wr-faq"><?php
 					foreach( $posts as $post) { setup_postdata( $post );
 						if( get_the_content() ){

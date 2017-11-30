@@ -276,10 +276,15 @@ add_filter( 'get_the_archive_title', 'kremlev_mymy' );
 function menu_cn3bie($menu_name,$item, $list = ''){
 	$locations = get_nav_menu_locations();
 	$new_menu = '';
+	$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+	$url_arr = explode('/',trim( $url, '/' ) );
 	if( $locations && isset($locations[ $menu_name ]) ){
 		$menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
 		$menu_items = wp_get_nav_menu_items( $menu );
-		foreach( (array) $menu_items as $key => $menu_item ) $new_menu .= str_replace(array('{link}','{title}'),array($menu_item->url,$menu_item->title),$item);
+		foreach( (array) $menu_items as $key => $menu_item ){
+			$menu_item_url = trim( parse_url( $menu_item->url, PHP_URL_PATH ), '/' );
+			$new_menu .= str_replace(array('{link}','{title}','{class}'),array($menu_item->url,$menu_item->title, ' '. ( strpos($_SERVER['REQUEST_URI'],$menu_item_url) !== false ?' current':'')),$item);
+		}
 		// if( isset( $_GET['t'] ) ){
 		// 	echo '<xmp>';
 		// 	var_dump(wp_get_nav_menu_items($menu));

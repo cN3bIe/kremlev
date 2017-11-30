@@ -140,12 +140,12 @@ get_header();
 										foreach( $field['children'] as $key=>$item) {
 											$str[] = $item->name;
 										}
-										echo '<li class="li-d"><span class="name">'.$parent->name.':</span> <span class="text">'.implode( ',', $str ).'</span></li>';
+										echo '<li class="li-d row"><span class="name col m4">'.$parent->name.':</span> <span class="text col m8">'.implode( ',', $str ).'</span></li>';
 									}
 								endif;
 								if( is_array( $meta->characteristics_list ) && count( $meta->characteristics_list ) ):
 									foreach( $meta->characteristics_list as $item){
-										echo '<li class="li-d"><span class="name">'.$item['title'].':</span> <span class="text">'.$item['textarea_characteristics_list'].'</span></li>';
+										echo '<li class="li-d row"><span class="name col m4">'.$item['title'].':</span> <span class="text col m8">'.$item['textarea_characteristics_list'].'</span></li>';
 									}
 								endif;
 							?></ul>

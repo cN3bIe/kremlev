@@ -1,3 +1,11 @@
+.title.with-baner
+	position: relative
+	padding-bottom: 41px
+	.baner-in-category
+		position: absolute
+		top: 0
+		right: 0
+		width: auto
 
 .section.catalog.catalog-page
 	background-color: $color-bg-section
@@ -67,8 +75,12 @@
 					.bl-action
 						margin-top: 20px
 
-// @media #{$medium-and-down}
+@media #{$medium-and-down}
 @media #{$small-and-down}
+	.title.with-baner
+		.baner-in-category
+			position: static
+			margin-top: 10px
 	.section.catalog.catalog-page
 		.title
 			font-size: 21px

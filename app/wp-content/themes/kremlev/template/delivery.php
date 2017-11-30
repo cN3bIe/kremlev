@@ -84,11 +84,12 @@ if( get_the_ID() ){
 						$list_item_delivery = get_post_meta( $city->ID, 'delivery_list', !0 );
 						if( is_array( $list_item_delivery ) && count( $list_item_delivery ) ){
 							foreach( $list_item_delivery as $key=>$item ){
-								?><li class="li-d item-dev">
-									<div class="line-1">
-										<?php echo $item['title'];?> — <span class="b"><?php echo $item['price_delivery_list'];?> руб.</span> <?php echo $item['time_delivery_list'];?>.
+								?><li class="li-d item-dev row">
+									<div class="col s12 m6"><?php echo $item['title'];?></div>
+									<div class="col s12 m6">
+										<div class="line-1"><span class="b">Бесплатно</span> при заказе от <?php echo $item['free_delivery_list'];?> руб.</div>
+										<div class="line-2"><span class="b"><?php echo $item['price_delivery_list'];?> руб.</span> при заказе до <?php echo $item['free_delivery_list'];?> руб.</div>
 									</div>
-									<div class="line-2">— При заказе от <?php echo $item['free_delivery_list'];?> руб. <span class="b">бесплатно</span></div>
 								</li><?php
 							}
 						}
@@ -97,11 +98,12 @@ if( get_the_ID() ){
 				$list_item_delivery = ot_get_option( 'op_delivery_list' );
 				if( is_array( $list_item_delivery ) && count( $list_item_delivery ) ){
 					foreach( $list_item_delivery as $key=>$item ){
-						?><li class="li-d item-dev">
-							<div class="line-1">
-								<?php echo $item['title'];?> — <span class="b"><?php echo $item['price_delivery_list'];?> руб.</span> <?php echo $item['time_delivery_list'];?>.
+						?><li class="li-d item-dev row">
+							<div class="col s12 m6"><?php echo $item['title'];?></div>
+							<div class="col s12 m6">
+								<div class="line-1"><span class="b">Бесплатно</span> при заказе от <?php echo $item['free_delivery_list'];?> руб.</div>
+								<div class="line-2"><span class="b"><?php echo $item['price_delivery_list'];?> руб.</span> при заказе до <?php echo $item['free_delivery_list'];?> руб.</div>
 							</div>
-							<div class="line-2">— При заказе от <?php echo $item['free_delivery_list'];?> руб. <span class="b">бесплатно</span></div>
 						</li><?php
 					}
 				}
@@ -109,7 +111,7 @@ if( get_the_ID() ){
 		endif;
 		?><div class="title-text before">Условия доставки</div>
 		<ul class="ul-d list-time">
-			<li class="li-d item-time">Время осуществления доставки <span class="b">с 09:00 до 21:00 часов.</span></li>
+			<li class="li-d item-time">Время осуществления доставки <span class="b">с 09:00 до 23:00 часов.</span></li>
 			<li class="li-d item-time">Доставка осуществляется в срок <span class="b">от 3 часов до 1 дня.</span></li>
 			<li class="li-d item-time">Срочная доставка оплачивается <span class="b">по двойному тарифу.</span></li>
 		</ul>

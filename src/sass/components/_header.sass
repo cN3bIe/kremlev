@@ -292,6 +292,22 @@ $height-top-line-media: 2 * $header-top-line-height
 							text-align: right
 							height: $header-nav-line-height - $border-weight
 							line-height: $header-nav-line-height - $border-weight
+							.link-item-menu
+								display: inline-block
+								position: relative
+								width: auto
+								&.current,
+								&:hover,
+									&:before
+										content: ''
+										display: block
+										position: absolute
+										left: 0
+										right: 0
+										bottom: 0
+										height: 3px
+										background-color: $color-primary
+										width: 100%
 
 .tcon-menu__lines
 	&,
@@ -525,6 +541,7 @@ $height-top-line-media: 2 * $header-top-line-height
 					.wr-lvl-1
 						.wrp-item-menu
 							.item-menu
+								text-align: center
 								.link-item-menu
 
 .tooltip_html
