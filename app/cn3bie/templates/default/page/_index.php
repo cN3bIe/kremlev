@@ -1,0 +1,20 @@
+<?php
+get_header();
+get_template_part( 'template/first-screen' );
+get_template_part( 'template/form/catalog-on-free' );
+get_template_part( 'template/bl-error' );
+get_template_part( 'template/form/enroll-on-free' );
+get_template_part( 'template/pereplata' );
+get_template_part( 'template/projects' );
+get_template_part( 'template/form/catalog-on-free' );
+get_template_part( 'template/five' );
+get_template_part( 'template/we-build' );
+get_template_part( 'template/calc' );
+get_template_part( 'template/negative' );
+get_template_part( 'template/postroili' );
+get_template_part( 'template/form/excursion' );
+get_template_part( 'template/garant' );
+get_template_part( 'template/sevenstep' );
+get_template_part( 'template/form/postroil' );
+get_template_part( 'template/contact' );
+get_footer();

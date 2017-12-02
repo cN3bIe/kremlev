@@ -1,22 +1,17 @@
 {
-  "name": "ikra-bs",
-  "description": "",
+  "name": "kremlev",
+  "description": "Kremlev project",
   "main": "index.js",
+  "authors": [
+    "cN3bIe"
+  ],
   "license": "ISC",
-  "homepage": "",
-  "private": true,
+  "homepage": "https://github.com/cN3bIe/kremlev",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "src/libs",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "jquery": "^3.2.1"
-  },
-  "devDependencies": {
-    "material-design-lite": "^1.3.0"
-  }
+  ]
 }

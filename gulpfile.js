@@ -2,180 +2,168 @@
 const
 	gulp = require( 'gulp' ),
 	sass = require( 'gulp-sass' ),
-	babel = require( 'gulp-babel' ),
-	// browserSync = require( 'browser-sync' ),
+	browserSync = require( 'browser-sync' ),
 	concat = require( 'gulp-concat' ),
-	uglify = require( 'gulp-uglify' ),
 	cssnano = require( 'gulp-cssnano' ),
 	rename = require( 'gulp-rename' ),
-	sourcemaps = require('gulp-sourcemaps'),/*
-	pagebuilder = require('gulp-pagebuilder'),
-	del = require( 'del' )*/
+	sourcemaps = require('gulp-sourcemaps'),
+	babelify = require('babelify'),
+	browserify = require('browserify'),
+	source = require('vinyl-source-stream'),
+	buffer = require("vinyl-buffer"),
+	uglify = require("gulp-uglify"),
 	path = {
-		src: 'src/cn3bie/templates/default/',
-		theme : 'app/wp-content/themes/kremlev/'
+		app : 'app/cn3bie/templates/default/',
+		theme : 'theme/wp-content/themes/kremlev/',
+		src: 'src/',
+		bower: 'bower_components/',
 	};
 
 
 gulp
 
 	.task( 'sass',()=>{
-		return gulp.src('src/sass/**/*.+(sass|scss)')
-			.pipe( sourcemaps.init() )
+		return gulp.src( path.src + 'sass/**/*.+(sass|scss)')
+			// .pipe( sourcemaps.init() )
 			.pipe( sass({ outputStyle: 'compressed' }) ).on( 'error', sass.logError )
-			.pipe( sourcemaps.write() )
-			.pipe( gulp.dest( path.src + 'css') )
-			.pipe( gulp.dest( path.theme + 'css') )/*
-			.pipe( browserSync.reload({ stream:!0 }) )*/;
+			// .pipe( sourcemaps.write() )
+			.pipe( rename( {'suffix':'.min'} ) )
+			.pipe( gulp.dest( path.app + 'css') )
+			.pipe( gulp.dest( path.theme + 'css') )
+			.pipe( browserSync.reload({ stream:!0 }) );
 	})
 
-
-	.task( 'js', ()=>{
-		return gulp.src( 'src/js/**/*.js' )
-			/*.pipe( babel({
-				presets: ['env']
-			}) ).on('error', function(err){
-				console.log('[Compilation Error]');
-				console.log(err.fileName + ( err.loc ? `( ${err.loc.line}, ${err.loc.column} ): ` : ': '));
-				console.log('error Babel: ' + err.message + '\n');
-				console.log(err.codeFrame);
-				this.emit('end');
-			})*/
-			.pipe( concat( 'main.min.js' ) )
-			.pipe( uglify() )
-			.pipe( gulp.dest( path.src + 'js') )
-			.pipe( gulp.dest( path.theme + 'js') );
-	})
-
-/*
-	.task( 'html',()=>{
-		return gulp.src( 'src/html/page/**//*.html' )
-			.pipe( pagebuilder( 'src/html/template'))
-			.pipe( gulp.dest('src'));
-	})
+	.task('browserify', () => browserify( path.src + 'js-es6/index.js',{debug: true})
+		.transform("babelify", {presets: ['env', 'react']})
+		.bundle()
+		.on("error", function(err){
+			console.log('[Compilation Error]');
+			console.log(err.fileName + ( err.loc ? `( ${err.loc.line}, ${err.loc.column} ): ` : ': '));
+			console.log('error Babel: ' + err.message + '\n');
+			console.log(err.codeFrame);
+			this.emit('end');
+		})
+		.pipe( source('main.min.js') )
+		.pipe( buffer() )
+		.pipe( sourcemaps.init({loadMaps: true}) )
+		.pipe( uglify() )
+		.pipe( sourcemaps.write() )
+		.pipe( gulp.dest( path.app + 'js/') )
+		.pipe( gulp.dest( path.theme + 'js/') )
+	)
 
 
-	.task( 'browser-sync',()=>{
+	.task( 'browser-sync', () => {
 		browserSync({
 			proxy:'http://kremlev.ru/',
-			notify: false
 		});
 	})
-*/
-
-	.task( 'custom-libs-sass',()=>{
-		return gulp.src([
-				'src/libs/custom/sass/custom.sass'
-			])
-			.pipe( sourcemaps.init() )
-			.pipe( sass({ outputStyle: 'compressed' }) ).on( 'error', sass.logError )
-			.pipe( rename({'suffix':'.min'}) )
-			.pipe( sourcemaps.write() )
-			.pipe( gulp.dest( 'src/libs/custom/dist' ) );
-	})
 
 
-	.task( 'custom-libs-js',()=>{
-		return gulp.src([
-				'src/libs/custom/js/markup.js',
-				'src/libs/aishek-jquery-animateNumber/jquery.animateNumber.min.js',
-			])
-			.pipe( sourcemaps.init() )
-			.pipe( concat( 'custom.min.js') )
-			.pipe( uglify() )
-			.pipe( sourcemaps.write() )
-			.pipe( gulp.dest( 'src/libs/custom/dist' ) );
-	})
+	.task( 'custom-vendor-sass',() => gulp.src([
+			path.src + 'vendor/custom/sass/custom.sass'
+		])
+		// .pipe( sourcemaps.init() )
+		.pipe( sass({ outputStyle: 'compressed' }) ).on( 'error', sass.logError )
+		.pipe( rename({'suffix':'.min'}) )
+		// .pipe( sourcemaps.write() )
+		.pipe( gulp.dest( path.src + 'vendor/custom/dist' ) )
+	)
+
+
+	.task( 'custom-vendor-js',() => gulp.src([
+			path.src + 'vendor/custom/js/markup.js',
+			path.src + 'vendor/aishek-jquery-animateNumber/jquery.animateNumber.min.js',
+		])
+		.pipe( concat( 'custom.min.js') )
+		.pipe( uglify() )
+		.pipe( gulp.dest( path.src + 'vendor/custom/dist' ) )
+	)
 
 
 
-	.task( 'libs-css',['custom-libs-sass'],()=>{
-		return gulp.src([
-				'node_modules/node-waves/dist/waves.min.css',
-				'node_modules/izimodal/css/iziModal.min.css',
-				'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css',
-				'src/libs/material-design-lite/material.min.css',
-				'src/libs/tooltipster-master/dist/css/tooltipster.bundle.min.css',
-				'src/libs/Snarl-master/dist/snarl.min.css',
-				'src/libs/fotorama-4.6.4/fotorama.css',
-				'src/libs/social-share-kit-1.0.15/dist/css/social-share-kit.css',
-				'src/libs/custom/dist/custom.min.css',
-			])
-			.pipe( sourcemaps.init() )
-			.pipe( concat( 'libs.min.css' ) )
-			.pipe( cssnano() )
-			.pipe( sourcemaps.write() )
-			.pipe( gulp.dest( path.src + 'css') )
-			.pipe( gulp.dest( path.theme + 'css') );
-	})
+	.task( 'vendor-css',['custom-vendor-sass'],() => gulp.src([
+			'node_modules/node-waves/dist/waves.min.css',
+			'node_modules/izimodal/css/iziModal.min.css',
+			'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css',
+			'node_modules/material-design-lite/material.min.css',
+			path.src + 'vendor/tooltipster-master/dist/css/tooltipster.bundle.min.css',
+			path.src + 'vendor/Snarl-master/dist/snarl.min.css',
+			path.src + 'vendor/fotorama-4.6.4/fotorama.css',
+			path.src + 'vendor/social-share-kit-1.0.15/dist/css/social-share-kit.css',
+			path.src + 'vendor/custom/dist/custom.min.css',
+		])
+		.pipe( concat( 'vendor.min.css' ) )
+		.pipe( cssnano() )
+		.pipe( gulp.dest( path.app + 'css') )
+		.pipe( gulp.dest( path.theme + 'css') )
+	)
 
 
-	.task( 'libs-js',['custom-libs-js'],()=>{
-		return gulp.src( [
-				'node_modules/jquery/dist/jquery.min.js',
-				'node_modules/node-waves/dist/waves.min.js',
-				'node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js',
-				'node_modules/izimodal/js/iziModal.min.js',
-				'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js',
-				'node_modules/isotope-layout/dist/isotope.pkgd.min.js',
-				'src/libs/material-design-lite/material.min.js',
-				'src/libs/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js',
-				'src/libs/jquery.countdown.package-2.1.0/js/jquery.countdown.min.js',
-				'src/libs/tooltipster-master/dist/js/tooltipster.bundle.min.js',
-				'src/libs/Snarl-master/dist/snarl.min.js',
-				'src/libs/fotorama-4.6.4/fotorama.js',
-				'src/libs/social-share-kit-1.0.15/dist/js/social-share-kit.min.js',
-				'src/libs/kladrapi-jsclient-master/jquery.kladr.min.js',
-				'src/libs/custom/dist/custom.min.js',
-			] )
-			.pipe( sourcemaps.init() )
-			.pipe( concat( 'libs.min.js') )
-			.pipe( uglify() )
-			.pipe( sourcemaps.write() )
-			.pipe( gulp.dest( path.src + 'js' ) )
-			.pipe( gulp.dest( path.theme + 'js' ) );
-	})
+	.task( 'vendor-js',['custom-vendor-js'],() => gulp.src( [
+			'node_modules/jquery/dist/jquery.min.js',
+			'node_modules/node-waves/dist/waves.min.js',
+			'node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js',
+			'node_modules/izimodal/js/iziModal.min.js',
+			'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js',
+			'node_modules/isotope-layout/dist/isotope.pkgd.min.js',
+			'node_modules/material-design-lite/material.min.js',
+			path.src + 'vendor/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js',
+			path.src + 'vendor/jquery.countdown.package-2.1.0/js/jquery.countdown.min.js',
+			path.src + 'vendor/tooltipster-master/dist/js/tooltipster.bundle.min.js',
+			path.src + 'vendor/Snarl-master/dist/snarl.min.js',
+			path.src + 'vendor/fotorama-4.6.4/fotorama.js',
+			path.src + 'vendor/social-share-kit-1.0.15/dist/js/social-share-kit.min.js',
+			path.src + 'vendor/kladrapi-jsclient-master/jquery.kladr.min.js',
+			path.src + 'vendor/custom/dist/custom.min.js',
+		] )
+		.pipe( concat( 'vendor.min.js') )
+		.pipe( uglify() )
+		.pipe( gulp.dest( path.app + 'js' ) )
+		.pipe( gulp.dest( path.theme + 'js' ) )
+	)
 
 
-	.task( 'libs-fonts',()=>{
-		return gulp.src([
-				'src/libs/social-share-kit-1.0.15/dist/fonts/**/*'
-			])
-			.pipe( gulp.dest( path.src + 'fonts' ) )
-			.pipe( gulp.dest( path.theme + 'fonts' ) );
-	})
+	.task( 'fonts',() => gulp.src([
+			path.src + 'vendor/social-share-kit-1.0.15/dist/fonts/**/*',
+			path.src + 'fonts/**/*',
+		])
+		.pipe( gulp.dest( path.app + 'fonts' ) )
+		.pipe( gulp.dest( path.theme + 'fonts' ) )
+	)
 
-	.task( 'libs-img',()=>{
-		return gulp.src([
-				'src/libs/fotorama-4.6.4/**/*.+(jpg|png|gif)',
-				'src/libs/kladrapi-jsclient-master/**/*.+(jpg|png|gif)'
-			])
-			.pipe( gulp.dest( path.src + 'css' ) )
-			.pipe( gulp.dest( path.theme + 'css' ) );
-	})
+	.task( 'vendor-img',() => gulp.src([
+			path.src + 'vendor/fotorama-4.6.4/**/*.+(jpg|png|gif)',
+			path.src + 'vendor/kladrapi-jsclient-master/**/*.+(jpg|png|gif)'
+		])
+		.pipe( gulp.dest( path.app + 'css' ) )
+		.pipe( gulp.dest( path.theme + 'css' ) )
+	)
+
+	.task( 'img', () => gulp.src([
+			path.src + 'img/**/*'
+		])
+		.pipe( gulp.dest( path.app + 'img' ) )
+		.pipe( gulp.dest( path.theme + 'img' ) )
+	)
 
 
-
-	.task( 'libs',[ 'libs-css','libs-js','libs-fonts','libs-img' ])
-
-/*
-	.task( 'clean',()=>{
-		return del.sync( 'dist' );
-	})
-*/
+	.task( 'vendor',[ 'vendor-css','vendor-js','fonts','vendor-img' ])
 
 	.task( 'html-watch',['html'], (done)=>{ browserSync.reload(); done(); } )
-	.task( 'js-watch',['js'], (done)=>{ /*browserSync.reload();*/ done(); } )
+	.task( 'js-watch',['browserify'], (done)=>{ browserSync.reload(); done(); } )
+	.task( 'php-watch', (done)=>{ browserSync.reload(); done(); } )
 
 
 	.task( 'watch', ()=>{
-		gulp.watch( 'src/sass/**/*.+(sass|scss)', ['sass'] );
-		gulp.watch( 'src/js/**/*.js',['js-watch'] );
-		// gulp.watch( 'src/html/**/*.html', ['html-watch'] );
+		gulp.watch( path.src + 'sass/**/*.+(sass|scss)', ['sass'] );
+		gulp.watch( path.src + 'js-es6/**/*.js',['js-watch'] );
+		gulp.watch( path.app + '**/*.php',['php-watch'] );
 	})
 
 
-	.task( 'build',['sass','js','libs'])
+	.task( 'ease',['sass','browserify','browser-sync','watch'])
+	.task( 'build',['sass','browserify','vendor','img'])
 
 
-	.task( 'default',[/*'html'*/,'sass','js','libs'/*,'browser-sync'*/,'watch']);
+	.task( 'default',['build','browser-sync','watch']);

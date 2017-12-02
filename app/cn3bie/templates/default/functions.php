@@ -1,0 +1,12 @@
+<?php
+ScriptCSS::add([
+	'CSS'=>[
+		'[%css%]/vendor.min.css',
+		'[%css%]/main.min.css',
+	],
+	'Script'=>[
+		'https://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU',
+		'[%js%]/vendor.min.js',
+		'[%js%]/main.min.js',
+	]
+]);
