@@ -74,15 +74,17 @@ if( is_array( $filter_terms ) && count( $filter_terms ) ):
 		endif;
 	endforeach;
 endif;
+$action_list = ot_get_option( 'action_list' );
+
 get_header();
-if( ot_get_option( 'action_baner_link' )):
-	?><section class="section"><div class="wr"><a href="<?php echo ot_get_option( 'action_baner_link' );?>" class="action-item-baner a-d">
-		<img src="<?php echo ot_get_option( 'action_baner_upload' );?>" alt="">
-	</a></div></section><?php
-else:
-	?><section class="section"><div class="wr"><div class="action-item-baner">
-		<img src="<?php echo ot_get_option( 'action_baner_upload' );?>" alt="">
-	</div></div></section><?php
+if( is_array( $action_list ) && count( $action_list ) ):
+	?><section class="section"><div class="wr section-action-banner"><?php
+		foreach( $action_list as $key => $item ):
+			if( $item[ 'action_baner_link' ] ) { ?><a href="<?php echo $item[ 'action_baner_link' ];?>" class="action-item-baner a-d action-js-banner"><?php }
+				?><img <?php if( !$item[ 'action_baner_link' ] ) { ?>class="action-js-banner"><?php } ?> src="<?php echo $item[ 'action_baner_upload' ];?>" alt=""><?php
+			if( $item[ 'action_baner_link' ] ) { ?></a><?php }
+		endforeach;
+	?></div></section><?php
 endif;
 ?><section class="section catalog catalog-page">
 	<div class="wr">

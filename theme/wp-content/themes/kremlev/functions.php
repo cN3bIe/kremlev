@@ -119,14 +119,14 @@ if ( ! function_exists( 'kremlev_setup' ) ) :
 */
 	function kremlev_scripts() {
 		wp_enqueue_style( 'kremlev-style', get_stylesheet_uri() );
-		wp_enqueue_style( 'kremlev-libs-css', get_template_directory_uri() . '/css/libs.min.css' );
-		wp_enqueue_style( 'kremlev-main-css', get_template_directory_uri() . '/css/main.css' );
-		wp_enqueue_script( 'kremlev-libs-js', get_template_directory_uri() . '/js/libs.min.js', array(), '', true );
-		wp_enqueue_script( 'kremlev-ls', get_template_directory_uri() . '/js/LS.js', array(), '', true );
-		wp_enqueue_script( 'kremlev-basket', get_template_directory_uri() . '/js/Basket.js', array(), '', true );
-		wp_enqueue_script( 'kremlev-bookmark', get_template_directory_uri() . '/js/Bookmark.js', array(), '', true );
+		wp_enqueue_style( 'kremlev-vendor-css', get_template_directory_uri() . '/css/vendor.min.css' );
+		wp_enqueue_style( 'kremlev-main-css', get_template_directory_uri() . '/css/main.min.css' );
+		wp_enqueue_script( 'kremlev-vendor-js', get_template_directory_uri() . '/js/vendor.min.js', array(), '', true );
+		// wp_enqueue_script( 'kremlev-ls', get_template_directory_uri() . '/js/LS.js', array(), '', true );
+		// wp_enqueue_script( 'kremlev-basket', get_template_directory_uri() . '/js/Basket.js', array(), '', true );
+		// wp_enqueue_script( 'kremlev-bookmark', get_template_directory_uri() . '/js/Bookmark.js', array(), '', true );
 		wp_enqueue_script( 'kremlev-ymaps-js', 'https://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-RU', array(), '', true );
-		wp_enqueue_script( 'kremlev-main-js', get_template_directory_uri() . '/js/main.js', array(), '', true );
+		wp_enqueue_script( 'kremlev-main-js', get_template_directory_uri() . '/js/main.min.js', array(), '', true );
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}

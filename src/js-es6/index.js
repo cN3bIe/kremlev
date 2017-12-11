@@ -2,13 +2,13 @@
 import Basket from './Basket';
 import Bookmark from './Bookmark';
 import LS from './LS';
+import Banners from './Banners';
 
 const log = console.log;
+
 ;(function($){
 	log('Include is main.js');
 	let _w = $(window);
-
-
 
 
 	log('Waves init');
@@ -618,7 +618,7 @@ const log = console.log;
 			}else{
 				basketBadget.stop().fadeOut().parents('.basket').removeClass('active');
 				$('.iziModal').iziModal('close');
-				if( location.href.search( urlmyBasket.trim() ) !== -1 ) location.href = '/';
+				if( location.href.search( urlBasket.trim() ) !== -1 ) location.href = '/';
 			}
 			if( !!myBookmark.getCountCard() ){
 				bookmarkBadget.stop().fadeIn().text( myBookmark.getCountCard() );
@@ -1004,7 +1004,7 @@ const log = console.log;
 				log('Fail polit order!');
 			}
 		});
-
+		Banners( $('.baner-in-category,.action-js-banner') );
 	}); /*end document.ready*/
 
 
@@ -1021,3 +1021,5 @@ ymaps.ready( () => {
 });
 
 })(jQuery);
+
+window.LS = LS;

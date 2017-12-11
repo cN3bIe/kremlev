@@ -10,7 +10,7 @@
     "start": "gulp",
     "vendor": "gulp vendor",
     "build": "gulp build",
-    "ease": "gulp ease"
+    "dev": "gulp dev"
   },
   "author": "cN3bIe",
   "license": "ISC",

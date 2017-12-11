@@ -266,20 +266,35 @@ function custom_theme_options() {
 				'type'        => 'upload',
 				'section'     => 'news'
 			),
-			array(
-				'label'       => 'Ссылка банера',
-				'id'          => 'action_baner_link',
-				'type'        => 'text',
+			[
+				'id'          => 'action_list',
+				'label'       => 'Список акций',
 				'desc'        => '',
-				'section'     => 'action'
-			),
-			array(
-				'id'          => 'action_baner_upload',
-				'label'       => 'Банер',
-				'desc'        => 'Загрузите картинку для банера акций',
-				'type'        => 'upload',
-				'section'     => 'action'
-			),
+				'std'         => '',
+				'type'        => 'list-item',
+				'section'     => 'action',
+				'rows'        => '',
+				'post_type'   => '',
+				'taxonomy'    => '',
+				'min_max_step'=> '',
+				'class'       => '',
+				'condition'   => '',
+				'operator'    => 'and',
+				'settings'    => [
+					[
+						'id'          => 'action_baner_link',
+						'label'       => 'Ссылка банера',
+						'type'        => 'text',
+						'desc'        => '',
+					],
+					[
+						'id'          => 'action_baner_upload',
+						'label'       => 'Банер',
+						'type'        => 'upload',
+						'desc'        => 'Загрузите картинку для банера акций',
+					],
+				]
+			],
 			array(
 				'id'          => 'header_code_textarea',
 				'label'       => 'Код в шапку сайта',
