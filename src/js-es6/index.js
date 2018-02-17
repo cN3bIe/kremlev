@@ -3,12 +3,13 @@ import Basket from './Basket';
 import Bookmark from './Bookmark';
 import LS from './LS';
 import Banners from './Banners';
+import log from './log';
+import error from './error';
 
-const log = console.log;
-
-;(function($){
+($ => {
 	log('Include is main.js');
-	let _w = $(window);
+	const _w = $(window);
+	const _d = $(document);
 
 
 	log('Waves init');
@@ -35,7 +36,7 @@ const log = console.log;
 			callback(!0);
 			return !0;
 		}).fail(function(data){
-			log('Fail bookmark',id);
+			error('Fail bookmark',id);
 			callback(!1);
 			return !1;
 		});
@@ -48,7 +49,7 @@ const log = console.log;
 			log('Success basket',id,( count ? count : 'del' ) );
 			return !0;
 		}).fail(function(data){
-			log('Fail basket',id,( count ? count : 'del' ) );
+			error('Fail basket',id,( count ? count : 'del' ) );
 			return !1;
 		});
 	};
@@ -62,7 +63,7 @@ const log = console.log;
 			$('#city,#city_fixed').text( city );
 			return !0;
 		}).fail(function(data){
-			log('Fail city');
+			error('Fail city');
 			return !1;
 		});
 	};
@@ -73,8 +74,8 @@ const log = console.log;
 
 
 
-	$(document).ready(function(){
-		console.log('Document ready');
+	_d.ready(function(){
+		log('Document ready');
 
 
 		log('%cMaterial Design Lite %cinit',"color:red;","color:white;");
@@ -230,14 +231,14 @@ const log = console.log;
 
 		/*handleScroll init*/
 		handleScroll();
-		$(window).scroll(handleScroll);
+		_w.scroll(handleScroll);
 
 
 
 
 		/*handleResize init*/
 		handleResize();
-		$(window).resize(handleResize);
+		_w.resize(handleResize);
 
 
 
@@ -254,7 +255,7 @@ const log = console.log;
 			});
 		});*/
 		if( $('.catalog.catalog-page').length ){
-			console.log('Isotop init');
+			log('Isotop init');
 			let $grid = $('.wr-card').isotope({
 				itemSelector: '.wr-item-card',
 				layoutMode: 'fitRows',
@@ -391,7 +392,7 @@ const log = console.log;
 
 
 		/*close*/
-		$(document).click(function(e){
+		_d.click( e => {
 			e = e || window.event;
 			let target = e.target || e.srcElement;
 			let _=$(target).parents('.bl-search-city');
@@ -404,7 +405,7 @@ const log = console.log;
 
 
 		if( $('.iziModal').length ){
-			console.log('iziModal init');
+			log('iziModal init');
 			$('.iziModal').iziModal({
 				width: 1100,
 				transitionIn: 'fadeInDown',
@@ -748,7 +749,7 @@ const log = console.log;
 
 
 		if($('.fotorama').length){
-			console.log('Fotorama init');
+			log('Fotorama init');
 			$('.fotorama').fotorama({
 				'minwidth':'80%',
 				'maxwidth':'100%',

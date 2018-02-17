@@ -1,0 +1,41 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"extends": [
+		"eslint:recommended",
+	],
+	"globals": {
+		"iziModal": true,
+		"jQuery": true,
+		"Swiper": true,
+		"document": true,
+		"window": true,
+		"console": true,
+		"componentHandler": true,
+		"noUiSlider": true,
+		"wNumb": true,
+		"ymaps": true,
+		"$": true,
+		"pathTemplateDirectory": true,
+		"$projectsReviewsArr": true,
+		"initMap": true,
+		"global": true,
+		"location": true,
+		"SocialShareKit": true,
+		"setTimeout": true,
+		"setInterval": true,
+		"require": true,
+		"module": true
+	},
+	"rules": {
+		"camelcase": 1,
+		"comma-dangle": 2,
+		"quotes": 0,
+		"semi": ["error", "always"]
+	}
+}
